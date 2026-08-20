@@ -90,6 +90,11 @@ export default defineConfig({
     },
   },
   vite: () => ({
+    build: {
+      // Chromium does not reuse modulepreload requests for chrome-extension://
+      // pages, causing duplicate fetches and unused-preload warnings.
+      modulePreload: false,
+    },
     resolve: {
       // CodeMirror breaks with "Unrecognized extension value in extension set"
       // if the bundle contains more than one copy of these packages (#1782).

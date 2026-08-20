@@ -1,12 +1,6 @@
 // @vitest-environment jsdom
 import { describe, expect, it } from "vitest"
 import { siteRuleSchema } from "@/types/config/site-rules"
-import {
-  STATE_MESSAGE_CLASS,
-  SUBTITLES_VIEW_CLASS,
-  TRANSLATE_BUTTON_CLASS,
-  YOUTUBE_NATIVE_SUBTITLES_CLASS,
-} from "@/utils/constants/subtitles"
 import { BUILT_IN_SITE_RULES } from "../built-in"
 import rawBuiltInRules from "../built-in/rules.json"
 import { normalizeUrlPattern } from "../match"
@@ -367,16 +361,11 @@ describe("built-in site rules", () => {
     expect(resolved.includeSelector).toBeNull()
   })
 
-  it("keeps the youtube rule in sync with the subtitle class constants", () => {
+  it("excludes YouTube native captions", () => {
     const youtube = BUILT_IN_SITE_RULES.find((rule) => rule.id === "readfrog-youtube")
     expect(youtube).toBeDefined()
     expect(youtube!.excludeSelectors).toEqual(
-      expect.arrayContaining([
-        YOUTUBE_NATIVE_SUBTITLES_CLASS,
-        `.${SUBTITLES_VIEW_CLASS}`,
-        `.${STATE_MESSAGE_CLASS}`,
-        `.${TRANSLATE_BUTTON_CLASS}`,
-      ]),
+      expect.arrayContaining([".ytp-caption-window-container"]),
     )
   })
 

@@ -14,32 +14,8 @@ const ShortcutsPage = lazy(() =>
 const ApiProvidersPage = lazy(() =>
   import("./pages/api-providers").then((module) => ({ default: module.ApiProvidersPage })),
 )
-const CustomActionsPage = lazy(() =>
-  import("./pages/custom-actions").then((module) => ({ default: module.CustomActionsPage })),
-)
 const TranslationPage = lazy(() =>
   import("./pages/translation").then((module) => ({ default: module.TranslationPage })),
-)
-const VideoSubtitlesPage = lazy(() =>
-  import("./pages/video-subtitles").then((module) => ({ default: module.VideoSubtitlesPage })),
-)
-const FloatingButtonPage = lazy(() =>
-  import("./pages/floating-button").then((module) => ({ default: module.FloatingButtonPage })),
-)
-const SelectionToolbarPage = lazy(() =>
-  import("./pages/selection-toolbar").then((module) => ({ default: module.SelectionToolbarPage })),
-)
-const ContextMenuPage = lazy(() =>
-  import("./pages/context-menu").then((module) => ({ default: module.ContextMenuPage })),
-)
-const InputTranslationPage = lazy(() =>
-  import("./pages/input-translation").then((module) => ({ default: module.InputTranslationPage })),
-)
-const TextToSpeechPage = lazy(() =>
-  import("./pages/text-to-speech").then((module) => ({ default: module.TextToSpeechPage })),
-)
-const HelpAndCommunityPage = lazy(() =>
-  import("./pages/help-and-community").then((module) => ({ default: module.HelpAndCommunityPage })),
 )
 const CustomCssPage = lazy(() =>
   import("./pages/translation/translation-style/custom-css").then((module) => ({
@@ -86,36 +62,12 @@ const ExtensionActivationPage = lazy(() =>
     default: module.ExtensionActivationPage,
   })),
 )
-const SubtitlesStylePage = lazy(() =>
-  import("./pages/video-subtitles/subtitles-style/style-editor").then((module) => ({
-    default: module.SubtitlesStylePage,
-  })),
-)
-const SubtitlesCustomPromptsPage = lazy(() =>
-  import("./pages/video-subtitles/custom-prompts/prompts").then((module) => ({
-    default: module.SubtitlesCustomPromptsPage,
-  })),
-)
-const SubtitlesQueuePage = lazy(() =>
-  import("./pages/video-subtitles/subtitles-queue/queue-page").then((module) => ({
-    default: module.SubtitlesQueuePage,
-  })),
-)
-
 const ROUTE_COMPONENTS: Record<RoutePath, ComponentType> = {
   "/": ApiProvidersPage,
   "/preference": PreferencePage,
   "/shortcuts": ShortcutsPage,
   "/api-providers": ApiProvidersPage,
-  "/custom-actions": CustomActionsPage,
   "/page-translation": TranslationPage,
-  "/video-subtitles": VideoSubtitlesPage,
-  "/floating-button": FloatingButtonPage,
-  "/selection-toolbar": SelectionToolbarPage,
-  "/context-menu": ContextMenuPage,
-  "/input-translation": InputTranslationPage,
-  "/tts": TextToSpeechPage,
-  "/help-and-community": HelpAndCommunityPage,
   "/preference/config-backup": ConfigBackupPage,
   "/preference/extension-activation": ExtensionActivationPage,
   "/page-translation/custom-css": CustomCssPage,
@@ -126,9 +78,6 @@ const ROUTE_COMPONENTS: Record<RoutePath, ComponentType> = {
     NeverAutoTranslateWebsitesPage,
   "/page-translation/translation-control/site-rules": SiteRulesPage,
   "/page-translation/translation-queue": TranslationQueuePage,
-  "/video-subtitles/style": SubtitlesStylePage,
-  "/video-subtitles/prompts": SubtitlesCustomPromptsPage,
-  "/video-subtitles/subtitles-queue": SubtitlesQueuePage,
 }
 
 function RouteLoadingFallback() {

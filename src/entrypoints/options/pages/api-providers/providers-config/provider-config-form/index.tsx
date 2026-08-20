@@ -1,7 +1,6 @@
 import type { APIProviderConfig, ProvidersConfig } from "@/types/config/provider"
 import { useAtom, useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
-import { useHostedAiStatus } from "@/components/llm-providers/use-hosted-ai-status"
 import { toastManager } from "@/components/ui/base-ui/toast"
 import {
   isAPIProviderConfig,
@@ -14,7 +13,6 @@ import { providerConfigAtom } from "@/utils/atoms/provider"
 import {
   computeLanguageDetectionFallbackAfterDeletion,
   computeProviderFallbacksAfterDeletion,
-  computeSelectionToolbarCustomActionFallbacksAfterDeletion,
   findFeatureMissingProvider,
 } from "@/utils/config/helpers"
 import {
@@ -23,7 +21,6 @@ import {
   FEATURE_PROVIDER_DEFS,
   getFeatureLabelI18nKey,
 } from "@/utils/constants/feature-providers"
-import { getSelectionToolbarActions } from "@/utils/custom-actions"
 import { i18n } from "@/utils/i18n"
 import { EntityEditor } from "../../../../components/entity-editor"
 import { selectedProviderIdAtom } from "../atoms"
@@ -31,128 +28,61 @@ import { CustomProviderEditor, ProviderEditor, useProviderForm } from "../provid
 import { duplicateProvider } from "../utils"
 
 export function ProviderConfigForm() {
-  const selectedProviderId = useAtomValue(selectedProviderIdAtom)
-  const providerConfig = useAtomValue(providerConfigAtom(selectedProviderId ?? ""))
-
-  if (!providerConfig || !isAPIProviderConfig(providerConfig)) {
-    return null
-  }
-
-  return <EditableProviderConfig key={providerConfig.id} providerConfig={providerConfig} />
+  const selectedId = useAtomValue(selectedProviderIdAtom)
+  const provider = useAtomValue(providerConfigAtom(selectedId ?? ""))
+  return provider && isAPIProviderConfig(provider) ? (
+    <EditableProviderConfig key={provider.id} providerConfig={provider} />
+  ) : null
 }
 
 function EditableProviderConfig({ providerConfig }: { providerConfig: APIProviderConfig }) {
-  const setSelectedProviderId = useSetAtom(selectedProviderIdAtom)
-  const [currentProviderConfig, setProviderConfig] = useAtom(providerConfigAtom(providerConfig.id))
-  const [allProvidersConfig, setAllProvidersConfig] = useAtom(configFieldsAtomMap.providersConfig)
+  const setSelected = useSetAtom(selectedProviderIdAtom)
+  const [current, setProvider] = useAtom(providerConfigAtom(providerConfig.id))
+  const [providers, setProviders] = useAtom(configFieldsAtomMap.providersConfig)
   const setConfig = useSetAtom(writeConfigAtom)
   const config = useAtomValue(configAtom)
-  // Decides which built-in tiers count as usable below. Unknown status reads as
-  // usable, so an unreachable status endpoint never traps someone with a
-  // credential they want gone.
-  const { status: hostedAiStatus } = useHostedAiStatus()
-  const form = useProviderForm(providerConfig, async (nextProviderConfig) => {
-    await setProviderConfig(nextProviderConfig)
-  })
+  const form = useProviderForm(providerConfig, setProvider)
 
   useEffect(() => {
-    if (currentProviderConfig && isAPIProviderConfig(currentProviderConfig)) {
-      form.reset(currentProviderConfig)
-    }
-  }, [currentProviderConfig, form])
+    if (current && isAPIProviderConfig(current)) form.reset(current)
+  }, [current, form])
 
-  const chooseNextProviderConfig = (providersConfig: ProvidersConfig) => {
-    const firstProvider = providersConfig.find((provider) => !isNonAPIProvider(provider.provider))
-    return firstProvider ?? providersConfig[0]
-  }
-
-  const handleDuplicate = async () => {
-    await duplicateProvider(
-      providerConfig,
-      allProvidersConfig,
-      setAllProvidersConfig,
-      setSelectedProviderId,
-    )
-  }
+  const chooseNext = (items: ProvidersConfig) =>
+    items.find((provider) => !isNonAPIProvider(provider.provider)) ?? items[0]
 
   const handleDelete = async () => {
-    const updatedAllProviders = allProvidersConfig.filter(
-      (provider) => provider.id !== providerConfig.id,
-    )
-
-    const unsatisfied = findFeatureMissingProvider(updatedAllProviders, config, hostedAiStatus)
-    if (unsatisfied) {
-      // Name the feature. The block is worth nothing if the user cannot tell
-      // which slot it is protecting — and it fires for switched-off features
-      // too, whose stored providerId would otherwise be left dangling.
+    const remaining = providers.filter((provider) => provider.id !== providerConfig.id)
+    const missing = findFeatureMissingProvider(remaining, config)
+    if (missing) {
       toastManager.add({
         type: "error",
         title: i18n.t("options.apiProviders.form.featureWouldLoseProvider", [
-          unsatisfied === "languageDetection"
+          missing === "languageDetection"
             ? i18n.t("options.apiProviders.languageDetection.title")
-            : i18n.t(getFeatureLabelI18nKey(unsatisfied)),
+            : i18n.t(getFeatureLabelI18nKey(missing)),
         ]),
       })
       return
     }
 
-    const updatedSelectionToolbar = computeSelectionToolbarCustomActionFallbacksAfterDeletion(
+    const patch = buildFeatureProviderPatch(
+      computeProviderFallbacksAfterDeletion(providerConfig.id, config, remaining),
+    )
+    const detectionFallback = computeLanguageDetectionFallbackAfterDeletion(
       providerConfig.id,
       config,
-      updatedAllProviders,
-      hostedAiStatus,
+      remaining,
     )
-    const hasAffectedCustomActions = getSelectionToolbarActions(config.selectionToolbar).some(
-      (action) => action.providerId === providerConfig.id,
-    )
-
-    if (hasAffectedCustomActions && !updatedSelectionToolbar) {
-      toastManager.add({
-        type: "error",
-        title: i18n.t("options.apiProviders.form.atLeastOneLLMProvider"),
-      })
-      return
-    }
-
-    const fallbacks = computeProviderFallbacksAfterDeletion(
-      providerConfig.id,
-      config,
-      updatedAllProviders,
-      hostedAiStatus,
-    )
-    let patch = buildFeatureProviderPatch(fallbacks)
-    if (updatedSelectionToolbar) {
-      patch = {
-        ...patch,
-        selectionToolbar: updatedSelectionToolbar,
+    if (detectionFallback !== null) {
+      patch.languageDetection = {
+        ...config.languageDetection,
+        providerId: detectionFallback,
       }
     }
-
-    const languageDetectionFallback = computeLanguageDetectionFallbackAfterDeletion(
-      providerConfig.id,
-      config,
-      updatedAllProviders,
-      hostedAiStatus,
-    )
-    if (languageDetectionFallback !== null) {
-      patch = {
-        ...patch,
-        languageDetection: {
-          ...config.languageDetection,
-          providerId: languageDetectionFallback,
-        },
-      }
-    }
-
-    if (Object.keys(patch).length > 0) {
-      await setConfig(patch)
-    }
-
-    await setAllProvidersConfig(updatedAllProviders)
-    const nextProvider = chooseNextProviderConfig(updatedAllProviders)
-    if (nextProvider) {
-      setSelectedProviderId(nextProvider.id)
-    }
+    if (Object.keys(patch).length > 0) await setConfig(patch)
+    await setProviders(remaining)
+    const next = chooseNext(remaining)
+    setSelected(next?.id)
   }
 
   const providerType = providerConfig.provider
@@ -160,13 +90,15 @@ function EditableProviderConfig({ providerConfig }: { providerConfig: APIProvide
   const hasAdvancedFields = isLLMProvider(providerType)
   const hasAssignments =
     hasAdvancedFields ||
-    FEATURE_KEYS.some((featureKey) => FEATURE_PROVIDER_DEFS[featureKey].isProvider(providerType))
+    FEATURE_KEYS.some((key) => FEATURE_PROVIDER_DEFS[key].isProvider(providerType))
 
   return (
     <CustomProviderEditor.Provider
       providerConfig={providerConfig}
       form={form}
-      duplicate={handleDuplicate}
+      duplicate={async () => {
+        await duplicateProvider(providerConfig, providers, setProviders, setSelected)
+      }}
       delete={handleDelete}
     >
       <ProviderEditor.Form>
@@ -182,7 +114,6 @@ function EditableProviderConfig({ providerConfig }: { providerConfig: APIProvide
               <ProviderEditor.Assignments>
                 <ProviderEditor.CompatibleFeatureAssignments />
                 <ProviderEditor.LanguageDetectionAssignment />
-                <ProviderEditor.CustomActionAssignments />
               </ProviderEditor.Assignments>
             )}
             {hasAdvancedFields && <ProviderEditor.AdvancedFields />}

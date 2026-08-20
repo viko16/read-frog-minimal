@@ -1,8 +1,6 @@
 @import "tailwindcss" source("../..");
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import "./glass-badge.css";
-
 @source not "../../**/__tests__";
 @source not "../../**/*.test.*";
 
@@ -70,9 +68,6 @@
   --animate-toast-success-even: toast-success-even 0.32s cubic-bezier(0.5, 1, 0.89, 1);
   --animate-toast-error-odd: toast-error-odd 0.28s cubic-bezier(0.5, 1, 0.89, 1);
   --animate-toast-error-even: toast-error-even 0.28s cubic-bezier(0.5, 1, 0.89, 1);
-  --animate-subtitle-pending-breath: subtitle-pending-breath 2s ease-in-out infinite;
-  --animate-subtitle-pending-appear: subtitle-pending-appear 250ms ease-out both;
-  --animate-subtitle-fade-in: subtitle-fade-in 200ms ease-out both;
   /* Three pulses, 2.7s end to end — kept in sync with
      PROVIDER_FIELD_HIGHLIGHT_DURATION_MS, which clears the class afterwards. */
   --animate-ring-flash: ring-flash 0.9s ease-out 3;
@@ -86,34 +81,6 @@
     40% {
       border-color: var(--rf-ring-flash-border);
       box-shadow: 0 0 0 3px var(--rf-ring-flash-ring);
-    }
-  }
-
-  @keyframes subtitle-pending-breath {
-    0%,
-    100% {
-      opacity: 0.22;
-    }
-    50% {
-      opacity: 0.58;
-    }
-  }
-
-  @keyframes subtitle-pending-appear {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  @keyframes subtitle-fade-in {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
     }
   }
 
@@ -330,9 +297,6 @@ body {
     .animate-toast-success-even,
     .animate-toast-error-odd,
     .animate-toast-error-even,
-    .animate-subtitle-pending-breath,
-    .animate-subtitle-pending-appear,
-    .animate-subtitle-fade-in,
     .animate-ring-flash
   ) {
     animation: none;

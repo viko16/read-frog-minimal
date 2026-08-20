@@ -1,8 +1,6 @@
 /**
- * Split into instructions + prompt rather than one blob because the hosted
- * route requires a non-empty `instructions` field: the directive is the system
- * message and the article is the user message. Local runs get the same split,
- * which is also the shape every provider prefers.
+ * Split into instructions and prompt: the directive is the system message and
+ * the article is the user message, which is the shape providers expect.
  */
 export function getArticleSummaryPrompt(
   title: string,

@@ -180,10 +180,7 @@ describe("translationMessage", () => {
     )
     expect(sendMessageMock).toHaveBeenCalledWith(
       "askManagerToTogglePageTranslation",
-      {
-        enabled: false,
-        analyticsContext: undefined,
-      },
+      { enabled: false },
       42,
     )
   })
@@ -367,10 +364,7 @@ describe("translationMessage", () => {
     expect(injectHostContentIntoTabIframesMock).not.toHaveBeenCalled()
     expect(sendMessageMock).toHaveBeenCalledWith(
       "askManagerToTogglePageTranslation",
-      {
-        enabled: true,
-        analyticsContext: undefined,
-      },
+      { enabled: true },
       42,
     )
   })

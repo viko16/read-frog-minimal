@@ -165,7 +165,7 @@ describe("getModelById", () => {
     expect(anthropicLanguageModelMock).toHaveBeenCalledWith("claude-haiku-4-5")
   })
 
-  it("passes attribution headers for OpenRouter when user headers are undefined", async () => {
+  it("does not add product attribution headers for OpenRouter", async () => {
     getStorageItemMock.mockResolvedValue({
       providersConfig: [createOpenRouterProviderConfig()],
     })
@@ -179,10 +179,10 @@ describe("getModelById", () => {
         name: "openrouter",
         baseURL: "https://openrouter.ai/api/v1",
         apiKey: "test-key",
-        headers: FORCED_PROVIDER_HEADERS.openrouter,
         supportsStructuredOutputs: true,
       }),
     )
+    expect(createOpenAICompatibleMock.mock.calls[0]?.[0]).not.toHaveProperty("headers")
     expect(createOpenAICompatibleMock.mock.calls[0]?.[0]).not.toHaveProperty("url")
     expect(openAICompatibleLanguageModelMock).toHaveBeenCalledWith("x-ai/grok-4-fast:free")
   })

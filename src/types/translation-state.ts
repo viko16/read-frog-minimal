@@ -4,7 +4,7 @@ export const translationStateSchema = z.object({
   enabled: z.boolean(),
   origin: z.string().optional(),
   // Set when the user manually turned translation off (popup, floating
-  // button, shortcut, touch gesture, context menu). Scoped by `origin`;
+  // button, shortcut, or touch gesture). Scoped by `origin`;
   // auto-translation must not force the page back on while this is set.
   userDisabled: z.boolean().optional(),
 })

@@ -7,7 +7,6 @@ import { logger } from "@/utils/logger"
 import { onMessage, sendMessage } from "@/utils/message"
 import { clearEffectiveSiteControlUrl } from "@/utils/site-control"
 import { areSamePageTranslationOrigin } from "@/utils/url"
-import { bindTranslationHubShortcutKey } from "./bind-translation-hub-shortcut"
 import { setupUrlChangeListener } from "./listen"
 import { mountHostToast } from "./mount-host-toast"
 import { bindTranslationModeShortcutKey } from "./translation-control/bind-translation-mode-shortcut"
@@ -40,8 +39,6 @@ export async function bootstrapHostContent(
   const cleanupTranslationShortcut = await bindTranslationShortcutKey(manager)
 
   const cleanupTranslationModeShortcut = await bindTranslationModeShortcutKey()
-
-  const cleanupTranslationHubShortcut = await bindTranslationHubShortcutKey()
 
   const detectAndReportPageLanguage = async (url: string) => {
     const { detectedCodeOrUnd } = await detectPageLanguageLightweight()
@@ -90,15 +87,14 @@ export async function bootstrapHostContent(
 
   // Listen for translation state changes from background
   const cleanupTranslationStateListener = onMessage("askManagerToTogglePageTranslation", (msg) => {
-    const { enabled, analyticsContext } = msg.data
+    const { enabled } = msg.data
     if (enabled === manager.isActive) return
     if (enabled) {
-      void manager.start(window === window.top ? analyticsContext : undefined)
+      void manager.start()
     } else {
       // Invariant: every sender of askManagerToTogglePageTranslation with
-      // enabled=false is a user surface (popup button, floating button,
-      // context menu) — the auto-translation path only ever sends
-      // enabled=true — so a disable here is always user-initiated.
+      // enabled=false is a user surface; the auto-translation path only ever
+      // sends enabled=true, so a disable here is always user-initiated.
       manager.stop({ userInitiated: true })
     }
   })
@@ -130,7 +126,6 @@ export async function bootstrapHostContent(
     cleanupPageTranslationTriggers()
     cleanupTranslationShortcut()
     cleanupTranslationModeShortcut()
-    cleanupTranslationHubShortcut()
     cleanupTranslationStateListener()
     cleanupFrameTranslationStateListener()
     cleanupDetectedLanguageRefreshListener()

@@ -1,24 +1,7 @@
-name: Read Frog
-extName: Read Frog - Переводи и учись
-extDescription: Read Frog — расширение браузера с открытым исходным кодом, которое поможет вам глубоко изучать языки на любом веб-сайте.
-uninstallSurveyUrl: https://tally.so/r/nPK6Ob
-account:
-  login: Войти
-  webApp: Веб-приложение
-  logout: Выйти
-  logoutError: Не удалось выйти. Попробуйте ещё раз.
-dataTypes:
-  string: Текст
-  number: Число
-contextMenu:
-  translate: Перевести
-  translateSelection: Перевести "%s"
-  readAloudSelection: Прочитать вслух "%s"
-  showOriginal: Показать оригинал
-sidePanel:
-  firefoxUserActionHint: В Firefox откройте Read Frog из боковой панели браузера.
-  firefoxUserActionHelpText: Как открыть боковую панель Firefox
-  firefoxUserActionHelpUrl: https://support.mozilla.org/ru/kb/ispolzovanije-bokovoi-paneli-dostup-instrumenty-i-vertikalnyje-vkladki
+---
+name: Read Frog Minimal
+extName: Read Frog Minimal - Перевод веб-страниц
+extDescription: Локальный переводчик веб-страниц с открытым кодом, прямыми провайдерами и вашими API-ключами.
 popup:
   theme: Тема
   autoLang: Авто
@@ -30,8 +13,6 @@ popup:
     open: Open provider settings
   translate: Перевести
   showOriginal: Показать оригинал
-  enabledFloatingButton: Включить плавающую кнопку
-  enabledSelectionToolbar: Включить панель выделения
   alwaysTranslate: Всегда переводить этот сайт
   addToWhitelist: Включить расширение на этом сайте
   addToBlacklist: Отключить расширение на этом сайте
@@ -46,26 +27,8 @@ popup:
       translationOnly:
         current: "Текущий режим: только перевод"
         action: Нажмите, чтобы переключиться на двуязычный
-  hub:
-    tooltip: Переводите текст несколькими моделями одновременно
-  discord:
-    tooltip: Присоединяйтесь к Discord, чтобы связаться с разработчиками и получить ранний доступ к новым функциям
-  blog:
-    notification: Что нового в Read Frog
   aiSmartContext: Умный контекст ИИ
   aiSmartContextDescription: Использует контекст веб-страницы для улучшения качества перевода. Требуется LLM-провайдер перевода.
-  more:
-    title: Ещё
-    help: Помощь
-    tutorial: Руководство
-    emailUs: Написать нам
-    featureRequest: Предложить функцию
-    bugReport: Сообщить об ошибке
-    community: Сообщество
-    joinDiscord: Присоединиться к Discord
-    joinWechat: Присоединиться к группе WeChat
-    starGithub: Поставить звезду на Github
-    rateUs: Оценить нас
 errorRecovery:
   title: Что-то пошло не так
   description: Активирован режим восстановления. Вы можете экспортировать текущие настройки как резервную копию, затем сбросить настройки и попробовать снова.
@@ -84,8 +47,6 @@ errorRecovery:
     confirm: Сбросить
     cancel: Отмена
 options:
-  batchSavings:
-    savedCost: Сэкономлено примерно $1% расходов на API
   commandPalette:
     placeholder: Поиск настроек...
     noResults: Настройки не найдены
@@ -94,67 +55,16 @@ options:
     toggle: Переключить боковую панель
     settings: Настройки
     features: Функции
-    product: Продукт
-  tools:
-    translationHub: Центр переводов
-  product:
-    roadmap: Дорожная карта
-  helpAndCommunity:
-    title: Помощь и сообщество
-    pageDescription: Узнайте, как пользоваться Read Frog, обратитесь за помощью к команде или присоединяйтесь к сообществу.
-    help:
-      title: Помощь
-    tutorial:
-      title: Руководство
-      description: Прочитайте документацию и узнайте, как пользоваться Read Frog
-    email:
-      title: Написать нам
-      description: Свяжитесь с командой напрямую по адресу contact@readfrog.app
-    featureRequest:
-      title: Предложить функцию
-      description: Предложите идею и голосуйте за то, что команда сделает дальше
-    bugReport:
-      title: Сообщить об ошибке
-      description: Создайте обращение в поддержку и следите за ним до решения
-    community:
-      title: Сообщество
-    discord:
-      title: Discord
-      description: Общайтесь с командой и другими пользователями в реальном времени
-    wechat:
-      title: Группа в WeChat
-      description: Отсканируйте QR-код, чтобы вступить в группу обсуждения в WeChat
-      qrCodeAlt: QR-код WeChat
   apiProviders:
     title: API-провайдеры
-    pageDescription: Подключите ИИ-сервисы, которые вызывает Read Frog, и выберите провайдера для каждой функции.
-    description: Добавьте провайдеров, которых может вызывать Read Frog. Более 20 встроено; также можно добавить пользовательские API, совместимые с Chat Completions, и API Open Responses.
+    pageDescription: Подключите ИИ-сервисы, которые вызывает Read Frog Minimal, и выберите провайдера для каждой функции.
+    description: Добавьте провайдеров, которых может вызывать Read Frog Minimal. Более 20 встроено; также можно добавить пользовательские API, совместимые с Chat Completions, и API Open Responses.
     configTitle: Настройка провайдеров
     addProvider: Добавить провайдера
-    builtInProvider: Встроенный провайдер
-    builtInAiUsage:
-      title: Квота встроенного ИИ
-      remaining: "Осталось $1%"
-      supportedFeatures: "Поддерживает функций: $1"
-      resetsAt: "Сброс: $1"
-      daily: Дневная квота
-      weekly: Недельная квота
-      features:
-        pageTranslation: Перевод страницы
-        customAction: Пользовательские AI-действия
-        noteSuggestion: Подсказки для заметок
-        selectionTranslation: Перевод выделения
-        videoSubtitles: Субтитры видео
-        inputTranslation: Перевод ввода
-        languageDetection: Определение языка
-    sponsorCta: Получить быстрый и выгодный ИИ
-    sponsorCtaJalapenoCloud: Получить GLM 5.2 со скидкой 50 %
     setApiKeyWarning:
       message: Укажите API-ключ на странице $1
     badges:
-      featureCount: $1 функций
-      sponsor: Спонсор
-      sponsorJalapenoCloud: $$2 бесплатно
+      featureCount: "$1 функций"
     dialog:
       title: Добавить нового провайдера
       groups:
@@ -184,7 +94,7 @@ options:
         cancel: Отмена
       atLeastOneLLMProvider: Требуется как минимум один LLM-провайдер перевода.
       featureWouldLoseProvider: "Невозможно удалить: у функции «$1» не останется ни одного работающего провайдера."
-      duplicateProviderName: 'Дублирующееся имя провайдера "$1"'
+      duplicateProviderName: Дублирующееся имя провайдера "$1"
       defaultProvider:
         translate: Установить как провайдер перевода по умолчанию
       models:
@@ -228,13 +138,8 @@ options:
       invalidJson: Неверный формат JSON
     providers:
       name:
-        builtInAi: Встроенный ИИ
-        builtInAiAdvance: Продвинутый встроенный ИИ
         customChatComplete: Пользовательский Chat Complete
         customResponses: Пользовательский Responses
-      attribution:
-        builtInAi: Стандартная модель, размещённая Read Frog. Пользователи без Ultra могут использовать её только в пользовательских AI-действиях; пользователям Ultra доступно больше функций.
-        builtInAiAdvance: Продвинутая модель, размещённая Read Frog, — только для подписчиков Ultra. Работает во всех функциях встроенного ИИ — переводе страниц, пользовательских AI-действиях и других — с общей недельной квотой. Расходует квоту быстрее, чем стандартная модель.
       description:
         openai: Предоставляет модели, такие как GPT-4o
         azure: Модели OpenAI в Azure через ваши развертывания
@@ -283,16 +188,8 @@ options:
       description: Выберите провайдера для каждой функции
       features:
         pageTranslation: Перевод страницы
-        selectionTranslation: Перевод выделения
-        inputTranslation: Перевод ввода
-        videoSubtitles: Субтитры видео
-        noteSuggestion: Подсказки для заметок
       descriptions:
         pageTranslation: Переводит страницу целиком — в двуязычном режиме или с заменой оригинала.
-        selectionTranslation: Переводит выделенный текст через панель выделения.
-        inputTranslation: Переводит то, что вы набрали в поле ввода, перед отправкой.
-        videoSubtitles: Переводит субтитры, которые появляются в видеоплеере.
-        noteSuggestion: Предлагает слова, которые стоит сохранить в Notebase, после перевода выделенного текста.
     languageDetection:
       title: Определение языка
       description: Влияет на точность определения языка для автоперевода и выбора голоса озвучивания.
@@ -317,12 +214,12 @@ options:
     duplicate: Этот шаблон уже в списке
   preference:
     title: Предпочтения
-    pageDescription: Задайте внешний вид Read Frog, места его работы, а также синхронизацию и резервное копирование конфигурации.
+    pageDescription: Задайте внешний вид Read Frog Minimal, места его работы, а также синхронизацию и резервное копирование конфигурации.
     appearanceAndLanguage:
       title: Оформление и язык
       theme:
         title: Тема
-        description: Выберите тему для Read Frog.
+        description: Выберите тему для Read Frog Minimal.
         system: Системная
         light: Светлая
         dark: Тёмная
@@ -353,53 +250,6 @@ options:
         urlPattern: Шаблон URL
     config:
       title: Конфигурация
-      googleDrive:
-        title: Облачная синхронизация Google Drive
-        description: Загружает, когда удалённая версия новее, выгружает, когда локальная версия новее
-        sync: Синхронизировать с Google Drive
-        syncing: Синхронизация...
-        syncSuccess:
-          uploaded: Локальная конфигурация загружена в облако
-          downloaded: Удалённая конфигурация применена
-          sameChanges: Изменения совпадают, синхронизировано
-          noChange: Уже синхронизировано
-          unresolved: Конфликты разрешены и синхронизированы
-        syncError: Ошибка синхронизации, попробуйте снова
-        metadataCorrupted: Метаданные синхронизации повреждены, применена удалённая конфигурация
-        lastSyncTime: Последняя синхронизация
-        logout: Выйти
-        logoutSuccess: Выполнен выход из аккаунта Google
-        unresolved:
-          title: Разрешение синхронизации конфигурации
-          description: Локальная и удалённая конфигурации отличаются. Пожалуйста, выберите, какую версию сохранить для каждого поля.
-          resolved: Разрешено
-          unresolved: Не разрешено
-          localValue: Локальное значение
-          remoteValue: Удалённое значение
-          useLocal: Использовать локальное
-          useRemote: Использовать удалённое
-          useAllLocal: Использовать всё локальное
-          useAllRemote: Использовать всё удалённое
-          reset: Сбросить выбор
-          progress: Разрешено $1/$2 изменений
-          confirm: Подтвердить синхронизацию
-          cancel: Отмена
-          hasUnresolvedInChildren: ⚠ Содержит неразрешённые изменения
-          item: элемент
-          items: элементов
-          unresolvedPrompt: "[Не разрешено - Выберите]"
-          localLatest: Локальная последняя
-          remoteLatest: Удалённая последняя
-          bothChanged: Оба изменены
-          localChanged: Локальное изменено
-          remoteChanged: Удалённое изменено
-          configValid: Конфигурация действительна
-          configInvalid: Конфигурация недействительна
-          resolveToContinue: Разрешите конфликты для продолжения
-          validationAlert:
-            title: Объединённая конфигурация содержит ошибки валидации
-            description: "Настройте различия ниже для исправления:"
-          moreErrors: ...и ещё $1 ошибок
       manualSync:
         title: Ручная синхронизация конфигурации
         description: Ручной импорт и экспорт настроек конфигурации
@@ -453,15 +303,6 @@ options:
           confirm: Подтвердить
           cancel: Отмена
           description: Эта операция очистит все ваши пользовательские конфигурации и сбросит их до значений по умолчанию. Пожалуйста, подтвердите.
-    userExperience:
-      title: Пользовательский опыт
-      beta:
-        title: Бета-функции
-        description: Включить экспериментальные функции, которые могут быть нестабильны
-      analytics:
-        title: Помочь улучшить пользовательский опыт
-        tooltip: Когда параметр включен, Read Frog отправляет анонимные сигналы об использовании продукта, чтобы мы могли находить ошибки, проверять надежность функций, улучшать производительность и UX-детали, а также понимать, что развивать дальше в первую очередь.
-        description: Улучшайте Read Frog, помогая находить ошибки, дорабатывать интерфейс и не только
   shortcuts:
     title: Горячие клавиши
     pageDescription: Задайте клавиши, которые запускают перевод во время чтения.
@@ -472,242 +313,9 @@ options:
     translationMode:
       title: Режим перевода
       description: Переключение между двуязычным режимом и только переводом.
-    selectionTranslation:
-      title: Перевод выделения
-      description: Перевести выделенный текст.
-    subtitlesToggle:
-      title: Перевод субтитров
-      description: Включает или выключает переведённые субтитры видео.
     nodeTranslation:
       title: Перевод абзаца
       description: Наведите курсор на абзац или нажмите и удерживайте его, чтобы перевести только его.
-    translationHub:
-      title: Центр переводов
-      description: Открывает Центр переводов в новой вкладке.
-  overlayTools:
-    title: Инструменты наложения
-  inputTranslation:
-    title: Перевод ввода
-    pageDescription: Переводите текст в полях ввода до того, как отправить его.
-    trigger:
-      title: Срабатывание
-      enable:
-        title: Включить
-        description: Быстро нажмите пробел три раза в любом поле ввода, чтобы перевести набранный текст.
-      threshold:
-        title: Порог срабатывания
-        description: Максимальный интервал между нажатиями в миллисекундах. Увеличьте, если перевод не срабатывает, уменьшите, если он срабатывает во время набора.
-        error: Введите значение от $1 до $2
-    languages:
-      title: Языки перевода
-      pair:
-        title: Пара языков
-        description: С какого языка читается набранный текст и на какой он переводится. Обе стороны могут следовать исходному и целевому языкам, с которыми вы переводите страницы.
-      sourceCode: Исходный язык страницы
-      targetCode: Целевой язык перевода
-      cycle:
-        title: Менять направление каждый раз
-        description: Каждое срабатывание меняет языки местами, поэтому следующее вернёт текст на язык, на котором вы печатали.
-  floatingButton:
-    title: Плавающая кнопка
-    pageDescription: Выберите сторону плавающей кнопки, действие по клику и сайты, где её скрывать.
-    demoImageAlt: Демо плавающей кнопки
-    enable:
-      title: Включить плавающую кнопку
-      description: Отображать плавающую кнопку на веб-страницах для быстрого доступа к функциям Read Frog
-    display:
-      title: Отображение
-      side:
-        title: Сторона кнопки
-        description: Выберите, с какой стороны страницы закреплять плавающую кнопку
-        left: Слева
-        right: Справа
-      disabledSites:
-        title: Отключённые сайты
-        description: Настройте веб-сайты, где плавающая кнопка должна быть отключена
-        enterUrlPattern: Введите URL-шаблон
-        urlPattern: URL-шаблон
-    clickAction:
-      title: Действие по клику
-      description: Выберите действие при нажатии на плавающую кнопку
-      panel: Открыть боковую панель
-      translate: Переключить перевод страницы
-    closeMenu:
-      disableForSite: Отключить для этого сайта
-      disableGlobally: Отключить глобально
-    tooltips:
-      togglePageTranslation: Переключить перевод страницы
-      floatingButtonOptions: Настройки плавающей кнопки
-      lockPosition: Закрепить положение
-      unlockPosition: Открепить положение
-      settings: Настройки
-      feedback: Отправить отзыв
-  selectionToolbar:
-    title: Панель выделения
-    pageDescription: Укажите, какие действия появляются при выделении текста и где показывать панель.
-    demoImageAlt: Демо панели выделения
-    enable:
-      title: Включить панель выделения
-      description: Показывать панель при выделении текста на веб-страницах для быстрого перевода, озвучивания и AI-действий
-    actions:
-      title: Действия
-      translate:
-        title: Перевод
-        description: Показывать кнопку перевода на панели
-      speak:
-        title: Озвучивание
-        description: Показывать кнопку озвучивания, которая читает выделенный текст вслух
-      noteSuggestion:
-        title: Подсказки для заметок
-        description: После перевода выделенного текста с помощью ИИ-провайдера предлагать слова для сохранения в Notebase
-        action: Действие
-        actionDescription: Действие, которое формирует предложение
-        provider: Провайдер
-        providerDescription: ИИ-провайдер, который формирует предложение
-    display:
-      title: Отображение
-      opacity:
-        title: Прозрачность
-        description: Настройте прозрачность панели выделения и раскрытого окна, которое открывается из неё
-      disabledSites:
-        title: Отключённые сайты
-        description: Настройте веб-сайты, где панель выделения должна быть отключена
-        enterUrlPattern: Введите URL-шаблон
-        urlPattern: URL-шаблон
-    closeMenu:
-      disableForSite: Отключить для этого сайта
-      disableGlobally: Отключить глобально
-    errors:
-      customActionFailed: Не удалось выполнить пользовательское действие
-      customActionFailedFallback: Запрос пользовательского действия не удался
-      actionUnavailable: Выбранное действие недоступно
-      missingSelection: Нет выделенного текста
-      providerDisabled: Выбранный провайдер отключен
-      providerUnavailable: Выбранный провайдер недоступен
-    customActions:
-      title: Пользовательские AI-действия
-      pageDescription: Создавайте свои промпты и запускайте их для выделенного текста с панели выделения.
-      description: Добавляйте собственные структурированные AI-действия для выделенного текста
-      configTitle: Настройка действий
-      builtIn: Встроенное
-      add: Добавить AI-действие
-      edit: Редактировать AI-действие
-      empty: Пока нет пользовательских AI-действий
-      noEnabledLlmProvider: Включите хотя бы одного LLM-провайдера перед созданием пользовательских AI-действий
-      form:
-        name: Название
-        customize: Настроить
-        customizeTooltip: Промпты встроенной команды нельзя изменять. Нажмите эту кнопку, чтобы создать редактируемую копию и изменить промпты.
-        icon: Иконка
-        iconField:
-          chooseAriaLabel: Выбрать иконку
-          chooseTitle: Выберите иконку
-          inputPlaceholder: Введите имя иконки
-          helpAriaLabel: Справка по иконкам
-          helpTitle: Не нашли нужную иконку?
-          helpStepBrowsePrefix: Посмотреть иконки на
-          helpStepBrowseSuffix: ""
-          helpStepCopyPrefix: "Скопируйте имя иконки, например "
-          helpStepCopySuffix: ", и вставьте его в поле."
-        provider: Провайдер (требуется поддержка структурированного вывода)
-        selectProvider: Выберите провайдера
-        systemPrompt: Системный промпт
-        prompt: Промпт
-        outputSchema: Схема вывода
-        addField: Добавить поле
-        fieldName: Имя поля
-        fieldType: Тип поля
-        fieldDescription: Описание
-        fieldDescriptionPlaceholder: Опишите, что должно содержать это поле...
-        fieldSpeaking: Включить озвучивание
-        actions: Действия
-        cancel: Отмена
-        save: Сохранить
-        defaultFieldName: результат
-        fieldNamePlaceholder: имя_поля
-        autoFieldPrefix: поле
-        addFieldDialog:
-          title: Добавить поле вывода
-        editFieldDialog:
-          title: Редактировать поле вывода
-          save: Сохранить
-        deleteFieldDialog:
-          title: Удалить поле вывода?
-          description: Это поле вывода будет удалено.
-          confirm: Удалить
-          cancel: Отмена
-        notebase:
-          title: Подключение Notebase
-          description: Сохранить структурированные результаты этого действия в удалённую Notebase.
-          loginRequiredTitle: Войдите, чтобы настроить Notebase
-          loginRequiredDescription: Войдите на readfrog.app, прежде чем выбирать notebase или редактировать сопоставления.
-          loginRequiredConnectedDescription: Это подключение создано аккаунтом ниже. Если войти в тот же аккаунт, сопоставления полей будут восстановлены. Если войти в другой аккаунт, прежние сопоставления будут очищены при создании или подключении Notebase.
-          loginAction: Войти
-          connectedAccountLabel: Подключённый аккаунт
-          currentAccountLabel: Текущий аккаунт
-          unknownConnectedAccount: Неизвестный аккаунт
-          tableLabel: Notebase
-          tablePlaceholder: Выберите notebase
-          tableClearOption: Не подключать notebase
-          clearConnectionAction: Очистить подключение
-          refreshAction: Обновить
-          emptyTitle: Notebase пока нет
-          emptyDescription: Создайте notebase на readfrog.app, затем вернитесь сюда и сопоставьте поля.
-          openNotebaseAction: Открыть Notebase
-          accessDeniedTitle: Нет доступа к Notebase
-          accessDeniedDescription: У этого аккаунта нет разрешения на загрузку данных Notebase.
-          listErrorTitle: Не удалось загрузить список Notebase
-          listErrorDescription: Попробуйте обновить список Notebase чуть позже.
-          accountMismatchTitle: Подключение Notebase принадлежит другому аккаунту
-          accountMismatchDescription: Это подключение связано с аккаунтом ниже. Очистите его или выберите Notebase, доступную текущему аккаунту.
-          tableUnavailableTitle: Выбранная notebase больше недоступна
-          tableUnavailableDescription: Эта Notebase больше не существует или не открывается. Очистите подключение или выберите другую Notebase.
-          tableUnavailableOption: недоступно
-          schemaErrorTitle: Не удалось загрузить схему notebase
-          schemaErrorDescription: Попробуйте обновить схему ещё раз чуть позже.
-          schemaLoading: Загрузка схемы notebase...
-          mappingsLabel: Сопоставления полей
-          mappingsEmpty: Сопоставлений пока нет. Добавьте хотя бы одно, когда будете готовы сохранять поля.
-          addMappingAction: Добавить сопоставление
-          removeMappingAction: Удалить сопоставление
-          localFieldLabel: Поле действия
-          localFieldPlaceholder: Выберите поле действия
-          remoteFieldLabel: Поле Notebase
-          remoteFieldPlaceholder: Выберите поле notebase
-          columnUnavailableOption: удалено
-          invalidMappingsTitle: Некоторые сопоставления требуют внимания
-          invalidMappingsDescription: Некорректные сопоставления сохранены. Исправьте их перед сохранением в Notebase.
-          mappingMissingLocal: Сопоставленное поле действия больше не существует.
-          mappingMissingRemote: Сопоставленное поле notebase больше не существует.
-          mappingMissingSchema: Обновите схему notebase, чтобы проверить это сопоставление.
-          mappingIncompatible: Типы полей больше не совпадают.
-        tokens:
-          selection: Содержимое выделенного текста
-          paragraphs: Текст абзацев, пересекающихся с выделением, объединённый пустыми строками; при отправке в пользовательские AI-действия обрезается до первых 2000 символов
-          targetLanguage: Целевой язык пользователя
-          webTitle: Заголовок веб-страницы
-          webContent: Содержимое веб-страницы, извлечённое с текущей страницы и сокращённое до первых 2000 символов
-        delete: Удалить
-        deleteDialog:
-          title: Удалить пользовательское действие?
-          description: Это действие нельзя отменить.
-          confirm: Удалить
-          cancel: Отмена
-      errors:
-        nameRequired: Название обязательно
-        duplicateName: 'Дублирующееся имя действия "$1"'
-        invalidIcon: Неверная строка иконки Iconify
-        providerRequired: Выберите включённого LLM-провайдера
-        outputSchemaRequired: Добавьте хотя бы одно поле вывода
-        fieldKeyRequired: Имя поля обязательно
-        duplicateFieldKey: Имена полей должны быть уникальными
-  contextMenu:
-    title: Контекстное меню
-    pageDescription: Управляйте пунктами Read Frog в контекстном меню браузера.
-    demoImageAlt: Демо контекстного меню
-    enable:
-      title: Включить перевод в контекстном меню
-      description: Добавить опцию перевода в контекстное меню браузера для быстрого перевода страницы и выделенного текста
   translation:
     title: Перевод страниц
     pageDescription: Настройте перевод страниц — режим, охват, промпты и лимиты запросов.
@@ -785,7 +393,7 @@ options:
       default: По умолчанию
       builtIn: Встроенный
       copyAndCustomize: Скопировать и настроить
-      copyName: "Копия $1"
+      copyName: Копия $1
       builtInPrompts:
         default:
           description: Сбалансированный и надёжный перевод повседневных материалов
@@ -902,7 +510,7 @@ options:
         tooMany: Слишком много правил
         duplicateIds: Повторяющиеся id правил
         schemaErrors: Некоторые правила некорректны
-        moreErrors: ...и ещё $1 ошибок
+        moreErrors: "...и ещё $1 ошибок"
         saved: Все изменения сохранены
     builtIn:
       title: Встроенные правила
@@ -910,134 +518,9 @@ options:
       searchPlaceholder: Поиск по id, описанию или шаблону URL
       showMore: Показать ещё
       count: Показано $1 из $2 правил
-  tts:
-    title: Синтез речи
-    pageDescription: Озвучивайте выделенный текст естественным голосом.
-    voice:
-      title: Голос
-      selectPlaceholder: Выберите голос
-      noVoicesFound: Голоса не найдены
-      language:
-        title: Голос для языка
-        description: Выберите язык, а затем голос, которым он будет читаться. Сброс вернёт голос, который Read Frog подбирает для этого языка.
-        reset: Сброс
-        previewSample: Привет от Read Frog! Так я буду звучать при чтении вслух.
-      fallback:
-        title: Резервный голос
-        description: Голос для языков, которым вы не назначили собственный.
-    speech:
-      title: Чтение вслух
-      rate:
-        title: Скорость
-        description: Насколько быстрее или медленнее собственного темпа читает голос, от -100 до 100 процентов.
-      pitch:
-        title: Высота
-        description: Насколько выше или ниже собственной высоты звучит голос, от -100 до 100 герц.
-      volume:
-        title: Громкость
-        description: Насколько громче или тише собственного уровня читает голос, от -100 до 100 процентов.
-      error: Введите целое число от $1 до $2
-  videoSubtitles:
-    title: Видео субтитры
-    pageDescription: Переводите субтитры во время просмотра — с отдельным провайдером, стилем и настройками запросов.
-    preference:
-      title: Основное
-      enable:
-        title: Включить видеосубтитры
-        description: Добавляет кнопку перевода в панель управления плеера. Пока поддерживается только YouTube.
-      autoStart:
-        title: Переводить сразу при открытии
-        description: Начинать перевод субтитров, как только видео загрузилось, без нажатия кнопки.
-      aiSegmentation:
-        title: Умная сегментация ИИ
-        description: ИИ заново режет субтитры на строки, читающиеся как предложения. Тайминг он задаёт сам, поэтому строки могут расходиться с речью. Нужен LLM-провайдер перевода.
-    aiQuota:
-      title: Лимит ИИ-субтитров
-      description: ИИ распознаёт речь и создаёт точные субтитры для любого видео
-      launchBonusPromo: Оформите подписку до $1 и получите дополнительно 300 минут расшифровки
-      loginRequired: Войдите, чтобы посмотреть лимит ИИ-субтитров
-      upgradeRequired: Для ИИ-субтитров нужна подписка Pro или Ultra
-      pools:
-        subscription: Месячная квота
-        launchBonus: Подарок к запуску
-      resetsOn: Сброс $1
-      expiresOn: Истекает $1
-      loadError: Не удалось загрузить лимит. Повторите попытку позже.
-      remainingOf: Осталось $1 / $2 мин
-      used: Использовано $1 мин
-    style:
-      title: Стиль субтитров
-      description: Режим отображения, положение, шрифты, цвета и фон — всё настраивается по живому предпросмотру
-      customizeStyle: Настроить стиль
-      displayMode:
-        title: Режим отображения
-        bilingual: Двуязычный
-        originalOnly: Только оригинал
-        translationOnly: Только перевод
-      translationPosition:
-        title: Позиция перевода
-        above: Сверху
-        below: Снизу
-      generalSettings: Общие настройки
-      mainSubtitle: Основные субтитры
-      translationSubtitle: Перевод субтитров
-      fontFamily: Шрифт
-      fontScale: Размер шрифта
-      color: Цвет
-      fontWeight: Толщина шрифта
-      backgroundOpacity: Прозрачность фона
-      reset: Сбросить по умолчанию
-    customPrompts:
-      title: Пользовательские промпты субтитров
-      description: Шаблоны промптов только для перевода субтитров, отдельно от промптов перевода веб-страниц
-      managePrompts: Управление промптами
-      editPrompt:
-        promptCellInput:
-          input: Текст субтитров для перевода
-          targetLanguage: Целевой язык
-          webTitle: Заголовок веб-страницы
-          webDescription: Описание веб-страницы из метаданных
-          videoSummary: Краткое содержание видео (требуется умный контекст ИИ)
-    subtitlesQueue:
-      title: Очередь субтитров
-      description: Как быстро уходят запросы субтитров и сколько строк несёт каждый
-      manageQueue: Управление очередью
-      requestQueueConfig:
-        title: Скорость перевода
-        capacity:
-          description: "Максимум запросов в пике: сколько уходит одновременно"
-        rate:
-          description: "Запросов в секунду: ровный темп после пика. Дробные значения работают: 0.25 — один запрос каждые 4 секунды"
-      batchQueueConfig:
-        title: Пакетный перевод
-        description: Настройте лимиты символов и максимальное количество строк субтитров для пакетного перевода (действует только для LLM-перевода)
-        maxCharactersPerBatch:
-          description: "Максимум символов: сколько текста уходит в один запрос к ИИ"
-        maxItemsPerBatch:
-          description: "Максимум строк субтитров: сколько строк объединяются в один запрос. Сервисы без ИИ не учитывают оба значения"
-    cache:
-      title: Кэш
-      clearCache:
-        title: Очистить кэш ИИ-сегментации
-        description: "Сохранённые результаты сегментации: уже просмотренное видео не разбивается заново"
-        clearing: Очистка...
-        dialog:
-          title: Очистить кэш ИИ-сегментации
-          trigger: Очистить кэш
-          confirm: Подтвердить
-          cancel: Отмена
-          description: Все кэшированные результаты AI сегментации будут удалены. При следующем воспроизведении видео с включенной AI сегментацией субтитры будут обработаны заново.
-  whatsNew:
-    title: Что нового
-  rateUs:
-    title: Оцените нас
   configMigration:
-    versionTooNew: Версия импортированной конфигурации новее, пожалуйста, обновите Read Frog до последней версии
+    versionTooNew: Версия импортированной конфигурации новее, пожалуйста, обновите Read Frog Minimal до последней версии
     validationError: Ошибка валидации конфигурации
-side:
-  sourceLang: Исходный язык
-  targetLang: Целевой язык
-  fileExport: Экспорт файла
 translateService:
   title: Сервис перевода
   description: Только для перевода веб-страницы
@@ -1068,127 +551,11 @@ languageDetection:
 translation:
   sameLanguage: Исходный и целевой языки должны различаться
   autoModeSameLanguage: Обнаруженный язык '$1' совпадает с целевым языком
-speak:
-  fetchingAudio: Генерация аудио...
-  playingAudio: Воспроизведение аудио...
-  failedToGenerateSpeech: Не удалось сгенерировать речь
-  noTextSelected: Текст не выделен
-  openaiNotConfigured: Провайдер OpenAI не настроен или не включён
-  openaiApiKeyNotConfigured: API-ключ OpenAI не настроен
 action:
   copy: Копировать
   copied: Скопировано
-  regenerate: Сгенерировать заново
-  viewContextDetails: Контекст
-  customizeCustomAction: Настроить действие $1
-  saveToNotebase: Сохранить в Notebase
-  saveToNotebaseSaving: Сохранение...
-  saveToNotebaseSuccess: Сохранено в Notebase
-  saveToNotebaseFailed: Не удалось сохранить в Notebase
-  saveToNotebaseLoginRequired: Войдите на readfrog.app, чтобы сохранить в Notebase
-  saveToNotebaseAccessDenied: Этот аккаунт не может открыть выбранную Notebase
-  saveToNotebaseLimitExceeded: Для сохранения большего числа заметок Notebase требуется апгрейд
-  saveToNotebaseTableUnavailable: Выбранная Notebase больше недоступна
-  saveToNotebaseConnectionInvalid: Это подключение Notebase устарело. Обновите его в Custom AI Actions и исправьте сопоставления.
-  saveToNotebaseNoMappings: Добавьте хотя бы одно корректное сопоставление перед сохранением
-  saveToNotebaseCreateTitle: Создать Notebase?
-  saveToNotebaseCreateDescription: Создать Notebase с колонками из этого Custom Action и сохранить текущий результат как первую заметку.
-  saveToNotebaseCreateAndSave: Создать и сохранить
-  saveToNotebaseCreateAndSaveShort: Создать и сохранить
-  saveToNotebaseLoginAndCreate: Войти и создать автоматически
-  saveToNotebaseLoginAndSave: Войти и сохранить
-  saveToNotebaseConnectExisting: Подключить существующую Notebase
-  saveToNotebaseGoConfigure: Настроить
-  saveToNotebaseLoginConnectedTitle: Войти и сохранить?
-  saveToNotebaseLoginConnectedDescription: Этот Custom Action подключён к аккаунту ниже. После входа Read Frog сохранит в существующую Notebase, если это возможно, или создаст новую Notebase для текущего аккаунта.
-  saveToNotebaseConnectionUnavailableTitle: Подключение Notebase недоступно
-  saveToNotebaseMissingNotebaseDescription: Старая Notebase больше не существует или недоступна этому аккаунту. Создайте новую Notebase и сохраните результат либо подключите существующую Notebase в Custom AI Actions.
-  saveToNotebaseAccountUnavailableDescription: Текущий аккаунт не совпадает с подключённым аккаунтом ниже. Создание и сохранение заменит прежнее подключение и сопоставления полей. Также можно подключить существующую Notebase в Custom AI Actions.
-  saveToNotebasePendingLogin: Войдите, чтобы завершить сохранение
-  saveToNotebasePendingLoginDescription: После входа Read Frog автоматически создаст Notebase и сохранит этот результат.
-  saveToNotebasePendingConnectedLoginDescription: После входа Read Frog сохранит в подключённую Notebase, если это возможно. Если аккаунт не может её использовать, будет создана новая Notebase.
-  upgrade: Повысить тариф
-  updatePayment: Обновить оплату
-  openCustomActions: Открыть Custom AI Actions
-  openNotebase: Открыть Notebase
-  contextDetailsTitleLabel: Заголовок
-  contextDetailsParagraphsLabel: Абзацы
-  translation: Перевод
-  speak: Озвучить
-  playing: Воспроизведение
-noteSuggestion:
-  title: Стоит сохранить
-  description: Выберите слова для сохранения в Notebase и повторяйте их в любое время.
-  save: Сохранить
-  saved: Сохранено
-  staleSuggestion: Это предложение устарело
-  toggleLabel: Показывать подсказки для заметок
-thinking:
-  label: Размышление
-  complete: Размышление завершено
-  expand: Развернуть размышление
-  collapse: Свернуть размышление
 shortcutKeySelector:
   placeholder: Пожалуйста, введите горячую клавишу
-subtitles:
-  loadingAiSubtitles: Загрузка ИИ-субтитров… (ожидается 3 мин)
-  requestAiSubtitles: Запросить ИИ-субтитры
-  usingAiSubtitles: Используются ИИ-субтитры
-  toggle:
-    enabled: Перевод субтитров включён
-    disabled: Перевод субтитров выключен
-  actions:
-    downloadTranslated: Скачать переведённые субтитры
-    downloadTranslatedPreparing: Подготовка субтитров, длинные видео могут занять больше времени
-    downloadTranslatedTranslating: Перевод субтитров
-    downloadTranslatedComplete: Переведённые субтитры скачаны
-    downloadSource: Скачать исходные субтитры
-  state:
-    loading: Read Frog загрузка субтитров
-    translating: Перевод…
-    error: Произошла ошибка
-  errors:
-    http429: 429 Слишком много запросов к API YouTube субтитров, пожалуйста, попробуйте снова позже
-    http404: 404 Субтитры YouTube не найдены
-    http403: 403 Доступ к субтитрам YouTube запрещён
-    http500: 500 Произошла ошибка сервера YouTube
-    httpUnknown: Ошибка HTTP $1
-    invalidResponse: Неверный формат ответа субтитров YouTube
-    networkError: Произошла сетевая ошибка при получении субтитров
-    fetchSubTimeout: Получение субтитров YouTube завершилось с ошибкой
-    buttonNotFound: Кнопка субтитров не найдена
-    noSubtitlesFound: Для этого видео нет субтитров
-    videoNotFound: Видео элемент не найден
-    controlsBarNotFound: Панель управления не найдена
-    aiRateLimited: Слишком много запросов, пожалуйста, повторите позже
-    aiAuthFailed: Ошибка аутентификации API, проверьте ваш API ключ
-    aiServiceUnavailable: Служба перевода временно недоступна
-    aiQuotaExceeded: Месячный лимит ИИ-субтитров исчерпан
-    aiQuotaExceededWithReset: Месячный лимит ИИ-субтитров исчерпан · сброс $1
-    aiLoginRequired: Войдите, чтобы посмотреть лимит ИИ-субтитров
-    aiSubscriptionRequired: Для ИИ-субтитров нужна подписка Pro или Ultra
-    aiPaymentRequired: Обновите способ оплаты, чтобы продолжить создание ИИ-субтитров
-    aiVideoTooLong: Это видео слишком длинное для ИИ-субтитров
-    aiStillProcessing: Транскрипция ещё идёт — нажмите ещё раз через несколько минут
-    aiRequestFailed: Не удалось запросить ИИ-субтитры, повторите попытку позже
-    aiNoResponse: Служба AI не ответила, отображается оригинальный текст
-    translatedExportFailed: Не удалось создать переведённые субтитры
-    translatedExportIncomplete: Не удалось перевести все строки субтитров
-    translatedExportSameLanguage: Исходный и целевой языки совпадают
-hostedAi:
-  ultraBadge:
-    tooltip: Требуется план Ultra · Нажмите на значок, чтобы получить его
-  availability:
-    authenticationRequired: Войдите, чтобы использовать этого провайдера
-    ultraRequired: Требуется план Ultra
-    quotaExhausted: Квота исчерпана
-    serviceUnavailable: Временно недоступно
-    usedPercent: "Использовано квоты: $1%"
-    resetsAt: "Сброс в $1"
-  errors:
-    rateLimited: Слишком много запросов, пожалуйста, повторите позже.
-    guestRateLimited: Слишком много гостевых запросов. Повторите позже.
-    userRateLimited: Слишком много запросов. Повторите позже.
 hotkey:
   control: Ctrl
   alt: Option
@@ -1198,22 +565,6 @@ hotkey:
 translationHub:
   searchLanguages: Поиск языков...
   noLanguagesFound: Языки не найдены
-  exchangeLanguages: Поменять языки местами
-  title: Мульти-API перевод текста
-  noServicesSelected: Сервисы перевода не выбраны
-  noServicesDescription: Выберите сервисы перевода выше, чтобы увидеть карточки перевода.
-  inputPlaceholder: Введите текст для перевода...
-  translate: Перевести
-  copiedToClipboard: Перевод скопирован в буфер обмена!
-  copyTranslation: Копировать перевод
-  expandCard: Развернуть карточку
-  collapseCard: Свернуть карточку
-  expandAllCards: Развернуть все
-  collapseAllCards: Свернуть все
-  deleteCard: Удалить карточку
-  translationFailed: Ошибка перевода
-  translationFailedFallback: Ошибка перевода
-  retryTranslation: Повторить перевод
 languages:
   eng: Английский
   cmn: Упрощённый китайский

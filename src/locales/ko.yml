@@ -1,24 +1,7 @@
-name: Read Frog
-extName: Read Frog - 번역하고 배우기
-extDescription: Read Frog는 모든 웹사이트에서 언어를 깊이 있게 학습할 수 있도록 도와주는 오픈 소스 브라우저 확장 프로그램입니다.
-uninstallSurveyUrl: https://tally.so/r/nPK6Ob
-account:
-  login: 로그인
-  webApp: 웹 앱
-  logout: 로그아웃
-  logoutError: 로그아웃하지 못했습니다. 다시 시도해 주세요.
-dataTypes:
-  string: 텍스트
-  number: 숫자
-contextMenu:
-  translate: 번역
-  translateSelection: '"%s" 번역'
-  readAloudSelection: '"%s" 읽어주기'
-  showOriginal: 원문 보기
-sidePanel:
-  firefoxUserActionHint: Firefox에서는 브라우저 사이드바에서 Read Frog를 열어 주세요.
-  firefoxUserActionHelpText: Firefox 사이드바 여는 방법 보기
-  firefoxUserActionHelpUrl: https://support.mozilla.org/ko/kb/use-sidebar-access-tools-and-vertical-tabs
+---
+name: Read Frog Minimal
+extName: Read Frog Minimal - 웹페이지 번역기
+extDescription: 직접 연결 제공자와 사용자의 API 키를 사용하는 로컬 우선 오픈 소스 웹페이지 번역기입니다.
 popup:
   theme: 테마
   autoLang: 자동
@@ -30,8 +13,6 @@ popup:
     open: Open provider settings
   translate: 번역
   showOriginal: 원문 보기
-  enabledFloatingButton: 플로팅 버튼 활성화
-  enabledSelectionToolbar: 선택 툴바 활성화
   alwaysTranslate: 이 사이트 항상 번역
   addToWhitelist: 이 사이트에서 확장 프로그램 활성화
   addToBlacklist: 이 사이트에서 확장 프로그램 비활성화
@@ -46,26 +27,8 @@ popup:
       translationOnly:
         current: 현재 번역만 모드
         action: 클릭하여 이중 언어로 전환
-  hub:
-    tooltip: 여러 번역 모델로 동시에 텍스트 번역
-  discord:
-    tooltip: Discord에 참여하여 개발자와 소통하고 새 기능을 먼저 체험하세요
-  blog:
-    notification: Read Frog의 새로운 소식
   aiSmartContext: AI 스마트 컨텍스트
   aiSmartContextDescription: 웹페이지 컨텍스트를 사용하여 번역 품질을 향상시킵니다. LLM 번역 제공자가 필요합니다.
-  more:
-    title: 더보기
-    help: 도움말
-    tutorial: 사용 가이드
-    emailUs: 이메일 문의
-    featureRequest: 기능 제안
-    bugReport: 버그 신고
-    community: 커뮤니티
-    joinDiscord: Discord 참여
-    joinWechat: WeChat 그룹 참여
-    starGithub: Github에서 스타
-    rateUs: 리뷰 남기기
 errorRecovery:
   title: 문제가 발생했습니다
   description: 복구 모드가 활성화되었습니다. 현재 설정을 백업으로 내보낸 뒤 설정을 초기화하고 다시 시도하세요.
@@ -84,8 +47,6 @@ errorRecovery:
     confirm: 초기화
     cancel: 취소
 options:
-  batchSavings:
-    savedCost: API 비용 약 $1% 절감
   commandPalette:
     placeholder: 설정 검색...
     noResults: 설정을 찾을 수 없습니다
@@ -94,67 +55,16 @@ options:
     toggle: 사이드바 전환
     settings: 설정
     features: 기능
-    product: 제품
-  tools:
-    translationHub: 번역 허브
-  product:
-    roadmap: 로드맵
-  helpAndCommunity:
-    title: 도움말 및 커뮤니티
-    pageDescription: Read Frog 사용법을 익히고, 팀에 도움을 요청하거나, 커뮤니티에서 다른 사용자와 교류하세요.
-    help:
-      title: 도움말
-    tutorial:
-      title: 사용 가이드
-      description: 문서를 읽고 Read Frog 사용법을 알아보세요
-    email:
-      title: 이메일 문의
-      description: contact@readfrog.app 으로 팀에 직접 연락하세요
-    featureRequest:
-      title: 기능 제안
-      description: 아이디어를 제안하고 다음에 개발할 기능에 투표하세요
-    bugReport:
-      title: 버그 신고
-      description: 지원 티켓을 열고 해결될 때까지 진행 상황을 확인하세요
-    community:
-      title: 커뮤니티
-    discord:
-      title: Discord
-      description: 팀 및 다른 사용자와 실시간으로 이야기하세요
-    wechat:
-      title: WeChat 그룹
-      description: QR 코드를 스캔해 WeChat 토론 그룹에 참여하세요
-      qrCodeAlt: WeChat QR 코드
   apiProviders:
     title: API 제공업체
-    pageDescription: Read Frog가 호출하는 AI 서비스를 연결하고, 각 기능에 사용할 서비스를 선택하세요.
-    description: Read Frog가 호출할 수 있는 제공업체를 추가합니다. 20개 이상이 내장되어 있으며, Chat Completions 호환 API와 Open Responses API를 사용자 정의로 추가할 수 있습니다.
+    pageDescription: Read Frog Minimal가 호출하는 AI 서비스를 연결하고, 각 기능에 사용할 서비스를 선택하세요.
+    description: Read Frog Minimal가 호출할 수 있는 제공업체를 추가합니다. 20개 이상이 내장되어 있으며, Chat Completions 호환 API와 Open Responses API를 사용자 정의로 추가할 수 있습니다.
     configTitle: 제공업체 구성
     addProvider: 제공업체 추가
-    builtInProvider: 내장 제공업체
-    builtInAiUsage:
-      title: 내장 AI 할당량
-      remaining: "$1% 남음"
-      supportedFeatures: "$1개 기능 지원"
-      resetsAt: "$1에 초기화"
-      daily: 일일 할당량
-      weekly: 주간 할당량
-      features:
-        pageTranslation: 페이지 번역
-        customAction: 사용자 지정 AI 작업
-        noteSuggestion: 노트 제안
-        selectionTranslation: 선택 영역 번역
-        videoSubtitles: 비디오 자막
-        inputTranslation: 입력 번역
-        languageDetection: 언어 감지
-    sponsorCta: 빠르고 가성비 좋은 AI 받기
-    sponsorCtaJalapenoCloud: GLM 5.2 50% 할인 받기
     setApiKeyWarning:
       message: API 키는 $1 페이지에서 설정하세요
     badges:
-      featureCount: $1 개 기능
-      sponsor: 스폰서
-      sponsorJalapenoCloud: $$2 무료
+      featureCount: "$1 개 기능"
     dialog:
       title: 새 제공업체 추가
       groups:
@@ -184,7 +94,7 @@ options:
         cancel: 취소
       atLeastOneLLMProvider: 최소 하나의 LLM 번역 제공업체가 필요합니다.
       featureWouldLoseProvider: '삭제할 수 없습니다: "$1"을(를) 실행할 수 있는 제공업체가 없어집니다.'
-      duplicateProviderName: '중복된 제공업체 이름 "$1"'
+      duplicateProviderName: 중복된 제공업체 이름 "$1"
       defaultProvider:
         translate: 기본 번역 제공업체로 설정
       models:
@@ -228,13 +138,8 @@ options:
       invalidJson: 잘못된 JSON 형식
     providers:
       name:
-        builtInAi: 내장 AI
-        builtInAiAdvance: 고급 내장 AI
         customChatComplete: 사용자 정의 Chat Complete
         customResponses: 사용자 정의 Responses
-      attribution:
-        builtInAi: Read Frog가 호스팅하는 일반 모델입니다. Ultra가 아닌 사용자는 사용자 지정 AI 작업에서만 사용할 수 있으며, Ultra 사용자는 더 많은 기능에서 사용할 수 있습니다.
-        builtInAiAdvance: Read Frog가 호스팅하는 고급 모델로, Ultra 멤버 전용입니다. 페이지 번역, 사용자 지정 AI 작업 등 모든 내장 AI 기능에서 사용할 수 있으며 주간 할당량을 공유합니다. 표준 모델보다 할당량이 더 빨리 소모됩니다.
       description:
         openai: GPT-4o 같은 모델을 제공합니다
         azure: Azure 배포를 통해 OpenAI 모델 사용
@@ -283,16 +188,8 @@ options:
       description: 각 기능에 사용할 제공업체를 선택
       features:
         pageTranslation: 페이지 번역
-        selectionTranslation: 선택 툴바 번역
-        inputTranslation: 입력 번역
-        videoSubtitles: 비디오 자막
-        noteSuggestion: 노트 제안
       descriptions:
         pageTranslation: 페이지 전체를 대역 또는 원문 대체 방식으로 번역합니다.
-        selectionTranslation: 선택 도구 모음에서 선택한 텍스트를 번역합니다.
-        inputTranslation: 입력창에 쓴 내용을 보내기 전에 번역합니다.
-        videoSubtitles: 동영상 플레이어에 표시되는 자막을 번역합니다.
-        noteSuggestion: 선택 번역 후 Notebase에 저장할 만한 단어를 제안합니다.
     languageDetection:
       title: 언어 감지
       description: 자동 번역 언어 감지 및 읽기 음성 선택 정확도에 영향을 줍니다.
@@ -311,18 +208,18 @@ options:
       description: 페이지나 영상의 맥락을 AI에 전달해 번역 정확도를 높입니다
       enable: 사용
       enableDescription: AI가 번역 전에 페이지나 영상 요약을 읽어 맥락에 맞는 표현을 고릅니다. LLM 제공업체로 동작하는 모든 번역 기능에 적용됩니다. 첫 요청에 지연이 생기고 API 비용이 늘어납니다.
-      llmProviderConfigured: $1에 LLM 제공업체 선택됨
-      llmProviderNotConfigured: $1에 LLM 제공업체 미선택
+      llmProviderConfigured: "$1에 LLM 제공업체 선택됨"
+      llmProviderNotConfigured: "$1에 LLM 제공업체 미선택"
   patterns:
     duplicate: 이 패턴은 이미 목록에 있습니다
   preference:
     title: 환경 설정
-    pageDescription: Read Frog의 모양과 실행 범위, 설정 동기화 및 백업 방식을 지정하세요.
+    pageDescription: Read Frog Minimal의 모양과 실행 범위, 설정 동기화 및 백업 방식을 지정하세요.
     appearanceAndLanguage:
       title: 모양 및 언어
       theme:
         title: 테마
-        description: Read Frog의 테마를 선택하세요.
+        description: Read Frog Minimal의 테마를 선택하세요.
         system: 시스템
         light: 라이트
         dark: 다크
@@ -353,53 +250,6 @@ options:
         urlPattern: URL 패턴
     config:
       title: 설정
-      googleDrive:
-        title: Google Drive 클라우드 동기화
-        description: 원격이 최신이면 다운로드, 로컬이 최신이면 업로드
-        sync: Google Drive 동기화
-        syncing: 동기화 중...
-        syncSuccess:
-          uploaded: 로컬 설정이 클라우드에 업로드됨
-          downloaded: 원격 설정이 적용됨
-          sameChanges: 로컬과 원격 변경 사항이 동일하여 동기화됨
-          noChange: 이미 동기화됨
-          unresolved: 충돌이 해결되고 로컬 및 클라우드에 동기화됨
-        syncError: 동기화 실패, 다시 시도해 주세요
-        metadataCorrupted: 동기화 메타데이터가 손상되어 원격 구성을 적용했습니다
-        lastSyncTime: 마지막 동기화 시간
-        logout: 로그아웃
-        logoutSuccess: Google 계정에서 로그아웃되었습니다
-        unresolved:
-          title: 구성 동기화 해결
-          description: 로컬 및 원격 구성이 다릅니다. 각 필드에 대해 유지할 버전을 선택하세요.
-          resolved: 해결됨
-          unresolved: 미해결
-          localValue: 로컬 값
-          remoteValue: 원격 값
-          useLocal: 로컬 사용
-          useRemote: 원격 사용
-          useAllLocal: 모두 로컬 사용
-          useAllRemote: 모두 원격 사용
-          reset: 선택 재설정
-          progress: $1/$2개의 변경 해결됨
-          confirm: 동기화 확인
-          cancel: 취소
-          hasUnresolvedInChildren: ⚠ 미해결 변경 포함
-          item: 항목
-          items: 항목
-          unresolvedPrompt: "[미해결 - 선택하세요]"
-          localLatest: 로컬 최신
-          remoteLatest: 원격 최신
-          bothChanged: 양쪽 모두 변경됨
-          localChanged: 로컬이 변경됨
-          remoteChanged: 원격이 변경됨
-          configValid: 구성이 유효합니다
-          configInvalid: 구성이 유효하지 않습니다
-          resolveToContinue: 계속하려면 충돌을 해결하세요
-          validationAlert:
-            title: 병합된 구성에 유효성 검사 오류가 있습니다
-            description: "아래 차이점을 조정하여 수정하세요:"
-          moreErrors: ...그리고 $1개의 오류가 더 있습니다
       manualSync:
         title: 수동 설정 동기화
         description: 수동으로 설정 가져오기 및 내보내기
@@ -453,15 +303,6 @@ options:
           confirm: 확인
           cancel: 취소
           description: 이 작업은 모든 사용자 지정 설정을 지우고 기본값으로 재설정합니다. 삭제하시겠습니까?
-    userExperience:
-      title: 사용자 경험
-      beta:
-        title: Beta 체험
-        description: 아직 불안정할 수 있는 실험적 기능을 켭니다
-      analytics:
-        title: 사용자 경험 개선에 기여
-        tooltip: 켜면 Read Frog가 익명 사용 신호를 전송하여 버그를 찾아내고, 기능 안정성을 검증하고, 성능과 UX 디테일을 개선하며, 앞으로 무엇을 우선적으로 만들지 결정하는 데 활용합니다.
-        description: 버그를 찾고 UI 레이아웃을 다듬는 등 Read Frog 개선에 기여합니다
   shortcuts:
     title: 단축키
     pageDescription: 읽는 중에 번역을 실행하는 키를 설정합니다.
@@ -472,242 +313,9 @@ options:
     translationMode:
       title: 번역 모드
       description: 이중 언어와 번역만 사이를 전환합니다.
-    selectionTranslation:
-      title: 선택 영역 번역
-      description: 선택한 텍스트를 번역합니다.
-    subtitlesToggle:
-      title: 자막 번역
-      description: 동영상의 번역 자막을 켜거나 끕니다.
     nodeTranslation:
       title: 단락 번역
       description: 단락에 마우스를 올리거나 길게 누르면 그 단락만 번역합니다.
-    translationHub:
-      title: 번역 허브
-      description: 번역 허브를 새 탭에서 엽니다.
-  overlayTools:
-    title: 오버레이 도구
-  inputTranslation:
-    title: 입력 번역
-    pageDescription: 입력창에 쓴 내용을 보내기 전에 번역합니다.
-    trigger:
-      title: 트리거
-      enable:
-        title: 활성화
-        description: 입력 필드에서 스페이스바를 빠르게 3번 누르면 입력한 내용을 번역합니다.
-      threshold:
-        title: 트리거 임계값
-        description: 연속된 누름 사이에 허용되는 간격(밀리초)입니다. 잘 실행되지 않으면 늘리고, 입력하는 중에 실행되면 줄이세요.
-        error: $1에서 $2 사이의 값을 입력하세요
-    languages:
-      title: 번역 언어
-      pair:
-        title: 언어 방향
-        description: 입력한 텍스트를 어떤 언어로 인식하고 어떤 언어로 번역할지 정합니다. 양쪽 모두 페이지를 번역할 때 사용하는 소스 및 타겟 언어를 따를 수 있습니다.
-      sourceCode: 페이지 소스 언어
-      targetCode: 번역 타겟 언어
-      cycle:
-        title: 매번 방향 전환
-        description: 실행할 때마다 두 언어가 서로 바뀌므로, 한 번 더 실행하면 입력한 언어로 되돌아옵니다.
-  floatingButton:
-    title: 플로팅 버튼
-    pageDescription: 플로팅 버튼이 놓일 위치와 클릭 동작, 숨길 사이트를 설정하세요.
-    demoImageAlt: 플로팅 버튼 데모
-    enable:
-      title: 플로팅 버튼 활성화
-      description: 웹 페이지에 플로팅 버튼을 표시하여 Read Frog 기능에 빠르게 액세스
-    display:
-      title: 표시
-      side:
-        title: 버튼 위치
-        description: 플로팅 버튼을 페이지 어느 쪽에 고정할지 선택합니다
-        left: 왼쪽
-        right: 오른쪽
-      disabledSites:
-        title: 비활성화 사이트
-        description: 플로팅 버튼을 비활성화할 웹사이트를 설정합니다
-        enterUrlPattern: URL 패턴 입력
-        urlPattern: URL 패턴
-    clickAction:
-      title: 클릭 동작
-      description: 플로팅 버튼을 클릭할 때 실행할 동작 선택
-      panel: 사이드 패널 열기
-      translate: 페이지 번역 전환
-    closeMenu:
-      disableForSite: 이 사이트에서 비활성화
-      disableGlobally: 전역 비활성화
-    tooltips:
-      togglePageTranslation: 페이지 번역 전환
-      floatingButtonOptions: 플로팅 버튼 옵션
-      lockPosition: 위치 잠금
-      unlockPosition: 위치 잠금 해제
-      settings: 설정
-      feedback: 피드백 보내기
-  selectionToolbar:
-    title: 선택 툴바
-    pageDescription: 텍스트를 선택했을 때 나타날 동작과 도구 모음을 표시할 사이트를 설정하세요.
-    demoImageAlt: 선택 툴바 데모
-    enable:
-      title: 선택 툴바 활성화
-      description: 웹 페이지에서 텍스트를 선택할 때 도구 모음을 표시하여 빠르게 번역, 읽기, AI 액션을 사용할 수 있습니다
-    actions:
-      title: 작업
-      translate:
-        title: 번역
-        description: 툴바에 번역 버튼을 표시합니다
-      speak:
-        title: 읽기
-        description: 선택한 텍스트를 읽어 주는 읽기 버튼을 툴바에 표시합니다
-      noteSuggestion:
-        title: 노트 제안
-        description: AI 제공자로 선택 번역 후 Notebase에 저장할 단어를 추천합니다
-        action: 작업
-        actionDescription: 저장 제안을 만드는 작업
-        provider: 제공업체
-        providerDescription: 저장 제안을 만드는 AI 제공업체
-    display:
-      title: 표시
-      opacity:
-        title: 투명도
-        description: 선택 툴바와 여기서 열리는 확장 창의 투명도를 조절합니다
-      disabledSites:
-        title: 비활성화 사이트
-        description: 선택 툴바를 비활성화할 웹사이트를 설정합니다
-        enterUrlPattern: URL 패턴 입력
-        urlPattern: URL 패턴
-    closeMenu:
-      disableForSite: 이 사이트에서 비활성화
-      disableGlobally: 전역 비활성화
-    errors:
-      customActionFailed: 사용자 지정 작업 실패
-      customActionFailedFallback: 사용자 지정 작업 요청에 실패했습니다
-      actionUnavailable: 선택한 작업을 사용할 수 없습니다
-      missingSelection: 선택된 텍스트가 없습니다
-      providerDisabled: 선택한 제공업체가 비활성화되었습니다
-      providerUnavailable: 선택한 제공업체를 사용할 수 없습니다
-    customActions:
-      title: 커스텀 AI 액션
-      pageDescription: 직접 만든 프롬프트를 선택 도구 모음에서 선택한 텍스트에 실행하세요.
-      description: 선택한 텍스트에 대한 구조화된 AI 작업을 직접 추가하세요
-      configTitle: 액션 구성
-      builtIn: 기본 제공
-      add: AI 액션 추가
-      edit: AI 액션 편집
-      empty: 아직 커스텀 AI 액션이 없습니다
-      noEnabledLlmProvider: 커스텀 AI 액션을 만들기 전에 최소 하나의 LLM 제공업체를 활성화하세요
-      form:
-        name: 이름
-        customize: 사용자 지정
-        customizeTooltip: 기본 제공 작업의 프롬프트는 변경할 수 없습니다. 이 버튼을 클릭하여 편집 가능한 복사본을 만들고 프롬프트를 수정하세요.
-        icon: 아이콘
-        iconField:
-          chooseAriaLabel: 아이콘 선택
-          chooseTitle: 아이콘 선택
-          inputPlaceholder: 아이콘 이름 입력
-          helpAriaLabel: 아이콘 도움말 더보기
-          helpTitle: 원하는 아이콘을 못 찾았나요?
-          helpStepBrowsePrefix: ""
-          helpStepBrowseSuffix: 에서 아이콘 찾아보기
-          helpStepCopyPrefix: "예를 들어 "
-          helpStepCopySuffix: " 같은 아이콘 이름을 복사해 입력란에 붙여넣으세요."
-        provider: 제공업체(구조화 출력 지원 필요)
-        selectProvider: 제공업체 선택
-        systemPrompt: 시스템 프롬프트
-        prompt: 프롬프트
-        outputSchema: 출력 스키마
-        addField: 필드 추가
-        fieldName: 필드 이름
-        fieldType: 필드 유형
-        fieldDescription: 설명
-        fieldDescriptionPlaceholder: 이 필드에 포함할 내용을 설명하세요...
-        fieldSpeaking: 음성 읽기 사용
-        actions: 작업
-        cancel: 취소
-        save: 저장
-        defaultFieldName: 결과
-        fieldNamePlaceholder: 필드명
-        autoFieldPrefix: 필드
-        addFieldDialog:
-          title: 출력 필드 추가
-        editFieldDialog:
-          title: 출력 필드 편집
-          save: 저장
-        deleteFieldDialog:
-          title: 출력 필드를 삭제하시겠습니까?
-          description: 이 출력 필드가 제거됩니다.
-          confirm: 삭제
-          cancel: 취소
-        notebase:
-          title: Notebase 연결
-          description: 이 액션의 구조화된 결과를 원격 Notebase에 저장합니다.
-          loginRequiredTitle: Notebase를 설정하려면 로그인하세요
-          loginRequiredDescription: notebase를 선택하거나 매핑을 편집하기 전에 readfrog.app에 로그인하세요.
-          loginRequiredConnectedDescription: 이 연결은 아래 계정에서 만들어졌습니다. 같은 계정으로 로그인하면 필드 매핑이 복원됩니다. 다른 계정으로 로그인하면 Notebase를 만들거나 연결할 때 이전 매핑이 지워집니다.
-          loginAction: 로그인
-          connectedAccountLabel: 연결된 계정
-          currentAccountLabel: 현재 계정
-          unknownConnectedAccount: 알 수 없는 계정
-          tableLabel: Notebase
-          tablePlaceholder: notebase 선택
-          tableClearOption: notebase 연결 안 함
-          clearConnectionAction: 연결 지우기
-          refreshAction: 새로고침
-          emptyTitle: 아직 Notebase가 없습니다
-          emptyDescription: readfrog.app에서 notebase를 만든 뒤 여기로 돌아와 필드를 매핑하세요.
-          openNotebaseAction: Notebase 열기
-          accessDeniedTitle: Notebase에 접근할 수 없습니다
-          accessDeniedDescription: 이 계정에는 Notebase 데이터를 불러올 권한이 없습니다.
-          listErrorTitle: Notebase 목록을 불러오지 못했습니다
-          listErrorDescription: 잠시 후 Notebase 목록을 다시 새로고침해 보세요.
-          accountMismatchTitle: Notebase 연결이 다른 계정에 속해 있습니다
-          accountMismatchDescription: 이 연결은 아래 연결된 계정에 묶여 있습니다. 연결을 지우거나 현재 계정에서 사용할 수 있는 Notebase를 선택하세요.
-          tableUnavailableTitle: 선택한 notebase를 더 이상 사용할 수 없습니다
-          tableUnavailableDescription: 이 Notebase가 없거나 열 수 없습니다. 연결을 지우거나 다른 Notebase를 선택하세요.
-          tableUnavailableOption: 사용 불가
-          schemaErrorTitle: notebase 스키마를 불러오지 못했습니다
-          schemaErrorDescription: 잠시 후 다시 새로고침해 보세요.
-          schemaLoading: notebase 스키마를 불러오는 중...
-          mappingsLabel: 필드 매핑
-          mappingsEmpty: 아직 매핑이 없습니다. 필드를 저장할 준비가 되면 추가하세요.
-          addMappingAction: 매핑 추가
-          removeMappingAction: 매핑 제거
-          localFieldLabel: 액션 필드
-          localFieldPlaceholder: 액션 필드 선택
-          remoteFieldLabel: Notebase 필드
-          remoteFieldPlaceholder: notebase 필드 선택
-          columnUnavailableOption: 삭제됨
-          invalidMappingsTitle: 일부 매핑을 확인해야 합니다
-          invalidMappingsDescription: 잘못된 매핑은 유지됩니다. Notebase에 저장하기 전에 수정하세요.
-          mappingMissingLocal: 매핑된 액션 필드가 더 이상 존재하지 않습니다.
-          mappingMissingRemote: 매핑된 notebase 필드가 더 이상 존재하지 않습니다.
-          mappingMissingSchema: 이 매핑을 검증하려면 notebase 스키마를 새로고침하세요.
-          mappingIncompatible: 필드 타입이 더 이상 맞지 않습니다.
-        tokens:
-          selection: 선택한 텍스트 내용
-          paragraphs: 선택 영역과 겹치는 문단 내용을 빈 줄로 이어 붙인 값이며, 사용자 정의 AI 액션에 전달될 때는 앞의 2000자로 잘립니다
-          targetLanguage: 사용자의 대상 언어
-          webTitle: 웹페이지 제목
-          webContent: 현재 페이지에서 추출한 웹페이지 본문(앞의 2000자로 잘린 버전)
-        delete: 삭제
-        deleteDialog:
-          title: 사용자 정의 액션을 삭제하시겠습니까?
-          description: 이 작업은 취소할 수 없습니다.
-          confirm: 삭제
-          cancel: 취소
-      errors:
-        nameRequired: 이름은 필수입니다
-        duplicateName: '중복된 액션 이름 "$1"'
-        invalidIcon: 올바르지 않은 Iconify 아이콘 문자열입니다
-        providerRequired: 활성화된 LLM 제공업체를 선택하세요
-        outputSchemaRequired: 최소 하나의 출력 필드를 추가하세요
-        fieldKeyRequired: 필드 이름은 필수입니다
-        duplicateFieldKey: 필드 이름은 고유해야 합니다
-  contextMenu:
-    title: 컨텍스트 메뉴
-    pageDescription: 브라우저 우클릭 메뉴에 표시되는 Read Frog 항목을 설정하세요.
-    demoImageAlt: 컨텍스트 메뉴 데모
-    enable:
-      title: 우클릭 번역 활성화
-      description: 브라우저 우클릭 메뉴에 번역 옵션을 추가하여 페이지나 선택한 텍스트를 빠르게 번역
   translation:
     title: 페이지 번역
     pageDescription: 페이지 번역 방식을 설정하세요 — 모드, 범위, 프롬프트, 요청 제한.
@@ -902,7 +510,7 @@ options:
         tooMany: 규칙이 너무 많습니다
         duplicateIds: 규칙 id가 중복되었습니다
         schemaErrors: 유효하지 않은 규칙이 있습니다
-        moreErrors: ...그리고 $1개의 오류가 더 있습니다
+        moreErrors: "...그리고 $1개의 오류가 더 있습니다"
         saved: 모든 변경사항이 저장되었습니다
     builtIn:
       title: 내장 규칙
@@ -910,134 +518,9 @@ options:
       searchPlaceholder: id, 설명 또는 URL 패턴으로 검색
       showMore: 더 보기
       count: 규칙 $2개 중 $1개 표시
-  tts:
-    title: 텍스트 음성 변환
-    pageDescription: 선택한 텍스트를 자연스러운 음성으로 읽어 줍니다.
-    voice:
-      title: 음성
-      selectPlaceholder: 음성을 선택하세요
-      noVoicesFound: 음성을 찾을 수 없습니다
-      language:
-        title: 언어별 음성
-        description: 언어를 고른 다음 그 언어를 읽어 줄 음성을 지정합니다. 재설정하면 Read Frog가 그 언어에 정해 둔 음성으로 돌아갑니다.
-        reset: 재설정
-        previewSample: Read Frog의 인사입니다! 제가 읽어 드릴 때 이렇게 들립니다.
-      fallback:
-        title: 대체 음성
-        description: 따로 음성을 지정하지 않은 언어는 이 음성으로 읽습니다.
-    speech:
-      title: 읽어 주기
-      rate:
-        title: 속도
-        description: 음성 본래의 속도보다 얼마나 빠르거나 느리게 읽을지, -100에서 100 퍼센트.
-      pitch:
-        title: 피치
-        description: 음성 본래의 피치보다 얼마나 높거나 낮게 말할지, -100에서 100 헤르츠.
-      volume:
-        title: 볼륨
-        description: 음성 본래의 크기보다 얼마나 크거나 작게 읽을지, -100에서 100 퍼센트.
-      error: $1에서 $2 사이의 정수를 입력하세요
-  videoSubtitles:
-    title: 비디오 자막
-    pageDescription: 영상을 보면서 자막을 번역하고, 제공업체·스타일·요청 설정을 따로 지정하세요.
-    preference:
-      title: 기본 설정
-      enable:
-        title: 비디오 자막 켜기
-        description: 동영상 플레이어 컨트롤 바에 번역 버튼을 추가합니다. 현재는 YouTube만 지원합니다.
-      autoStart:
-        title: 영상을 열면 바로 번역
-        description: 영상이 로드되면 버튼을 누르지 않아도 자막 번역을 시작합니다.
-      aiSegmentation:
-        title: AI 스마트 분할
-        description: AI가 자막을 문장처럼 읽히도록 다시 나눕니다. 타이밍도 AI가 정하므로 싱크가 어긋날 수 있습니다. LLM 번역 공급자가 필요합니다.
-    aiQuota:
-      title: AI 자막 사용량
-      description: AI 음성 인식으로 모든 동영상에 정확한 자막을 만들어 줍니다
-      launchBonusPromo: $1 이전에 구독하면 전사 300분을 추가로 드립니다
-      loginRequired: 로그인하여 AI 자막 사용량 확인
-      upgradeRequired: AI 자막은 Pro 또는 Ultra 구독이 필요합니다
-      pools:
-        subscription: 월간 할당량
-        launchBonus: 출시 기념 보너스
-      resetsOn: $1에 초기화
-      expiresOn: $1에 만료
-      loadError: 사용량을 불러올 수 없습니다. 잠시 후 다시 시도해 주세요.
-      remainingOf: 남은 시간 $1 / $2분
-      used: $1분 사용됨
-    style:
-      title: 자막 스타일
-      description: 표시 모드, 위치, 글꼴, 색상, 배경을 미리보기로 확인하며 설정합니다
-      customizeStyle: 스타일 편집
-      displayMode:
-        title: 표시 모드
-        bilingual: 이중 언어
-        originalOnly: 원문만
-        translationOnly: 번역만
-      translationPosition:
-        title: 번역 위치
-        above: 위
-        below: 아래
-      generalSettings: 일반 설정
-      mainSubtitle: 메인 자막
-      translationSubtitle: 번역 자막
-      fontFamily: 글꼴
-      fontScale: 글꼴 크기
-      color: 색상
-      fontWeight: 글꼴 굵기
-      backgroundOpacity: 배경 투명도
-      reset: 기본값으로 재설정
-    customPrompts:
-      title: 사용자 정의 자막 프롬프트
-      description: 자막 번역 전용 프롬프트 템플릿으로, 웹페이지 번역 프롬프트와 별도로 관리합니다
-      managePrompts: 프롬프트 관리
-      editPrompt:
-        promptCellInput:
-          input: 번역할 자막 텍스트
-          targetLanguage: 대상 언어
-          webTitle: 웹페이지 제목
-          webDescription: 페이지 메타데이터의 웹페이지 설명
-          videoSummary: 동영상 요약 (AI 스마트 컨텍스트 필요)
-    subtitlesQueue:
-      title: 자막 대기열
-      description: 자막 요청을 보내는 속도와 요청당 자막 줄 수
-      manageQueue: 대기열 관리
-      requestQueueConfig:
-        title: 번역 속도
-        capacity:
-          description: "최대 순간 요청 수: 한 번에 내보낼 수 있는 요청 개수"
-        rate:
-          description: "초당 요청 수: 그 뒤로 유지되는 속도. 소수도 되며 0.25는 4초에 한 번 보냅니다"
-      batchQueueConfig:
-        title: 배치 번역
-        description: 배치 번역 시 문자 수 제한 및 최대 자막 줄 수 구성 (대규모 언어 모델 번역에서만 유효)
-        maxCharactersPerBatch:
-          description: "최대 문자 수: 한 번의 AI 요청에 담는 텍스트 양"
-        maxItemsPerBatch:
-          description: "최대 자막 줄 수: 한 요청에 묶는 자막 수. AI가 아닌 번역 서비스에는 적용되지 않습니다"
-    cache:
-      title: 캐시
-      clearCache:
-        title: AI 분할 캐시 삭제
-        description: 저장된 분할 결과 — 이미 본 영상은 다시 처리하지 않습니다
-        clearing: 삭제 중...
-        dialog:
-          title: AI 분할 캐시 삭제
-          trigger: 캐시 삭제
-          confirm: 확인
-          cancel: 취소
-          description: 모든 캐시된 AI 분할 결과가 삭제됩니다. 다음에 AI 분할이 활성화된 비디오를 재생하면 자막이 다시 처리됩니다.
-  whatsNew:
-    title: 새로운 기능
-  rateUs:
-    title: 리뷰 남기기
   configMigration:
-    versionTooNew: 가져온 설정 버전이 최신이므로 Read Frog를 최신 버전으로 업그레이드해 주세요
+    versionTooNew: 가져온 설정 버전이 최신이므로 Read Frog Minimal를 최신 버전으로 업그레이드해 주세요
     validationError: 설정 검증 실패
-side:
-  sourceLang: 원본 언어
-  targetLang: 대상 언어
-  fileExport: 파일 내보내기
 translateService:
   title: 번역 서비스
   description: 웹페이지 번역 전용
@@ -1068,127 +551,11 @@ languageDetection:
 translation:
   sameLanguage: 원본 언어와 대상 언어는 달라야 합니다
   autoModeSameLanguage: 감지된 언어 '$1'은(는) 대상 언어와 같습니다
-speak:
-  fetchingAudio: 오디오 생성 중...
-  playingAudio: 오디오 재생 중...
-  failedToGenerateSpeech: 음성 생성 실패
-  noTextSelected: 텍스트가 선택되지 않았습니다
-  openaiNotConfigured: OpenAI 공급자가 구성되지 않았거나 활성화되지 않았습니다
-  openaiApiKeyNotConfigured: OpenAI API 키가 구성되지 않았습니다
 action:
   copy: 복사
   copied: 복사됨
-  regenerate: 다시 생성
-  viewContextDetails: 컨텍스트
-  customizeCustomAction: $1 작업 맞춤 설정
-  saveToNotebase: Notebase에 저장
-  saveToNotebaseSaving: 저장 중...
-  saveToNotebaseSuccess: Notebase에 저장했습니다
-  saveToNotebaseFailed: Notebase에 저장하지 못했습니다
-  saveToNotebaseLoginRequired: Notebase에 저장하려면 readfrog.app에 로그인하세요
-  saveToNotebaseAccessDenied: 이 계정은 선택한 Notebase에 접근할 수 없습니다
-  saveToNotebaseLimitExceeded: 더 많은 Notebase 노트를 저장하려면 업그레이드가 필요합니다
-  saveToNotebaseTableUnavailable: 선택한 Notebase를 더 이상 사용할 수 없습니다
-  saveToNotebaseConnectionInvalid: 현재 Notebase 연결이 오래되었습니다. Custom AI Actions에서 새로고침하고 매핑을 수정하세요.
-  saveToNotebaseNoMappings: 저장하기 전에 유효한 매핑을 하나 이상 추가하세요
-  saveToNotebaseCreateTitle: Notebase를 만들까요?
-  saveToNotebaseCreateDescription: 이 Custom Action 출력 필드와 일치하는 열로 새 Notebase를 만들고, 현재 결과를 첫 노트로 저장합니다.
-  saveToNotebaseCreateAndSave: 만들고 저장
-  saveToNotebaseCreateAndSaveShort: 만들고 저장
-  saveToNotebaseLoginAndCreate: 로그인하고 자동 생성
-  saveToNotebaseLoginAndSave: 로그인하고 저장
-  saveToNotebaseConnectExisting: 기존 Notebase 연결
-  saveToNotebaseGoConfigure: 설정하기
-  saveToNotebaseLoginConnectedTitle: 로그인하고 저장할까요?
-  saveToNotebaseLoginConnectedDescription: 이 Custom Action은 아래 계정에 연결되어 있습니다. 로그인 후 가능하면 기존 Notebase에 저장하고, 사용할 수 없으면 로그인한 계정에 새 Notebase를 만듭니다.
-  saveToNotebaseConnectionUnavailableTitle: Notebase 연결을 사용할 수 없습니다
-  saveToNotebaseMissingNotebaseDescription: 이전 Notebase가 없거나 이 계정에서 열 수 없습니다. 새 Notebase를 만들고 저장하거나 Custom AI Actions에서 기존 Notebase를 연결하세요.
-  saveToNotebaseAccountUnavailableDescription: 로그인한 계정이 아래의 연결된 계정과 다릅니다. 만들고 저장하면 이전 연결 설정과 필드 매핑이 교체됩니다. Custom AI Actions에서 기존 Notebase를 연결할 수도 있습니다.
-  saveToNotebasePendingLogin: 로그인 후 저장 완료
-  saveToNotebasePendingLoginDescription: 로그인 후 Read Frog가 Notebase를 만들고 이 결과를 자동으로 저장합니다.
-  saveToNotebasePendingConnectedLoginDescription: 로그인 후 Read Frog는 가능하면 연결된 Notebase에 저장합니다. 이 계정에서 사용할 수 없으면 새 Notebase를 만들고 저장합니다.
-  upgrade: 업그레이드
-  updatePayment: 결제 수단 업데이트
-  openCustomActions: Custom AI Actions 열기
-  openNotebase: Notebase 열기
-  contextDetailsTitleLabel: 제목
-  contextDetailsParagraphsLabel: 문단 내용
-  translation: 번역
-  speak: 읽기
-  playing: 재생 중
-noteSuggestion:
-  title: 저장 추천
-  description: Notebase에 저장할 단어를 선택하고 언제든지 복습하세요.
-  save: 저장
-  saved: 저장됨
-  staleSuggestion: 이 제안은 더 이상 유효하지 않습니다
-  toggleLabel: 노트 제안 표시
-thinking:
-  label: 사고 중
-  complete: 사고 완료
-  expand: 사고 펼치기
-  collapse: 사고 접기
 shortcutKeySelector:
   placeholder: 단축키를 입력해 주세요
-subtitles:
-  loadingAiSubtitles: AI 자막 불러오는 중… (예상 3분)
-  requestAiSubtitles: AI 자막 요청
-  usingAiSubtitles: AI 자막 사용 중
-  toggle:
-    enabled: 자막 번역을 켰습니다
-    disabled: 자막 번역을 껐습니다
-  actions:
-    downloadTranslated: 번역 자막 다운로드
-    downloadTranslatedPreparing: 자막 준비 중, 긴 동영상은 시간이 더 걸릴 수 있습니다
-    downloadTranslatedTranslating: 자막 번역 중
-    downloadTranslatedComplete: 번역 자막을 다운로드했습니다
-    downloadSource: 원본 자막 다운로드
-  state:
-    loading: Read Frog 자막 로딩 중
-    translating: 번역 중…
-    error: 오류 발생
-  errors:
-    http429: 429 유튜브 자막 인터페이스 요청이 너무 많습니다. 잠시 후 다시 시도해 주세요
-    http404: 404 유튜브 자막을 찾을 수 없습니다
-    http403: 403 유튜브 자막 접근이 거부되었습니다
-    http500: 500 유튜브 서버 오류
-    httpUnknown: HTTP 오류 $1
-    invalidResponse: 유튜브 자막 응답 형식이 잘못되었습니다
-    networkError: 자막을 가져오는 도중 네트워크 오류가 발생했습니다
-    fetchSubTimeout: 유튜브 자막 가져오기 시간이 초과되었습니다
-    buttonNotFound: 자막 버튼을 찾을 수 없습니다
-    noSubtitlesFound: 현재 영상에 자막이 없습니다
-    videoNotFound: 비디오 요소를 찾을 수 없습니다
-    controlsBarNotFound: 컨트롤 바를 찾을 수 없습니다
-    aiRateLimited: 요청이 너무 많습니다. 나중에 다시 시도해 주세요
-    aiAuthFailed: API 인증에 실패했습니다. API 키를 확인해 주세요
-    aiServiceUnavailable: 번역 서비스를 일시적으로 사용할 수 없습니다
-    aiQuotaExceeded: 이번 달 AI 자막 사용량을 모두 사용했습니다
-    aiQuotaExceededWithReset: 이번 달 AI 자막 사용량을 모두 사용했습니다 · $1에 초기화
-    aiLoginRequired: 로그인하여 AI 자막 사용량 확인
-    aiSubscriptionRequired: AI 자막은 Pro 또는 Ultra 구독이 필요합니다
-    aiPaymentRequired: AI 자막을 계속 생성하려면 결제 수단을 업데이트하세요
-    aiVideoTooLong: 이 영상은 너무 길어 AI 자막을 만들 수 없습니다
-    aiStillProcessing: 아직 전사가 진행 중입니다. 몇 분 후 다시 클릭해 주세요
-    aiRequestFailed: AI 자막 요청에 실패했습니다. 잠시 후 다시 시도해 주세요
-    aiNoResponse: AI 서비스가 응답하지 않았습니다. 원문을 표시합니다
-    translatedExportFailed: 번역 자막 생성에 실패했습니다
-    translatedExportIncomplete: 모든 자막 줄을 번역하지 못했습니다
-    translatedExportSameLanguage: 원본 언어와 대상 언어가 같습니다
-hostedAi:
-  ultraBadge:
-    tooltip: Ultra 요금제 가입이 필요합니다 · 배지를 클릭해 요금제 받기
-  availability:
-    authenticationRequired: 로그인 후 사용할 수 있습니다
-    ultraRequired: Ultra 요금제가 필요합니다
-    quotaExhausted: 할당량을 모두 사용했습니다
-    serviceUnavailable: 일시적으로 사용할 수 없습니다
-    usedPercent: "할당량 사용: $1%"
-    resetsAt: "$1에 초기화"
-  errors:
-    rateLimited: 요청이 너무 많습니다. 나중에 다시 시도해 주세요.
-    guestRateLimited: 게스트 요청이 너무 많습니다. 나중에 다시 시도해 주세요.
-    userRateLimited: 요청이 너무 많습니다. 나중에 다시 시도해 주세요.
 hotkey:
   control: Ctrl
   alt: Option
@@ -1198,22 +565,6 @@ hotkey:
 translationHub:
   searchLanguages: 언어 검색...
   noLanguagesFound: 언어를 찾을 수 없습니다
-  exchangeLanguages: 언어 교환
-  title: 멀티 API 텍스트 번역
-  noServicesSelected: 번역 서비스가 선택되지 않았습니다
-  noServicesDescription: 위에서 번역 서비스를 선택하여 번역 카드를 확인하세요.
-  inputPlaceholder: 번역할 텍스트를 입력하세요...
-  translate: 번역
-  copiedToClipboard: 번역이 클립보드에 복사되었습니다!
-  copyTranslation: 번역 복사
-  expandCard: 카드 펼치기
-  collapseCard: 카드 접기
-  expandAllCards: 모두 펼치기
-  collapseAllCards: 모두 접기
-  deleteCard: 카드 삭제
-  translationFailed: 번역 실패
-  translationFailedFallback: 번역 실패
-  retryTranslation: 번역 재시도
 languages:
   eng: 영어
   cmn: 중국어 간체

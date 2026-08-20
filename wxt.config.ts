@@ -2,17 +2,7 @@ import path from "node:path"
 import process from "node:process"
 import ViteYaml from "@modyfi/vite-plugin-yaml"
 import { defineConfig } from "wxt"
-import { z } from "zod"
-import {
-  createExtensionClientEnvSchema,
-  isLocalPackagesEnabled,
-  resolveExtensionEnv,
-} from "./src/env/shared"
-
-const WXT_API_KEY_PATTERN = /^WXT_.*API_KEY/
-const ALLOWED_BUNDLED_API_KEYS = new Set(["WXT_POSTHOG_API_KEY"])
-const useLocalPackages = isLocalPackagesEnabled(process.env)
-const shouldSkipEnvValidation = process.env.WXT_SKIP_ENV_VALIDATION === "true"
+const useLocalPackages = process.env.WXT_USE_LOCAL_PACKAGES === "true"
 // Root of the read-frog monorepo whose source is aliased in when developing
 // with local packages. Defaults to the sibling checkout; override with
 // WXT_MONOREPO_PATH to point at a git worktree (relative or absolute).
@@ -30,7 +20,6 @@ export default defineConfig({
   alias: useLocalPackages
     ? {
         "@read-frog/definitions": path.resolve(monorepoRoot, "packages/definitions/src"),
-        "@read-frog/api-contract": path.resolve(monorepoRoot, "packages/api-contract/src"),
       }
     : {},
   manifest: ({ mode, browser }) => ({
@@ -40,19 +29,9 @@ export default defineConfig({
     // Fixed extension ID for development
     ...(mode === "development" &&
       (browser === "chrome" || browser === "edge") && {
-        key: "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAw2KhiXO2vySZtPu5pNSbyKhYavh8Be7gXmCZt8aJf6tQ/L3JK0qzL+3JSc/o20td3Jw+B2Dcw+EI93NAZr24xKnTNXQiJpuIuHb8xLXD0Ra/HrTVi4TJIhPdESogoG4uL6CD/F3TxfZJ2trX4Bt9cdAw1RGGeU+xU0g+YFfEka4ZUCpFAmTEw9H3/DU+nCp8yGaJWyiVgCTcFe38GZKEPt0iMJkTw956wz/iiafLx0pNG/RaztG9cAPoQOD2+SMFaeQ+b/G4OG17TYhzb09AhNBl6zSJ3jTKHSwuedCFwCce8Q/EchJfQZv71mjAE97bzwvkDYPCLj31Z5FE8HntMwIDAQAB",
+        key: "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqYEhICz/OMxb9gBhAwl4pToD4SYqlqgRSvf2G3+B1FzdhroYnfF135OKI3cIodwAZWOfbRoZ7dYpq/ItSyyGe4C4w1kmztkCCGmfhpAzAdj/ahKKI7PptCk+Z/mWiIoJyvWC+yJ1Fc8C4/H/EAO0YfBalo/IgX3Wb94WBLDAUZUmLHo60ss9Bj6r/Xk/KtNkR4XasMNhP4p7JzCD+FXJMp+JstIN63j9dNjg0S37uOW7KvdDXFxv/hLZ8kZb3OfowJWuMjAY9wj2MJmiKojE7/PVC3+1nA7mQ6yViW5fvz/dCqgGi1xcDlZA6UiwBaYlyuBUz6d4uw9PxK8qOByWuQIDAQAB",
       }),
-    permissions: [
-      "storage",
-      "tabs",
-      "alarms",
-      "cookies",
-      "contextMenus",
-      "identity",
-      "scripting",
-      "webNavigation",
-      ...(browser !== "firefox" ? ["offscreen", "sidePanel"] : []),
-    ],
+    permissions: ["storage", "tabs", "alarms", "scripting", "webNavigation"],
     host_permissions: [
       "*://*/*", // Required for scripting.executeScript in any frame
     ],
@@ -73,18 +52,17 @@ export default defineConfig({
       },
       browser_specific_settings: {
         gecko: {
-          id: "{bd311a81-4530-4fcc-9178-74006155461b}",
+          id: "{a97f76cb-2cab-42ae-870f-2c6cd5b25d84}",
           strict_min_version: "112.0",
           data_collection_permissions: {
             required: ["none"],
-            optional: ["technicalAndInteraction"],
           },
         },
       },
     }),
   }),
   zip: {
-    includeSources: ["**/*", ".env.production"],
+    includeSources: ["**/*"],
     excludeSources: ["docs/**/*", "assets/**/*", "repos/**/*", "readmes/**/*"],
   },
   hooks: {
@@ -111,7 +89,7 @@ export default defineConfig({
       strictPort: false,
     },
   },
-  vite: (configEnv) => ({
+  vite: () => ({
     resolve: {
       // CodeMirror breaks with "Unrecognized extension value in extension set"
       // if the bundle contains more than one copy of these packages (#1782).
@@ -141,33 +119,6 @@ export default defineConfig({
       //      reuses for autocomplete/type-checking at every `i18n.t('key')` call site.
       // Runtime UI string lookup itself no longer goes through @wxt-dev/i18n.
       ViteYaml(),
-      ...(configEnv.mode === "production"
-        ? [
-            {
-              name: "check-api-key-env",
-              buildStart() {
-                z.object(
-                  createExtensionClientEnvSchema(
-                    configEnv.mode === "production",
-                    shouldSkipEnvValidation,
-                  ),
-                ).parse(resolveExtensionEnv(process.env))
-
-                const apiKeyVars = Object.keys(process.env)
-                  .filter((key) => WXT_API_KEY_PATTERN.test(key))
-                  .filter((key) => !ALLOWED_BUNDLED_API_KEYS.has(key))
-
-                if (apiKeyVars.length > 0) {
-                  throw new Error(
-                    `\n\nFound WXT_*_API_KEY environment variables that may be bundled:\n` +
-                      `${apiKeyVars.map((k) => `   - ${k}`).join("\n")}\n\n` +
-                      `Please unset these variables before building for production.\n`,
-                  )
-                }
-              },
-            },
-          ]
-        : []),
     ],
   }),
 })

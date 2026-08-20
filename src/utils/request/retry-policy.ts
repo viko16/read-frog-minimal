@@ -168,7 +168,7 @@ export const defaultRequestRetryPolicy: RequestRetryPolicy = {
     const meta = getRequestErrorMeta(error)
 
     // 401/403/404 or an access denial: the config (key/model/endpoint) is
-    // wrong or the account cannot use this service — retrying any queued task
+    // wrong or the key cannot use this service — retrying any queued task
     // is pointless, so drain the backlog immediately.
     if (isQueueFatalRequestErrorMeta(meta)) {
       return { action: "fail", failQueue: true }
@@ -206,8 +206,7 @@ function isRateLimitRequestErrorMeta(meta: RequestErrorMeta): boolean {
 }
 
 function isQueueFatalRequestErrorMeta(meta: RequestErrorMeta): boolean {
-  // "access-denied" marks hosted hard denials (quota exhausted / tier
-  // restricted / unauthenticated): every queued sibling would fail
+  // "access-denied" marks hard provider denials: every queued sibling would fail
   // identically, so drain like 401/403/404. Draining also fails unrelated
   // tasks sharing the queue (e.g. a queued summary) — rare, and consistent
   // with the status-code drains below.

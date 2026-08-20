@@ -1,24 +1,17 @@
 import { describe, expect, it } from "vitest"
 import {
   BUILT_IN_PAGE_TRANSLATE_PROMPTS,
-  BUILT_IN_SUBTITLE_TRANSLATE_PROMPTS,
-  DEFAULT_SUBTITLE_TRANSLATE_PROMPTS_CONFIG,
   DEFAULT_TRANSLATE_PROMPTS_CONFIG,
   PRECISION_REWRITE_TRANSLATE_SYSTEM_PROMPT,
 } from "../prompt"
 
 describe("built-in translation prompts", () => {
-  it("uses default as the real persisted selection on both surfaces", () => {
+  it("uses default as the real persisted webpage selection", () => {
     expect(DEFAULT_TRANSLATE_PROMPTS_CONFIG).toEqual({ promptId: "default", patterns: [] })
-    expect(DEFAULT_SUBTITLE_TRANSLATE_PROMPTS_CONFIG).toEqual({
-      promptId: "default",
-      patterns: [],
-    })
   })
 
-  it("registers only the intended built-ins per surface", () => {
+  it("registers only the intended webpage built-ins", () => {
     expect(Object.keys(BUILT_IN_PAGE_TRANSLATE_PROMPTS)).toEqual(["default", "precision-rewrite"])
-    expect(Object.keys(BUILT_IN_SUBTITLE_TRANSLATE_PROMPTS)).toEqual(["default"])
   })
 
   it("keeps precision self-review silent and final-output-only", () => {

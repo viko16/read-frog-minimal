@@ -1,24 +1,7 @@
-name: Read Frog
-extName: Read Frog - Traduce y aprende
-extDescription: Read Frog es una extensión de navegador de código abierto diseñada para ayudarte a aprender idiomas en profundidad desde cualquier sitio web.
-uninstallSurveyUrl: https://tally.so/r/nPK6Ob
-account:
-  login: Iniciar sesión
-  webApp: Aplicación web
-  logout: Cerrar sesión
-  logoutError: No se pudo cerrar sesión. Inténtalo de nuevo.
-dataTypes:
-  string: Texto
-  number: Número
-contextMenu:
-  translate: Traducir
-  translateSelection: Traducir "%s"
-  readAloudSelection: Leer en voz alta "%s"
-  showOriginal: Mostrar original
-sidePanel:
-  firefoxUserActionHint: En Firefox, abre Read Frog desde la barra lateral del navegador.
-  firefoxUserActionHelpText: Aprende a abrir la barra lateral de Firefox
-  firefoxUserActionHelpUrl: https://support.mozilla.org/en-US/kb/use-sidebar-access-tools-and-vertical-tabs
+---
+name: Read Frog Minimal
+extName: Read Frog Minimal - Traductor web
+extDescription: Traductor web local y de código abierto que usa proveedores directos y tus propias claves API.
 popup:
   theme: Tema
   autoLang: Auto
@@ -30,8 +13,6 @@ popup:
     open: Open provider settings
   translate: Traducir
   showOriginal: Mostrar original
-  enabledFloatingButton: Activar botón flotante
-  enabledSelectionToolbar: Activar barra de selección
   alwaysTranslate: Traducir siempre este sitio
   addToWhitelist: Activar extensión en este sitio
   addToBlacklist: Desactivar extensión en este sitio
@@ -46,26 +27,8 @@ popup:
       translationOnly:
         current: Modo solo traducción actual
         action: Haz clic para cambiar a bilingüe
-  hub:
-    tooltip: Traduce texto con varios modelos al mismo tiempo
-  discord:
-    tooltip: Únete a Discord para conectar con desarrolladores y obtener acceso anticipado a nuevas funciones
-  blog:
-    notification: Novedades de Read Frog
   aiSmartContext: Contexto inteligente de IA
   aiSmartContextDescription: Usa el contexto de la página web para mejorar la calidad de la traducción. Requiere un proveedor de traducción LLM.
-  more:
-    title: Más
-    help: Ayuda
-    tutorial: Tutorial
-    emailUs: Escríbenos
-    featureRequest: Sugerir una función
-    bugReport: Informar de un fallo
-    community: Comunidad
-    joinDiscord: Unirse a Discord
-    joinWechat: Unirse al grupo de WeChat
-    starGithub: Marcar con estrella en GitHub
-    rateUs: Calificarnos
 errorRecovery:
   title: Algo salió mal
   description: El modo de recuperación está activo. Puedes exportar tu configuración actual como copia de seguridad y luego restablecer la configuración e intentarlo de nuevo.
@@ -79,13 +42,11 @@ errorRecovery:
   resetFailed: Error de recuperación. No se pudo restablecer la configuración
   errorDetails: Detalles del error
   resetDialog:
-    title: ¿Restablecer configuración?
+    title: "¿Restablecer configuración?"
     description: Esto reemplazará tu configuración actual por los valores predeterminados.
     confirm: Restablecer
     cancel: Cancelar
 options:
-  batchSavings:
-    savedCost: Ahorro aprox. del $1% en costes de API
   commandPalette:
     placeholder: Buscar configuración...
     noResults: No se encontró configuración
@@ -94,67 +55,16 @@ options:
     toggle: Alternar barra lateral
     settings: Configuración
     features: Funciones
-    product: Producto
-  tools:
-    translationHub: Centro de traducción
-  product:
-    roadmap: Hoja de ruta
-  helpAndCommunity:
-    title: Ayuda y comunidad
-    pageDescription: Aprende a usar Read Frog, pide ayuda al equipo o únete a otros usuarios en la comunidad.
-    help:
-      title: Ayuda
-    tutorial:
-      title: Tutorial
-      description: Lee la documentación y aprende a usar Read Frog
-    email:
-      title: Escríbenos
-      description: Contacta directamente con el equipo en contact@readfrog.app
-    featureRequest:
-      title: Sugerir una función
-      description: Propón una idea y vota lo que el equipo construirá a continuación
-    bugReport:
-      title: Informar de un fallo
-      description: Abre un ticket de soporte y síguelo hasta que se resuelva
-    community:
-      title: Comunidad
-    discord:
-      title: Discord
-      description: Habla en tiempo real con el equipo y con otros usuarios
-    wechat:
-      title: Grupo de WeChat
-      description: Escanea el código QR para unirte al grupo de discusión de WeChat
-      qrCodeAlt: Código QR de WeChat
   apiProviders:
     title: Proveedores de API
-    pageDescription: Conecta los servicios de IA que usa Read Frog y elige cuál se encarga de cada función.
-    description: Añade los proveedores que Read Frog puede llamar. Más de 20 vienen integrados y puedes añadir API personalizadas compatibles con Chat Completions u Open Responses.
+    pageDescription: Conecta los servicios de IA que usa Read Frog Minimal y elige cuál se encarga de cada función.
+    description: Añade los proveedores que Read Frog Minimal puede llamar. Más de 20 vienen integrados y puedes añadir API personalizadas compatibles con Chat Completions u Open Responses.
     configTitle: Configuración de proveedores
     addProvider: Añadir proveedor
-    builtInProvider: Proveedor integrado
-    builtInAiUsage:
-      title: Cuota de IA integrada
-      remaining: "$1% restante"
-      supportedFeatures: "Compatible con $1 funciones"
-      resetsAt: "Se restablece el $1"
-      daily: Cuota diaria
-      weekly: Cuota semanal
-      features:
-        pageTranslation: Traducción de página
-        customAction: Acciones de IA personalizadas
-        noteSuggestion: Sugerencias de notas
-        selectionTranslation: Traducción de la selección
-        videoSubtitles: Subtítulos de video
-        inputTranslation: Traducción de entrada
-        languageDetection: Detección de idioma
-    sponsorCta: Obtén IA rápida y rentable
-    sponsorCtaJalapenoCloud: Obtén un 50 % de descuento en GLM 5.2
     setApiKeyWarning:
       message: Configura tu clave de API en la página $1
     badges:
-      featureCount: $1 funciones
-      sponsor: Patrocinador
-      sponsorJalapenoCloud: $$2 gratis
+      featureCount: "$1 funciones"
     dialog:
       title: Añadir nuevo proveedor
       groups:
@@ -178,14 +88,14 @@ options:
       duplicate: Duplicar
       delete: Eliminar
       deleteDialog:
-        title: ¿Eliminar proveedor?
+        title: "¿Eliminar proveedor?"
         description: Esta acción no se puede deshacer. Las funciones que usan este proveedor se reasignarán automáticamente a otro proveedor disponible.
         confirm: Eliminar
         cancel: Cancelar
       atLeastOneLLMProvider: Se requiere al menos un proveedor de traducción LLM.
       featureWouldLoseProvider: 'No se puede eliminar: "$1" se quedaría sin ningún proveedor que pueda ejecutarla.'
-      providerInUseCannotDisable: 'No se puede desactivar "$1" porque actualmente lo usan $2 función(es).'
-      duplicateProviderName: 'Nombre de proveedor duplicado "$1"'
+      providerInUseCannotDisable: No se puede desactivar "$1" porque actualmente lo usan $2 función(es).
+      duplicateProviderName: Nombre de proveedor duplicado "$1"
       defaultProvider:
         translate: Establecer como proveedor de traducción predeterminado
       models:
@@ -229,13 +139,8 @@ options:
       invalidJson: Formato JSON no válido
     providers:
       name:
-        builtInAi: IA integrada
-        builtInAiAdvance: IA integrada avanzada
         customChatComplete: Personalizado Chat Complete
         customResponses: Personalizado Responses
-      attribution:
-        builtInAi: Modelo estándar alojado por Read Frog. Los usuarios sin Ultra solo pueden usarlo en las acciones de IA personalizadas; los usuarios Ultra pueden usarlo en más funciones.
-        builtInAiAdvance: Modelo avanzado alojado por Read Frog, exclusivo para miembros Ultra. Funciona en todas las funciones de IA integrada — traducción de página, acciones de IA personalizadas y más — con una cuota semanal compartida. Consume la cuota más rápido que el modelo estándar.
       description:
         openai: Proporciona modelos como GPT-4o
         azure: Modelos OpenAI hospedados en Azure mediante tus implementaciones
@@ -272,7 +177,7 @@ options:
     apiKey:
       showAPIKey: Mostrar clave API
       getAPIKey: Obtener clave API
-    howToConfigure: ¿Cómo configurar?
+    howToConfigure: "¿Cómo configurar?"
     testConnection:
       button: Probar conexión
       testing: Probando...
@@ -284,16 +189,8 @@ options:
       description: Elige qué proveedor usar para cada función
       features:
         pageTranslation: Traducción de página
-        selectionTranslation: Traducción de la barra de selección
-        inputTranslation: Traducción de entrada
-        videoSubtitles: Subtítulos de video
-        noteSuggestion: Sugerencias de notas
       descriptions:
         pageTranslation: Traduce la página completa en modo bilingüe o de reemplazo.
-        selectionTranslation: Traduce el texto que seleccionas desde la barra de selección.
-        inputTranslation: Traduce lo que escribes en un campo de texto antes de enviarlo.
-        videoSubtitles: Traduce los subtítulos que aparecen en el reproductor de video.
-        noteSuggestion: Sugiere palabras que vale la pena guardar en tu Notebase después de traducir una selección.
     languageDetection:
       title: Detección de idioma
       description: Afecta la detección de idioma para traducción automática y la precisión de selección de voz.
@@ -318,12 +215,12 @@ options:
     duplicate: Este patrón ya está en la lista
   preference:
     title: Preferencias
-    pageDescription: Define la apariencia de Read Frog, dónde se ejecuta y cómo se sincroniza y respalda tu configuración.
+    pageDescription: Define la apariencia de Read Frog Minimal, dónde se ejecuta y cómo se sincroniza y respalda tu configuración.
     appearanceAndLanguage:
       title: Apariencia e idioma
       theme:
         title: Tema
-        description: Elige un tema para Read Frog.
+        description: Elige un tema para Read Frog Minimal.
         system: Sistema
         light: Claro
         dark: Oscuro
@@ -342,7 +239,7 @@ options:
         description: El idioma al que se traducen las páginas.
     extensionActivation:
       title: Activación de la extensión
-      description: Si Read Frog se ejecuta en todas partes salvo en los sitios que indiques, o solo en los sitios que indiques
+      description: Si Read Frog Minimal se ejecuta en todas partes salvo en los sitios que indiques, o solo en los sitios que indiques
       manageSites: Gestionar sitios
       mode:
         title: Modo de activación
@@ -354,53 +251,6 @@ options:
         urlPattern: Patrón de URL
     config:
       title: Configuración
-      googleDrive:
-        title: Sincronización cloud con Google Drive
-        description: Descarga la configuración cuando la remota es más reciente, sube la configuración cuando la local es más reciente
-        sync: Sincronizar con Google Drive
-        syncing: Sincronizando...
-        syncSuccess:
-          uploaded: Configuración local subida a la nube
-          downloaded: Configuración remota aplicada
-          sameChanges: Mismos cambios en ambos lados, sincronizado
-          noChange: Ya está sincronizado
-          unresolved: Conflictos resueltos y sincronizados
-        syncError: Error de sincronización, inténtalo de nuevo
-        metadataCorrupted: Metadatos de sincronización dañados, configuración remota aplicada
-        lastSyncTime: Última sincronización a las
-        logout: Cerrar sesión
-        logoutSuccess: Sesión de cuenta de Google cerrada
-        unresolved:
-          title: Resolución de sincronización de configuración
-          description: Las configuraciones local y remota difieren. Elige qué versión conservar para cada campo.
-          resolved: Resuelto
-          unresolved: Sin resolver
-          localValue: Valor local
-          remoteValue: Valor remoto
-          useLocal: Usar local
-          useRemote: Usar remoto
-          useAllLocal: Usar todo local
-          useAllRemote: Usar todo remoto
-          reset: Restablecer selección
-          progress: $1/$2 cambios resueltos
-          confirm: Confirmar sincronización
-          cancel: Cancelar
-          hasUnresolvedInChildren: ⚠ Contiene cambios sin resolver
-          item: elemento
-          items: elementos
-          unresolvedPrompt: "[Unresolved - Please select]"
-          localLatest: Local más reciente
-          remoteLatest: Remoto más reciente
-          bothChanged: Ambos cambiaron
-          localChanged: Local cambió
-          remoteChanged: Remoto cambió
-          configValid: La configuración es válida
-          configInvalid: La configuración no es válida
-          resolveToContinue: Resuelve los conflictos para continuar
-          validationAlert:
-            title: La configuración combinada tiene errores de validación.
-            description: "Ajusta las diferencias siguientes para corregir:"
-          moreErrors: ...y $1 errores más
       manualSync:
         title: Sincronización manual de configuración
         description: Importa y exporta manualmente tus ajustes de configuración
@@ -436,13 +286,13 @@ options:
           export: Exportar
           delete: Eliminar
         restore:
-          title: ¿Restaurar copia de seguridad de configuración?
+          title: "¿Restaurar copia de seguridad de configuración?"
           description: Tu configuración actual se respaldará automáticamente si es diferente de la copia de seguridad más reciente. La copia más antigua puede eliminarse si el número de copias supera el límite.
           cancel: Cancelar
           confirm: Restaurar
         delete:
-          title: ¿Eliminar copia de seguridad?
-          description: ¿Seguro que quieres eliminar esta copia de seguridad? Esta acción no se puede deshacer.
+          title: "¿Eliminar copia de seguridad?"
+          description: "¿Seguro que quieres eliminar esta copia de seguridad? Esta acción no se puede deshacer."
           cancel: Cancelar
           confirm: Eliminar
       reset:
@@ -454,15 +304,6 @@ options:
           confirm: Confirmar
           cancel: Cancelar
           description: Esta operación borrará todas tus configuraciones personalizadas y las restablecerá a los valores predeterminados. Confirma para continuar.
-    userExperience:
-      title: Experiencia de usuario
-      beta:
-        title: Experiencia beta
-        description: Activa funciones experimentales que todavía pueden ser inestables
-      analytics:
-        title: Ayuda a mejorar la experiencia de usuario
-        tooltip: Cuando está activado, Read Frog envía señales anónimas de uso del producto para que podamos detectar errores, verificar la fiabilidad de las funciones, mejorar el rendimiento y el acabado de la UX, y priorizar trabajos futuros.
-        description: Mejora Read Frog ayudándonos a localizar errores, pulir la interfaz y más
   shortcuts:
     title: Atajos
     pageDescription: Define las teclas que activan la traducción mientras lees.
@@ -473,357 +314,9 @@ options:
     translationMode:
       title: Modo de traducción
       description: Alterna entre bilingüe y solo traducción.
-    selectionTranslation:
-      title: Traducción de la selección
-      description: Traduce el texto que seleccionaste.
-    subtitlesToggle:
-      title: Traducción de subtítulos
-      description: Activa o desactiva los subtítulos traducidos del vídeo.
     nodeTranslation:
       title: Traducción de párrafo
       description: Pasa el cursor o mantén pulsado un párrafo para traducir solo ese.
-    translationHub:
-      title: Centro de traducción
-      description: Abre el Centro de traducción en una pestaña nueva.
-  overlayTools:
-    title: Herramientas superpuestas
-  inputTranslation:
-    title: Traducción de entrada
-    pageDescription: Traduce lo que escribes en los campos de texto antes de enviarlo.
-    trigger:
-      title: Activación
-      enable:
-        title: Activar
-        description: Pulsa la barra espaciadora tres veces seguidas en cualquier campo de entrada para traducir lo que has escrito.
-      threshold:
-        title: Umbral de activación
-        description: Cuánto pueden separarse las pulsaciones, en milisegundos. Auméntalo si la traducción no llega a activarse; redúcelo si salta mientras escribes.
-        error: Introduce un valor entre $1 y $2
-    languages:
-      title: Idiomas de traducción
-      pair:
-        title: Par de idiomas
-        description: En qué idioma se lee el texto que escribes y a cuál se traduce. Ambos lados pueden seguir los idiomas de origen y destino con los que traduces páginas.
-      sourceCode: Idioma de origen de la página
-      targetCode: Idioma de destino de la traducción
-      cycle:
-        title: Intercambiar dirección cada vez
-        description: Cada activación intercambia los dos idiomas, así que la siguiente devuelve el texto al idioma en el que escribiste.
-  floatingButton:
-    title: Botón flotante
-    pageDescription: Elige en qué lado se coloca el botón flotante, qué hace al pulsarlo y dónde permanece oculto.
-    demoImageAlt: Demostración del botón flotante
-    enable:
-      title: Activar botón flotante
-      description: Muestra el botón flotante en páginas web para acceder rápidamente a las funciones de Read Frog
-    display:
-      title: Visualización
-      side:
-        title: Lado del botón
-        description: Elige en qué lado de la página se fija el botón flotante
-        left: Izquierda
-        right: Derecha
-      disabledSites:
-        title: Sitios desactivados
-        description: Configura los sitios web donde se debe desactivar el botón flotante
-        enterUrlPattern: Introduce patrón de URL
-        urlPattern: Patrón de URL
-    clickAction:
-      title: Acción al hacer clic
-      description: Elige la acción al hacer clic en el botón flotante
-      panel: Abrir panel lateral
-      translate: Alternar traducción de página
-    closeMenu:
-      disableForSite: Desactivar para este sitio
-      disableGlobally: Desactivar globalmente
-    tooltips:
-      togglePageTranslation: Alternar traducción de página
-      floatingButtonOptions: Opciones del botón flotante
-      lockPosition: Bloquear posición
-      unlockPosition: Desbloquear posición
-      settings: Ajustes
-      feedback: Enviar comentarios
-  selectionToolbar:
-    title: Barra de selección
-    pageDescription: Define qué acciones aparecen al seleccionar texto y dónde se muestra la barra.
-    demoImageAlt: Demostración de la barra de selección
-    enable:
-      title: Activar barra de selección
-      description: Muestra la barra de herramientas al seleccionar texto en páginas web para traducción rápida, voz y acciones AI
-    actions:
-      title: Acciones
-      translate:
-        title: Traducir
-        description: Muestra el botón de traducción en la barra de herramientas
-      speak:
-        title: Leer en voz alta
-        description: Muestra el botón de voz, que lee en voz alta el texto seleccionado
-      noteSuggestion:
-        title: Sugerencias de notas
-        description: Después de traducir una selección con un proveedor de IA, sugerir palabras para guardar en tu Notebase
-        action: Acción
-        actionDescription: La acción que genera la sugerencia
-        provider: Proveedor
-        providerDescription: El proveedor de IA que genera la sugerencia
-    display:
-      title: Visualización
-      opacity:
-        title: Opacidad
-        description: Ajusta la opacidad de la barra de selección y de la ventana expandida que se abre desde ella
-      disabledSites:
-        title: Sitios desactivados
-        description: Configura los sitios web donde se debe desactivar la barra de selección
-        enterUrlPattern: Introduce patrón de URL
-        urlPattern: Patrón de URL
-    closeMenu:
-      disableForSite: Desactivar para este sitio
-      disableGlobally: Desactivar globalmente
-    errors:
-      customActionFailed: Falló la acción personalizada
-      customActionFailedFallback: Falló la solicitud de acción personalizada
-      actionUnavailable: La acción seleccionada no está disponible
-      missingSelection: No hay texto seleccionado disponible
-      providerDisabled: El proveedor seleccionado está desactivado
-      providerUnavailable: El proveedor seleccionado no está disponible
-    customActions:
-      title: Acciones AI personalizadas
-      pageDescription: Escribe tus propios prompts y ejecútalos sobre el texto seleccionado desde la barra de selección.
-      description: Añade tus propias acciones AI estructuradas para texto seleccionado
-      configTitle: Configuración de acciones
-      builtIn: Integrada
-      add: Añadir acción AI
-      edit: Editar acción AI
-      empty: Aún no hay acciones AI personalizadas
-      noEnabledLlmProvider: Activa al menos un proveedor LLM antes de crear acciones AI personalizadas
-      form:
-        name: Nombre
-        customize: Personalizar
-        customizeTooltip: Las instrucciones integradas no permiten cambiar los prompts. Haz clic aquí para crear una copia editable y modificar los prompts.
-        icon: Icono
-        iconField:
-          chooseAriaLabel: Elegir icono
-          chooseTitle: Elegir un icono
-          inputPlaceholder: Introduce el nombre del icono
-          helpAriaLabel: Más ayuda sobre iconos
-          helpTitle: ¿No encuentras el icono que quieres?
-          helpStepBrowsePrefix: Busca iconos en
-          helpStepBrowseSuffix: ""
-          helpStepCopyPrefix: "Copia el nombre del icono, por ejemplo "
-          helpStepCopySuffix: ", y pégalo en el campo."
-        provider: Proveedor (requiere compatibilidad con salida estructurada)
-        selectProvider: Selecciona un proveedor
-        systemPrompt: Prompt del sistema
-        prompt: Prompt
-        outputSchema: Esquema de salida
-        addField: Añadir campo
-        fieldName: Nombre del campo
-        fieldType: Tipo de campo
-        fieldDescription: Descripción
-        fieldDescriptionPlaceholder: Describe qué debe contener este campo...
-        fieldSpeaking: Activar lectura en voz alta
-        actions: Acciones
-        cancel: Cancelar
-        save: Guardar
-        defaultFieldName: Resultado
-        fieldNamePlaceholder: Nombre del campo
-        autoFieldPrefix: Campo
-        addFieldDialog:
-          title: Añadir campo de salida
-        editFieldDialog:
-          title: Editar campo de salida
-          save: Guardar
-        deleteFieldDialog:
-          title: ¿Eliminar campo de salida?
-          description: Este campo de salida se eliminará.
-          confirm: Eliminar
-          cancel: Cancelar
-        notebase:
-          title: Conexión de Notebase
-          description: Guarda los resultados estructurados de esta acción en una Notebase remota.
-          loginRequiredTitle: Inicia sesión para configurar Notebase
-          loginRequiredDescription: Inicia sesión en readfrog.app antes de elegir una Notebase o editar asignaciones.
-          loginRequiredConnectedDescription: Esta conexión fue creada por la cuenta de abajo. Si inicias sesión con la misma cuenta, se restaurarán las asignaciones de campos. Si inicias sesión con otra cuenta, las asignaciones anteriores se borrarán al crear o conectar una Notebase.
-          loginAction: Iniciar sesión
-          connectedAccountLabel: Cuenta conectada
-          currentAccountLabel: Cuenta actual
-          unknownConnectedAccount: Cuenta desconocida
-          tableLabel: Notebase
-          tablePlaceholder: Selecciona una Notebase
-          tableClearOption: Desconectar Notebase
-          clearConnectionAction: Borrar conexión
-          refreshAction: Actualizar
-          emptyTitle: Aún no hay Notebases
-          emptyDescription: Crea una Notebase en readfrog.app y vuelve aquí para asignar campos.
-          openNotebaseAction: Abrir Notebase
-          accessDeniedTitle: No se puede acceder a Notebase
-          accessDeniedDescription: Esta cuenta no tiene permiso para cargar datos de Notebase.
-          listErrorTitle: No se pudieron cargar las Notebases
-          listErrorDescription: Intenta actualizar la lista de Notebase de nuevo en un momento.
-          accountMismatchTitle: La conexión de Notebase pertenece a otra cuenta
-          accountMismatchDescription: Esta conexión está vinculada a la cuenta conectada de abajo. Bórrala o elige una Notebase disponible para la cuenta actual.
-          tableUnavailableTitle: La Notebase seleccionada ya no está disponible
-          tableUnavailableDescription: Esta Notebase ya no existe o no se puede abrir. Borra la conexión o elige otra Notebase.
-          tableUnavailableOption: no disponible
-          schemaErrorTitle: No se pudo cargar el esquema de la Notebase
-          schemaErrorDescription: Intenta actualizar el esquema de nuevo en un momento.
-          schemaLoading: Cargando esquema de la Notebase...
-          mappingsLabel: Asignaciones de campos
-          mappingsEmpty: Aún no hay asignaciones. Añade una cuando estés listo para guardar campos.
-          addMappingAction: Añadir asignación
-          removeMappingAction: Eliminar asignación
-          localFieldLabel: Campo de acción
-          localFieldPlaceholder: Selecciona un campo de acción
-          remoteFieldLabel: Campo de Notebase
-          remoteFieldPlaceholder: Selecciona un campo de Notebase
-          columnUnavailableOption: eliminado
-          invalidMappingsTitle: Algunas asignaciones requieren atención
-          invalidMappingsDescription: Las asignaciones no válidas se conservan. Corrígelas antes de guardar en Notebase.
-          mappingMissingLocal: El campo de acción asignado ya no existe.
-          mappingMissingRemote: El campo de Notebase asignado ya no existe.
-          mappingMissingSchema: Actualiza el esquema de la Notebase para validar esta asignación.
-          mappingIncompatible: Los tipos de campo ya no coinciden.
-        tokens:
-          selection: Contenido del texto seleccionado
-          paragraphs: Texto de párrafos intersectados unido con líneas en blanco, truncado a los primeros 2000 caracteres cuando se envía a acciones AI personalizadas
-          targetLanguage: Idioma de destino del usuario
-          webTitle: Título de la página web
-          webContent: Contenido de la página web extraído de la página actual, truncado a los primeros 2000 caracteres
-        delete: Eliminar
-        deleteDialog:
-          title: ¿Eliminar acción personalizada?
-          description: Esta acción no se puede deshacer.
-          confirm: Eliminar
-          cancel: Cancelar
-      templates:
-        dialogTitle: Elegir una plantilla
-        dialogDescription: Selecciona una plantilla para crear rápidamente una nueva acción AI, o empieza desde cero.
-        dictionary:
-          name: Diccionario
-          description: Busca palabras con definiciones, fonética y traducciones de párrafos
-          systemPrompt: |-
-            Eres un asistente de diccionario para estudiantes de idiomas.
-
-            ## Objetivo
-            Dado un término y sus párrafos circundantes, produce una entrada de diccionario concisa que coincida con el objeto de salida requerido.
-
-            ## Reglas
-            1. Céntrate en el significado que mejor coincida con los párrafos proporcionados.
-            2. Normaliza Término a su forma base/canónica.
-            3. Mantén Definición precisa y fácil para estudiantes.
-            4. Para Oración, extrae únicamente la oración completa de los párrafos proporcionados que contenga el término seleccionado. No incluyas las oraciones anteriores ni posteriores.
-            5. Traducción de la oración debe traducir únicamente la Oración extraída.
-            6. Fonética debe usar la notación estándar del idioma del término (p. ej., IPA para inglés, pinyin para mandarín, romaji para japonés).
-            7. Categoría gramatical en inglés (noun, verb, adjective, etc.).
-            8. Dificultad debe ser un nivel CEFR (A1, A2, B1, B2, C1 o C2).
-            9. Si un campo es desconocido, devuelve una cadena vacía en lugar de adivinar.
-            10. Responde en {{targetLanguage}} para todos los campos textuales, salvo que se requiera texto en la forma de origen para mayor claridad.
-
-            ## Ejemplos
-
-            ### Ejemplo 1
-            Entrada: Selección="blossoms", Párrafos="Spring arrives quietly in the park. The ephemeral beauty of cherry blossoms reminds us to cherish each moment. Families and friends gather beneath the trees.", Idioma de destino=chino
-
-            Salida:
-            - Término: blossom
-            - Fonética: /ˈblɒs.əm/
-            - Categoría gramatical: noun
-            - Oración: The ephemeral beauty of cherry blossoms reminds us to cherish each moment.
-            - Definición: 花；花朵（尤指果树的花）
-            - Traducción de la oración: 樱花短暂的美丽提醒我们珍惜每一刻。
-            - Dificultad: B2
-
-            ### Ejemplo 2
-            Entrada: Selección="感動", Párrafos="この映画はつまらないと思ったけど、最後は感動した。", Idioma de destino=inglés
-
-            Salida:
-            - Término: 感動
-            - Fonética: kandou
-            - Categoría gramatical: noun
-            - Oración: この映画はつまらないと思ったけど、最後は感動した。
-            - Definición: Being deeply moved; emotional touch
-            - Traducción de la oración: I thought this movie was boring, but the ending was moving.
-            - Dificultad: B1
-          prompt: |-
-            ## Entrada
-            Selección: {{selection}}
-            Párrafos: {{paragraphs}}
-            Idioma de destino: {{targetLanguage}}
-          fieldTerm: Término
-          fieldTermDescription: Lema base/canónico del término seleccionado.
-          fieldPhonetic: Fonética
-          fieldPhoneticDescription: Transcripción fonética estándar para el idioma del término (p. ej., IPA para inglés, pinyin para mandarín, romaji para japonés).
-          fieldPartOfSpeech: Categoría gramatical
-          fieldPartOfSpeechDescription: Categoría gramatical (p. ej., noun, verb, adjective).
-          fieldSentence: Oración
-          fieldSentenceDescription: La oración completa de los párrafos anteriores que contiene el término seleccionado. No incluyas las oraciones anteriores ni posteriores.
-          fieldDefinition: Definición
-          fieldDefinitionDescription: Una definición concisa para el sentido contextual.
-          fieldSentenceTranslation: Traducción de la oración
-          fieldSentenceTranslationDescription: La traducción únicamente de la Oración.
-          fieldDifficulty: Dificultad
-          fieldDifficultyDescription: Nivel de dificultad CEFR estimado A1, A2, B1, B2, C1 o C2.
-        improveWriting:
-          name: Mejorar escritura
-          description: Analiza errores de escritura y sugiere mejoras
-          systemPrompt: |-
-            Eres un asistente de escritura para estudiantes de idiomas.
-
-            ## Objetivo
-            Dado un texto seleccionado y sus párrafos circundantes, analiza problemas de escritura y produce una versión mejorada.
-
-            ## Política de idioma (crítica)
-            1. Detecta el idioma original de Selección como {{originLanguage}}.
-            2. El campo "Análisis de errores" debe escribirse en {{targetLanguage}}.
-            3. El campo "Versión mejorada" debe mantenerse en {{originLanguage}}.
-            4. Nunca traduzcas "Versión mejorada" a {{targetLanguage}} a menos que {{originLanguage}} ya sea {{targetLanguage}}.
-
-            ## Reglas de escritura
-            1. Identifica errores de gramática, ortografía, puntuación y elección de palabras.
-            2. Mantén las ediciones naturales y conserva la intención y el tono del autor.
-            3. Si no hay errores importantes, indícalo claramente en "Análisis de errores" y devuelve una "Versión mejorada" ligeramente pulida.
-            4. Mantén "Versión mejorada" concisa y directamente utilizable.
-
-            ## Ejemplos
-            Ejemplo A:
-            - Selección: "He go to school yesterday, and he don't finish his homework."
-            - {{originLanguage}} detectado: inglés
-            - {{targetLanguage}}: chino
-            - Análisis de errores (chino — {{targetLanguage}}): 存在主谓一致和时态错误：go 应改为 went，don't 应改为 didn't，finish 应改为 finish 的过去时语境搭配。
-            - Versión mejorada (inglés — {{originLanguage}}): He went to school yesterday, and he didn't finish his homework.
-
-            Ejemplo B:
-            - Selección: "昨日私は友達に会いて、一緒に映画を見るました。"
-            - {{originLanguage}} detectado: japonés
-            - {{targetLanguage}}: inglés
-            - Análisis de errores (inglés — {{targetLanguage}}): There are verb conjugation errors: "会いて" should be "会って" (te-form of 会う), and "見るました" should be "見ました" (past tense of 見る in masu-form).
-            - Versión mejorada (japonés — {{originLanguage}}): 昨日私は友達に会って、一緒に映画を見ました。
-          prompt: |-
-            ## Entrada
-            Selección: {{selection}}
-            Párrafos: {{paragraphs}}
-            Idioma de destino: {{targetLanguage}}
-          fieldErrorAnalysis: Análisis de errores
-          fieldErrorAnalysisDescription: Explica problemas de gramática, ortografía, puntuación y elección de palabras en {{targetLanguage}}.
-          fieldImprovedVersion: Versión mejorada
-          fieldImprovedVersionDescription: Versión corregida y mejorada del texto seleccionado en su idioma original.
-        blank:
-          name: En blanco
-          description: Empieza desde cero con una acción vacía
-      errors:
-        nameRequired: El nombre es obligatorio
-        duplicateName: 'Nombre de acción duplicado "$1"'
-        invalidIcon: Cadena de icono Iconify no válida
-        providerRequired: Selecciona un proveedor LLM activado
-        outputSchemaRequired: Añade al menos un campo de salida
-        fieldKeyRequired: El nombre del campo es obligatorio
-        duplicateFieldKey: Los nombres de campo deben ser únicos
-  contextMenu:
-    title: Menú contextual
-    pageDescription: Controla las opciones de Read Frog en el menú contextual del navegador.
-    demoImageAlt: Demostración del menú contextual
-    enable:
-      title: Activar traducción en menú contextual
-      description: Añade opciones de traducción al menú contextual del navegador para traducir rápidamente páginas y selecciones
   translation:
     title: Traducción de páginas
     pageDescription: Controla cómo se traducen las páginas — modo, alcance, prompts y límites de solicitudes.
@@ -882,7 +375,7 @@ options:
               padding: 2px 4px;
               border-radius: 4px;
             }
-          docsLink: ¿Cómo configurar?
+          docsLink: "¿Cómo configurar?"
           saveButton: Guardar
           savedButton: Guardado
           validation:
@@ -901,7 +394,7 @@ options:
       default: Predeterminado
       builtIn: Integrado
       copyAndCustomize: Copiar y personalizar
-      copyName: "Copia de $1"
+      copyName: Copia de $1
       builtInPrompts:
         default:
           description: Traducción equilibrada y fiable para contenido cotidiano
@@ -1018,7 +511,7 @@ options:
         tooMany: Demasiadas reglas
         duplicateIds: Ids de regla duplicados
         schemaErrors: Algunas reglas no son válidas
-        moreErrors: ...y $1 errores más
+        moreErrors: "...y $1 errores más"
         saved: Todos los cambios guardados
     builtIn:
       title: Reglas integradas
@@ -1026,134 +519,9 @@ options:
       searchPlaceholder: Buscar por id, descripción o patrón de URL
       showMore: Mostrar más
       count: Mostrando $1 de $2 reglas
-  tts:
-    title: Texto a voz
-    pageDescription: Lee en voz alta cualquier selección con una voz natural.
-    voice:
-      title: Voz
-      selectPlaceholder: Selecciona una voz
-      noVoicesFound: No se encontraron voces
-      language:
-        title: Voz por idioma
-        description: Elige un idioma y luego la voz que lo lee en voz alta. Restablecer devuelve la voz que Read Frog elige para ese idioma.
-        reset: Restablecer
-        previewSample: ¡Hola desde Read Frog! Así sonaré al leer en voz alta.
-      fallback:
-        title: Voz alternativa
-        description: La voz para cualquier idioma al que no le hayas asignado una propia.
-    speech:
-      title: Habla
-      rate:
-        title: Velocidad
-        description: Cuánto más rápido o más lento lee la voz respecto a su propio ritmo, de -100 a 100 por ciento.
-      pitch:
-        title: Tono
-        description: Cuánto más agudo o más grave habla la voz respecto a su propio tono, de -100 a 100 hercios.
-      volume:
-        title: Volumen
-        description: Cuánto más fuerte o más suave lee la voz respecto a su propio nivel, de -100 a 100 por ciento.
-      error: Introduce un número entero entre $1 y $2
-  videoSubtitles:
-    title: Subtítulos de video
-    pageDescription: Traduce los subtítulos mientras ves el video, con proveedor, estilo y ajustes propios.
-    preference:
-      title: Aspectos básicos
-      enable:
-        title: Activar subtítulos de video
-        description: Añade un botón de traducción a los controles del reproductor. Por ahora solo funciona en YouTube.
-      autoStart:
-        title: Traducir al abrir el video
-        description: Empieza a traducir en cuanto se carga el video, sin pulsar el botón.
-      aiSegmentation:
-        title: Segmentación inteligente de IA
-        description: La IA vuelve a cortar los subtítulos en líneas que se leen como frases. También fija sus tiempos, así que pueden desajustarse. Requiere un proveedor de traducción LLM.
-    aiQuota:
-      title: Cuota de subtítulos con IA
-      description: El reconocimiento de voz con IA te da subtítulos precisos para cualquier vídeo
-      launchBonusPromo: Suscríbete antes del $1 y obtén 300 minutos de transcripción adicionales
-      loginRequired: Inicia sesión para ver tu cuota de subtítulos con IA
-      upgradeRequired: Los subtítulos con IA requieren una suscripción Pro o Ultra
-      pools:
-        subscription: Cuota mensual
-        launchBonus: Regalo de lanzamiento
-      resetsOn: Se restablece el $1
-      expiresOn: Caduca el $1
-      loadError: No se pudo cargar tu cuota. Inténtalo de nuevo más tarde.
-      remainingOf: Quedan $1 / $2 min
-      used: Usados $1 min
-    style:
-      title: Estilo de subtítulos
-      description: Modo de visualización, posición, fuentes, colores y fondo, ajustados sobre una vista previa en vivo
-      customizeStyle: Personalizar estilo
-      displayMode:
-        title: Modo de visualización
-        bilingual: Bilingüe
-        originalOnly: Solo original
-        translationOnly: Solo traducción
-      translationPosition:
-        title: Posición de la traducción
-        above: Arriba
-        below: Abajo
-      generalSettings: General
-      mainSubtitle: Subtítulo principal
-      translationSubtitle: Subtítulo de traducción
-      fontFamily: Fuente
-      fontScale: Escala de fuente
-      color: Color
-      fontWeight: Grosor de fuente
-      backgroundOpacity: Opacidad del fondo
-      reset: Restablecer a predeterminado
-    customPrompts:
-      title: Prompts personalizados de subtítulos
-      description: Plantillas de prompts solo para la traducción de subtítulos, separadas de las de traducción de páginas web
-      managePrompts: Gestionar prompts
-      editPrompt:
-        promptCellInput:
-          input: Texto de subtítulos a traducir
-          targetLanguage: Idioma de destino
-          webTitle: Título de la página web
-          webDescription: Descripción de la página web desde los metadatos
-          videoSummary: Resumen del video (requiere contexto inteligente de IA)
-    subtitlesQueue:
-      title: Cola de subtítulos
-      description: Con qué rapidez salen las solicitudes de subtítulos y cuántas líneas lleva cada una
-      manageQueue: Gestionar cola
-      requestQueueConfig:
-        title: Tasa de traducción
-        capacity:
-          description: "Solicitudes máximas en ráfaga: cuántas pueden salir a la vez"
-        rate:
-          description: "Solicitudes por segundo: el ritmo estable tras la ráfaga. Admite decimales, así que 0.25 envía una solicitud cada 4 segundos"
-      batchQueueConfig:
-        title: Traducción por lotes
-        description: Configura límites de caracteres y recuento máximo de líneas de subtítulos para la traducción por lotes (solo efectivo para traducción LLM)
-        maxCharactersPerBatch:
-          description: "Caracteres máximos: cuánto texto lleva cada solicitud a la IA"
-        maxItemsPerBatch:
-          description: "Líneas máximas: cuántas líneas de subtítulos comparten una solicitud. Los proveedores que no son de IA ignoran ambos"
-    cache:
-      title: Caché
-      clearCache:
-        title: Borrar caché de segmentación de IA
-        description: Resultados de segmentación guardados para no volver a cortar un video que ya has visto
-        clearing: Borrando...
-        dialog:
-          title: Borrar caché de segmentación de IA
-          trigger: Borrar caché
-          confirm: Confirmar
-          cancel: Cancelar
-          description: Esto eliminará todos los resultados de segmentación AI en caché. La próxima vez que reproduzcas un video con segmentación AI activada, se volverán a procesar los subtítulos.
-  whatsNew:
-    title: Novedades
-  rateUs:
-    title: Calificarnos
   configMigration:
-    versionTooNew: La versión de configuración importada es más reciente; actualiza Read Frog a la última versión
+    versionTooNew: La versión de configuración importada es más reciente; actualiza Read Frog Minimal a la última versión
     validationError: Error de validación de configuración
-side:
-  sourceLang: Idioma de origen
-  targetLang: Idioma de destino
-  fileExport: Exportar archivo
 translateService:
   title: Servicio de traducción
   description: Solo para traducir la página web
@@ -1184,127 +552,11 @@ languageDetection:
 translation:
   sameLanguage: Los idiomas de origen y destino deben ser diferentes
   autoModeSameLanguage: El idioma detectado '$1' es el mismo que el idioma de destino
-speak:
-  fetchingAudio: Generando audio...
-  playingAudio: Reproduciendo audio...
-  failedToGenerateSpeech: No se pudo generar voz
-  noTextSelected: No hay texto seleccionado
-  openaiNotConfigured: El proveedor OpenAI no está configurado o activado
-  openaiApiKeyNotConfigured: La clave API de OpenAI no está configurada
 action:
   copy: Copiar
   copied: Copiado
-  regenerate: Regenerar
-  viewContextDetails: Contexto
-  customizeCustomAction: Personalizar la acción $1
-  saveToNotebase: Guardar en Notebase
-  saveToNotebaseSaving: Guardando...
-  saveToNotebaseSuccess: Guardado en Notebase
-  saveToNotebaseFailed: No se pudo guardar en Notebase
-  saveToNotebaseLoginRequired: Inicia sesión en readfrog.app para guardar en Notebase
-  saveToNotebaseAccessDenied: Esta cuenta no puede acceder a la Notebase seleccionada
-  saveToNotebaseLimitExceeded: Se requiere una mejora para guardar más notas de Notebase
-  saveToNotebaseTableUnavailable: La Notebase seleccionada ya no está disponible
-  saveToNotebaseConnectionInvalid: Esta conexión de Notebase está desactualizada. Actualízala en Acciones AI personalizadas y corrige las asignaciones.
-  saveToNotebaseNoMappings: Añade al menos una asignación válida antes de guardar
-  saveToNotebaseCreateTitle: ¿Crear una Notebase?
-  saveToNotebaseCreateDescription: Crea una Notebase con columnas que coinciden con esta acción personalizada y guarda este resultado como la primera nota.
-  saveToNotebaseCreateAndSave: Crear y guardar
-  saveToNotebaseCreateAndSaveShort: Crear y guardar
-  saveToNotebaseLoginAndCreate: Iniciar sesión y crear
-  saveToNotebaseLoginAndSave: Iniciar sesión y guardar
-  saveToNotebaseConnectExisting: Conectar Notebase existente
-  saveToNotebaseGoConfigure: Configurar
-  saveToNotebaseLoginConnectedTitle: ¿Iniciar sesión para guardar?
-  saveToNotebaseLoginConnectedDescription: Esta Custom Action está conectada a la cuenta de abajo. Después de iniciar sesión, Read Frog guardará en la Notebase existente si es posible, o creará una nueva Notebase para la cuenta actual.
-  saveToNotebaseConnectionUnavailableTitle: Conexión de Notebase no disponible
-  saveToNotebaseMissingNotebaseDescription: La Notebase anterior ya no existe o esta cuenta no puede abrirla. Crea una nueva Notebase y guarda este resultado, o conecta una Notebase existente en Custom AI Actions.
-  saveToNotebaseAccountUnavailableDescription: La cuenta actual no coincide con la cuenta conectada de abajo. Crear y guardar reemplazará la conexión anterior y los mapeos de campos. También puedes conectar una Notebase existente en Custom AI Actions.
-  saveToNotebasePendingLogin: Inicia sesión para terminar de guardar
-  saveToNotebasePendingLoginDescription: Después de iniciar sesión, Read Frog creará la Notebase y guardará este resultado automáticamente.
-  saveToNotebasePendingConnectedLoginDescription: Después de iniciar sesión, Read Frog guardará en la Notebase conectada si es posible. Si esta cuenta no puede usarla, creará una nueva Notebase y guardará este resultado.
-  upgrade: Mejorar plan
-  updatePayment: Actualizar pago
-  openCustomActions: Abrir Custom AI Actions
-  openNotebase: Abrir Notebase
-  contextDetailsTitleLabel: Título
-  contextDetailsParagraphsLabel: Párrafos
-  translation: Traducción
-  speak: Leer en voz alta
-  playing: Reproduciendo
-noteSuggestion:
-  title: Quizás quieras guardar
-  description: Elige qué palabras guardar en tu Notebase y repásalas cuando quieras.
-  save: Guardar
-  saved: Guardado
-  staleSuggestion: Esta sugerencia está desactualizada
-  toggleLabel: Mostrar sugerencias de notas
-thinking:
-  label: Pensando
-  complete: Razonamiento completo
-  expand: Expandir razonamiento
-  collapse: Contraer razonamiento
 shortcutKeySelector:
   placeholder: Introduce el atajo
-subtitles:
-  loadingAiSubtitles: Cargando subtítulos con IA… (estimado 3 min)
-  requestAiSubtitles: Solicitar subtítulos con IA
-  usingAiSubtitles: Usando subtítulos con IA
-  toggle:
-    enabled: Traducción de subtítulos activada
-    disabled: Traducción de subtítulos desactivada
-  actions:
-    downloadTranslated: Descargar subtítulos traducidos
-    downloadTranslatedPreparing: Preparando subtítulos, los videos largos pueden tardar más
-    downloadTranslatedTranslating: Traduciendo subtítulos
-    downloadTranslatedComplete: Subtítulos traducidos descargados
-    downloadSource: Descargar subtítulos de origen
-  state:
-    loading: Read Frog está cargando subtítulos
-    translating: Traduciendo…
-    error: Se produjo un error
-  errors:
-    http429: 429 Demasiadas solicitudes a la API de subtítulos de youtube; inténtalo de nuevo más tarde
-    http404: 404 Subtítulos de Youtube no encontrados
-    http403: 403 Acceso a subtítulos de Youtube denegado
-    http500: 500 Error del servidor de Youtube
-    httpUnknown: Error HTTP $1
-    invalidResponse: Formato de respuesta de subtítulos de Youtube no válido
-    networkError: Se produjo un error de red al obtener subtítulos
-    fetchSubTimeout: Se agotó el tiempo al obtener subtítulos de youtube
-    buttonNotFound: Botón de subtítulos no encontrado
-    noSubtitlesFound: No hay subtítulos disponibles para este video
-    videoNotFound: Elemento de video no encontrado
-    controlsBarNotFound: Barra de controles no encontrada
-    aiRateLimited: Demasiadas solicitudes, inténtalo de nuevo más tarde
-    aiAuthFailed: Error de autenticación de API; revisa tu clave API
-    aiServiceUnavailable: Servicio de traducción temporalmente no disponible
-    aiQuotaExceeded: Cuota mensual de subtítulos con IA agotada
-    aiQuotaExceededWithReset: Cuota mensual de subtítulos con IA agotada · se restablece el $1
-    aiLoginRequired: Inicia sesión para ver tu cuota de subtítulos con IA
-    aiSubscriptionRequired: Los subtítulos con IA requieren una suscripción Pro o Ultra
-    aiPaymentRequired: Actualiza tu método de pago para seguir generando subtítulos con IA
-    aiVideoTooLong: Este video es demasiado largo para los subtítulos con IA
-    aiStillProcessing: La transcripción sigue en curso — vuelve a hacer clic en unos minutos para retomarla
-    aiRequestFailed: Error al solicitar subtítulos con IA, inténtalo de nuevo más tarde
-    aiNoResponse: El servicio AI no respondió; se usa el texto original
-    translatedExportFailed: No se pudieron generar los subtítulos traducidos
-    translatedExportIncomplete: No se pudieron traducir todas las líneas de subtítulos
-    translatedExportSameLanguage: El idioma de origen y el de destino son iguales
-hostedAi:
-  ultraBadge:
-    tooltip: Requiere el plan Ultra · Haz clic en la insignia para obtenerlo
-  availability:
-    authenticationRequired: Inicia sesión para usar este proveedor
-    ultraRequired: Se requiere el plan Ultra
-    quotaExhausted: Cuota agotada
-    serviceUnavailable: No disponible temporalmente
-    usedPercent: "Cuota utilizada: $1%"
-    resetsAt: "Se restablece a las $1"
-  errors:
-    rateLimited: Demasiadas solicitudes, inténtalo de nuevo más tarde.
-    guestRateLimited: Demasiadas solicitudes de invitado. Inténtalo de nuevo más tarde.
-    userRateLimited: Demasiadas solicitudes. Inténtalo de nuevo más tarde.
 hotkey:
   control: Ctrl
   alt: Opción
@@ -1314,22 +566,6 @@ hotkey:
 translationHub:
   searchLanguages: Buscar idiomas...
   noLanguagesFound: No se encontraron idiomas
-  exchangeLanguages: Intercambiar idiomas
-  title: Traducción de texto Multi-API
-  noServicesSelected: No se seleccionaron servicios de traducción
-  noServicesDescription: Selecciona servicios de traducción arriba para ver aquí las tarjetas de traducción.
-  inputPlaceholder: Introduce texto para traducir...
-  translate: Traducir
-  copiedToClipboard: ¡Traducción copiada al portapapeles!
-  copyTranslation: Copiar traducción
-  expandCard: Expandir tarjeta
-  collapseCard: Contraer tarjeta
-  expandAllCards: Expandir todo
-  collapseAllCards: Contraer todo
-  deleteCard: Eliminar tarjeta
-  translationFailed: Falló la traducción
-  translationFailedFallback: Falló la traducción
-  retryTranslation: Reintentar traducción
 languages:
   eng: Inglés
   cmn: Chino simplificado

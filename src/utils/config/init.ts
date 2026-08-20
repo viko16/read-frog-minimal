@@ -1,5 +1,6 @@
 import type { Config } from "@/types/config/config"
 import type { ConfigMeta } from "@/types/config/meta"
+import { dequal } from "dequal"
 import { storage } from "#imports"
 import { configSchema } from "@/types/config/config"
 import { isAPIProviderConfig } from "@/types/config/provider"
@@ -15,9 +16,8 @@ import { runMigration } from "./migration"
 
 export interface InitializeConfigResult {
   /**
-   * The config was created from defaults in this run — either no stored value existed, or the
-   * stored value failed validation and was rebuilt. Callers use it to run one-time setup that
-   * only makes sense on untouched defaults (see `selectFreshTranslateProviders`).
+   * The config was created from defaults in this run because no stored value existed. Callers
+   * use it to run one-time setup that only makes sense on untouched defaults.
    */
   isFreshInstall: boolean
 }
@@ -56,30 +56,23 @@ export async function initializeConfig(): Promise<InitializeConfigResult> {
       didConfigChange = true
       currentVersion = nextVersion
     } catch (error) {
-      console.error(`Migration to version ${nextVersion} failed:`, error)
-      currentVersion = nextVersion
+      logger.error(`Migration to version ${nextVersion} failed; stored config was preserved`, error)
+      throw error
     }
   }
 
-  if (!configSchema.safeParse(config).success) {
-    logger.warn("Config is invalid, using default config")
-    await initI18n(DEFAULT_CONFIG.uiLanguage)
-    config = buildFreshDefaultConfig()
-    currentVersion = CONFIG_SCHEMA_VERSION
-    didConfigChange = true
-    // The rebuilt config is untouched defaults, so recovered users get the
-    // same one-time provider selection a genuine fresh install does.
-    isFreshInstall = true
+  const parsedConfig = configSchema.safeParse(config)
+  if (!parsedConfig.success) {
+    logger.error("Stored config is invalid; refusing to overwrite it", parsedConfig.error)
+    throw new Error(`Stored config is invalid: ${parsedConfig.error.message}`)
   }
+  didConfigChange = didConfigChange || !dequal(config, parsedConfig.data)
+  config = parsedConfig.data
 
   if (import.meta.env.DEV) {
     const apiKeyResult = applyAPIKeysFromEnv(config)
     config = apiKeyResult.config
     didConfigChange = didConfigChange || apiKeyResult.changed
-
-    const betaResult = applyDevBetaExperience(config)
-    config = betaResult.config
-    didConfigChange = didConfigChange || betaResult.changed
   }
 
   const didMetaNeedUpdate =
@@ -128,23 +121,6 @@ function applyAPIKeysFromEnv(config: Config): { config: Config; changed: boolean
     config: {
       ...config,
       providersConfig,
-    },
-    changed: true,
-  }
-}
-
-function applyDevBetaExperience(config: Config): { config: Config; changed: boolean } {
-  if (config.betaExperience.enabled) {
-    return { config, changed: false }
-  }
-
-  return {
-    config: {
-      ...config,
-      betaExperience: {
-        ...config.betaExperience,
-        enabled: true,
-      },
     },
     changed: true,
   }

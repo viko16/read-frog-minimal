@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest"
-import { DEFAULT_PROVIDER_CONFIG, DEFAULT_PROVIDER_CONFIG_LIST } from "@/utils/constants/providers"
+import { configSchema } from "@/types/config/config"
+import { DEFAULT_CONFIG } from "@/utils/constants/config"
+import { DEFAULT_PROVIDER_CONFIG } from "@/utils/constants/providers"
 import { getObjectWithoutAPIKeys, hasAPIKey } from "../api"
 import { LATEST_SCHEMA_VERSION } from "../migration"
 
@@ -18,9 +20,7 @@ describe("config utilities", () => {
     }
 
     it("should remove apiKey from OpenAI provider config", () => {
-      const openaiConfigFromConstants = DEFAULT_PROVIDER_CONFIG_LIST.find(
-        (config) => config.provider === "openai",
-      )!
+      const openaiConfigFromConstants = DEFAULT_PROVIDER_CONFIG.openai
       const openaiConfigWithApiKey = {
         ...openaiConfigFromConstants,
         apiKey: "sk-1234567890abcdef",
@@ -184,5 +184,53 @@ describe("config utilities", () => {
       expect(cleanResult.otherBranch.info).toBe("preserve-this")
       expect(hasAPIKey(cleanResult)).toBe(false)
     })
+  })
+})
+
+describe("minimal config invariants", () => {
+  it("starts with only Microsoft and Google and no auto-translate website seed", () => {
+    expect(DEFAULT_CONFIG.providersConfig.map((provider) => provider.id)).toEqual([
+      "microsoft-translate-default",
+      "google-translate-default",
+    ])
+    expect(DEFAULT_CONFIG.pageTranslation.providerId).toBe("microsoft-translate-default")
+    expect(DEFAULT_CONFIG.pageTranslation.page.autoTranslatePatterns).toEqual([])
+  })
+
+  it("repairs an unavailable page provider without resetting unrelated config", () => {
+    const input = structuredClone(DEFAULT_CONFIG)
+    input.providersConfig.push({
+      ...DEFAULT_PROVIDER_CONFIG.openai,
+      apiKey: "keep-this-key",
+      enabled: false,
+    })
+    input.providersConfig = input.providersConfig.map((provider) => ({
+      ...provider,
+      enabled: false,
+    }))
+    input.pageTranslation.providerId = "missing-provider"
+    input.pageTranslation.customPromptsConfig.patterns = [
+      {
+        id: "123e4567-e89b-12d3-a456-426614174000",
+        name: "Keep this prompt",
+        systemPrompt: "",
+        prompt: "Translate {{input}}",
+      },
+    ]
+    input.siteControl.blacklistPatterns = ["example.com"]
+
+    const parsed = configSchema.parse(input)
+    const microsoftRows = parsed.providersConfig.filter(
+      (provider) => provider.id === "microsoft-translate-default",
+    )
+
+    expect(microsoftRows).toHaveLength(1)
+    expect(microsoftRows[0]?.enabled).toBe(true)
+    expect(parsed.pageTranslation.providerId).toBe("microsoft-translate-default")
+    expect(parsed.providersConfig.find((provider) => provider.id === "openai-default")).toEqual(
+      expect.objectContaining({ apiKey: "keep-this-key", enabled: false }),
+    )
+    expect(parsed.pageTranslation.customPromptsConfig.patterns[0]?.name).toBe("Keep this prompt")
+    expect(parsed.siteControl.blacklistPatterns).toEqual(["example.com"])
   })
 })

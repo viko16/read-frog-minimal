@@ -8,7 +8,7 @@ vi.mock("@/utils/message", () => ({
   onMessage: onMessageMock,
 }))
 
-// The local/hosted branch and every model-tuning detail now live in
+// The local model branch and every model-tuning detail now live in
 // background-stream's generateTextForProviderRef; this module is only the
 // message adapter over it, so that is the boundary worth mocking.
 vi.mock("../background-stream", () => ({
@@ -23,7 +23,6 @@ vi.mock("@/utils/logger", () => ({
 
 const localPayload = {
   providerRef: { kind: "local" as const, config: { id: "openai-default" } as never },
-  hostedFeature: "languageDetection" as const,
   instructions: "system",
   prompt: "hello world",
 }
@@ -52,27 +51,6 @@ describe("llm-generate-text", () => {
 
     expect(generateTextForProviderRefMock).toHaveBeenCalledWith(localPayload)
     expect(result).toEqual({ text: "eng" })
-  })
-
-  it("passes a system provider ref through untouched", async () => {
-    generateTextForProviderRefMock.mockResolvedValue("cmn")
-    const hostedPayload = {
-      ...localPayload,
-      providerRef: {
-        kind: "system" as const,
-        providerId: "read-frog-advance-ai" as const,
-        modelTier: "advance" as const,
-        modelRevision: "advance-r1",
-      },
-      requestId: "123e4567-e89b-42d3-a456-426614174000",
-    }
-
-    const { setupLLMGenerateTextMessageHandlers } = await import("../llm-generate-text")
-    setupLLMGenerateTextMessageHandlers()
-
-    const handler = getRegisteredMessageHandler("backgroundGenerateText")
-    await expect(handler({ data: hostedPayload })).resolves.toEqual({ text: "cmn" })
-    expect(generateTextForProviderRefMock).toHaveBeenCalledWith(hostedPayload)
   })
 
   it("logs and rethrows handler errors", async () => {

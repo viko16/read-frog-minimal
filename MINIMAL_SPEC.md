@@ -1,6 +1,8 @@
-# Read Frog Minimal 产品需求文档
+# Read Frog Minimal 范围与实现规格
 
-## 1. 产品定义
+本文档是 Read Frog Minimal 的权威范围说明，记录这个 fork 的功能边界、数据策略、迁移规则、实现约束与验收标准。它不是面向商业发布流程的产品需求文档。
+
+## 1. 项目定位
 
 Read Frog Minimal 是基于开源项目 Read Frog 裁剪的、长期本地自用的浏览器网页翻译扩展。
 
@@ -8,7 +10,7 @@ Read Frog Minimal 是基于开源项目 Read Frog 裁剪的、长期本地自用
 
 > 提供纯粹、稳定、Local-first、无需 Read Frog 账号或云服务的网页翻译能力。
 
-产品保留 Read Frog 成熟的网页翻译内核、双语渲染、网页翻译配置、传统机器翻译 Provider 与第三方 BYOK AI Provider；删除账号、Hosted AI、同步、社区、商业化、AI Assistant 及其他不直接服务网页翻译的功能。
+本 fork 保留 Read Frog 成熟的网页翻译内核、双语渲染、网页翻译配置、传统机器翻译 Provider 与第三方 BYOK AI Provider；删除账号、Hosted AI、同步、社区、商业化、AI Assistant 及其他不直接服务网页翻译的功能。
 
 本项目不追求继续维持很小的 upstream diff。实现应优先保证本地构建、自用体验、代码边界清晰和废弃功能真正删除；但不无故重写稳定的网页翻译内核和 Provider 架构。
 
@@ -32,7 +34,7 @@ Read Frog Minimal 是基于开源项目 Read Frog 裁剪的、长期本地自用
 - Read Frog Minimal 使用独立扩展身份和固定开发 key，不复用官方扩展 ID。
 - 不承诺从商店版 Read Frog 原地覆盖升级。
 - 通过配置 JSON 导入保证当前 upstream v98 配置迁移到 Minimal。
-- 产品版本以当前 `1.46.3` 为 Fork 基线，后续继续使用正常 SemVer；README 记录对应 upstream 基线。
+- 项目版本以当前 `1.46.3` 为 fork 基线，后续继续使用正常 SemVer；README 记录对应 upstream 基线。
 
 ## 4. 必须保留的网页翻译能力
 
@@ -319,7 +321,7 @@ pnpm build:firefox
 
 - Chrome 能构建、加载并执行核心网页翻译；
 - Edge 和 Firefox 能完成生产构建；
-- Popup 与 Options 只保留本 PRD 定义的功能；
+- Popup 与 Options 只保留本规格定义的功能；
 - 所有待删除 WXT entrypoint、后台初始化和权限均不存在；
 - Google、Microsoft、DeepLX、DeepL 与独立 BYOK Provider 代码仍可用；
 - v98 配置可以安全迁移或导入；

@@ -1,0 +1,42 @@
+name: Build Extension
+
+on:
+  push:
+
+permissions:
+  contents: read
+
+env:
+  WXT_SKIP_ENV_VALIDATION: true
+
+jobs:
+  build:
+    name: Build extension packages
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up pnpm and Node.js
+        uses: pnpm/setup@v1
+        with:
+          cache: true
+          install: false
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build packages
+        run: pnpm zip:all
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: read-frog-${{ github.sha }}
+          path: |
+            .output/*-chrome.zip
+            .output/*-edge.zip
+            .output/*-firefox.zip
+          if-no-files-found: error
+          compression-level: 0

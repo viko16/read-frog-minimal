@@ -192,6 +192,24 @@ export function isSiteRulePreserveTextElement(element: HTMLElement, config: Conf
   return preserveTextSelector !== null && element.matches(preserveTextSelector)
 }
 
+export function isSiteRuleAtomElement(element: HTMLElement, config: Config): boolean {
+  const { atomSelector } = getEffectiveSiteRule(config, window.location.href)
+  return atomSelector !== null && element.matches(atomSelector)
+}
+
+/**
+ * An inline atom is a rendered formula whose subtree is opaque to translation:
+ * bilingual mode sends a placeholder instead of its text and clones the
+ * element back into the translation. Native MathML roots are atoms by tag
+ * (MathML keeps lowercase local names inside an HTML document); everything
+ * else comes from the `atomSelectors` site-rule family. Atoms are already
+ * walk-blocked because the resolver folds atom selectors into
+ * `preserveTextSelector`, so this predicate is only consulted by extraction.
+ */
+export function isInlineAtomElement(element: HTMLElement, config: Config): boolean {
+  return element.localName === "math" || isSiteRuleAtomElement(element, config)
+}
+
 /**
  * Whitelist gate: when the effective site rule declares `includeSelectors`,
  * only elements inside (or matching) one of them may become translation
@@ -210,20 +228,19 @@ export function isDontWalkIntoButTranslateAsChildElement(
   element: HTMLElement,
   config?: Config,
 ): boolean {
-  // The document root is exempt from the `notranslate` class rule. This
+  // The document shell is exempt from the `notranslate` class rule. This
   // predicate means "don't descend, but let the parent translate this as one
-  // inline chunk" — <html> has no parent to fold that text into, so blocking it
-  // drops the whole document instead of merging it. Since #1992 moved the walk
-  // root from <body> to documentElement, a site that ships
-  // `<html class="notranslate">` (Telegram Web A does; Telegram Web K does not)
-  // aborts the walk on its very first check and page translation silently
-  // labels nothing at all. Honoring an explicit page-translation request over a
-  // root-level opt-out mirrors the existing decision to ignore the
-  // `translate="no"` attribute (#459). Nested `notranslate` elements — read
-  // frog's own injected UI included — still block normally.
-  const dontWalkClass =
-    element.classList.contains(NOTRANSLATE_CLASS) &&
-    element !== element.ownerDocument.documentElement
+  // inline chunk" — neither <html> nor <body> has a translatable parent to fold
+  // that text into, so blocking either one drops the whole document instead of
+  // merging it. Telegram Web A ships `<html class="notranslate">`, while EdStem
+  // and Featurebase ship `<body class="notranslate">`. Honoring an explicit
+  // page-translation request over a page-shell opt-out mirrors the existing
+  // decision to ignore the `translate="no"` attribute (#459). Nested
+  // `notranslate` elements — read frog's own injected UI included — still block
+  // normally.
+  const isDocumentShell =
+    element === element.ownerDocument.documentElement || element === element.ownerDocument.body
+  const dontWalkClass = element.classList.contains(NOTRANSLATE_CLASS) && !isDocumentShell
 
   const dontWalkTag = getEffectiveTagSet(config, "dontWalkButTranslateTags").has(element.tagName)
 

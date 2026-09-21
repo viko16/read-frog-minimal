@@ -222,6 +222,51 @@ describe("extractTextContent", () => {
       expect(extractTextContent(div, DEFAULT_CONFIG)).toBe("OuterInner")
     })
   })
+
+  describe("replaceElement hook", () => {
+    it("substitutes the returned string for the element's whole subtree", () => {
+      const p = document.createElement("p")
+      p.innerHTML = 'Let <span class="formula"><i>x</i>+1</span> be the mean.'
+      const extracted = extractTextContent(p, DEFAULT_CONFIG, {
+        replaceElement: (element) => (element.classList.contains("formula") ? "{{0}}" : undefined),
+      })
+      expect(extracted).toBe("Let {{0}} be the mean.")
+    })
+
+    it("falls through to normal extraction when the hook returns undefined", () => {
+      const p = document.createElement("p")
+      p.innerHTML = 'Let <span class="formula"><i>x</i>+1</span> be the mean.'
+      const extracted = extractTextContent(p, DEFAULT_CONFIG, { replaceElement: () => undefined })
+      expect(extracted).toBe(extractTextContent(p, DEFAULT_CONFIG))
+    })
+
+    it("intercepts a dont-walk element such as <math> before it collapses to an empty string", () => {
+      const p = document.createElement("p")
+      p.innerHTML = "Let <math><mi>x</mi></math> be the mean."
+      expect(extractTextContent(p, DEFAULT_CONFIG)).toBe("Let  be the mean.")
+      const extracted = extractTextContent(p, DEFAULT_CONFIG, {
+        replaceElement: (element) => (element.localName === "math" ? "{{0}}" : undefined),
+      })
+      expect(extracted).toBe("Let {{0}} be the mean.")
+    })
+
+    it("is never consulted for our own translated wrappers or their contents", () => {
+      const p = document.createElement("p")
+      p.innerHTML =
+        'Host <math><mi>x</mi></math><span class="read-frog-translated-content-wrapper">译文 <math><mi>y</mi></math></span>'
+      const seen: string[] = []
+      const extracted = extractTextContent(p, DEFAULT_CONFIG, {
+        replaceElement: (element) => {
+          seen.push(element.localName)
+          return element.localName === "math" ? "{{0}}" : undefined
+        },
+      })
+      expect(extracted).toBe("Host {{0}}")
+      // The paragraph itself is offered to the hook; the wrapper and the
+      // <math> inside it never are.
+      expect(seen).toEqual(["p", "math"])
+    })
+  })
 })
 
 describe("site rule node selectors", () => {
@@ -440,9 +485,10 @@ describe("document root labeling guard", () => {
   })
 })
 
-describe("document root notranslate exemption", () => {
+describe("document shell notranslate exemption", () => {
   function cleanUpRoot() {
     document.documentElement.classList.remove(NOTRANSLATE_CLASS)
+    document.body.classList.remove(NOTRANSLATE_CLASS, "feat-webkit", "theme-dark", "enable-motion")
     document.body.innerHTML = ""
     for (const attr of [WALKED_ATTRIBUTE, PARAGRAPH_ATTRIBUTE, BLOCK_ATTRIBUTE, INLINE_ATTRIBUTE]) {
       document.documentElement.removeAttribute(attr)
@@ -466,10 +512,30 @@ describe("document root notranslate exemption", () => {
     }
   })
 
-  it("still blocks notranslate elements nested below the document root", () => {
-    // The exemption is root-only: nested opt-outs (and read frog's own injected
-    // UI, which carries the same class) must keep blocking descent.
-    document.documentElement.classList.add(NOTRANSLATE_CLASS)
+  it("walks EdStem content when body carries the notranslate class", () => {
+    document.body.classList.add(NOTRANSLATE_CLASS, "feat-webkit", "theme-dark", "enable-motion")
+    document.body.innerHTML = `
+      <main>
+        <p id="edstem-content" class="amber-el amber-paragraph amber-content">
+          Welcome to the worksheets for Programming and Software Development!
+        </p>
+      </main>
+    `
+
+    try {
+      walkAndLabelElement(document.documentElement, "body-notranslate", DEFAULT_CONFIG)
+
+      expect(document.body).toHaveAttribute(WALKED_ATTRIBUTE, "body-notranslate")
+      expect(document.getElementById("edstem-content")).toHaveAttribute(PARAGRAPH_ATTRIBUTE)
+    } finally {
+      cleanUpRoot()
+    }
+  })
+
+  it("still blocks notranslate elements nested below the document shell", () => {
+    // The exemption is shell-only: nested opt-outs (and read frog's own
+    // injected UI, which carries the same class) must keep blocking descent.
+    document.body.classList.add(NOTRANSLATE_CLASS)
     document.body.innerHTML = `
       <div>
         <p id="msg">Message body text</p>
@@ -480,6 +546,7 @@ describe("document root notranslate exemption", () => {
     try {
       walkAndLabelElement(document.documentElement, "nested-notranslate", DEFAULT_CONFIG)
 
+      expect(document.body).toHaveAttribute(WALKED_ATTRIBUTE, "nested-notranslate")
       expect(document.getElementById("msg")).toHaveAttribute(PARAGRAPH_ATTRIBUTE)
       expect(document.getElementById("opted-out")).not.toHaveAttribute(PARAGRAPH_ATTRIBUTE)
     } finally {

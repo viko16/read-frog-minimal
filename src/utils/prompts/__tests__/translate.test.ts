@@ -1,10 +1,52 @@
 import { describe, expect, it } from "vitest"
 import { DEFAULT_CONFIG } from "@/utils/constants/config"
-import { NO_TRANSLATION_SENTINEL } from "@/utils/constants/prompt"
+import {
+  DEFAULT_BATCH_TRANSLATE_PROMPT,
+  DEFAULT_SENTINEL_TRANSLATE_PROMPT,
+  isNoTranslationSentinel,
+  NO_TRANSLATION_SENTINEL,
+} from "@/utils/constants/prompt"
 import { HTML_ATTRIBUTE_MARKER } from "@/utils/host/translate/html-attribute-markers"
 import { getTranslatePromptFromConfig } from "../translate"
 
 const defaultTranslatePromptConfig = DEFAULT_CONFIG.pageTranslation
+
+describe("no-translation sentinel", () => {
+  it.each(["Simplified Chinese", "English", "Japanese"])(
+    "substitutes %s while separating preserved tokens from foreign prose",
+    (targetLanguage) => {
+      const result = getTranslatePromptFromConfig(
+        defaultTranslatePromptConfig,
+        targetLanguage,
+        "Hi",
+        { isBatch: true },
+      )
+      expect(result.systemPrompt).toContain("Already-translated Input Rule")
+      expect(result.systemPrompt).toContain(NO_TRANSLATION_SENTINEL)
+      expect(result.systemPrompt).toContain("differ from " + targetLanguage)
+      expect(result.systemPrompt).not.toContain("{{targetLanguage}}")
+      expect(result.systemPrompt).toContain("names, brands, handles, URLs, numbers, or code")
+      expect(result.systemPrompt).toContain(
+        "A foreign-language phrase or clause must be translated",
+      )
+    },
+  )
+
+  it("keeps the marker out of the batch examples and non-batch prompts", () => {
+    expect(DEFAULT_BATCH_TRANSLATE_PROMPT).not.toContain(NO_TRANSLATION_SENTINEL)
+    expect(DEFAULT_SENTINEL_TRANSLATE_PROMPT.split("\n")).toHaveLength(2)
+    const result = getTranslatePromptFromConfig(defaultTranslatePromptConfig, "English", "Hi")
+    expect(result.systemPrompt).not.toContain(NO_TRANSLATION_SENTINEL)
+  })
+
+  it("matches only a full trimmed sentinel segment", () => {
+    expect(isNoTranslationSentinel(NO_TRANSLATION_SENTINEL)).toBe(true)
+    expect(isNoTranslationSentinel("  " + NO_TRANSLATION_SENTINEL + "\n")).toBe(true)
+    expect(isNoTranslationSentinel("text " + NO_TRANSLATION_SENTINEL)).toBe(false)
+    expect(isNoTranslationSentinel("{{NO_TRANSLATION")).toBe(false)
+    expect(isNoTranslationSentinel("")).toBe(false)
+  })
+})
 
 describe("page translation placeholder prompts", () => {
   it("appends placeholder rules only when the input carries an inline atom token", () => {

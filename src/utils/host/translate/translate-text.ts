@@ -16,7 +16,12 @@ import { resolveProviderRefForCapability } from "@/utils/providers/provider-regi
 import { TranslationCancelledError } from "@/utils/request/cancellation"
 import { Sha256Hex } from "../../hash"
 import { sendMessage } from "../../message"
-import { getInMemoryTranslation, storeInMemoryTranslation } from "./in-memory-translation-cache"
+import {
+  deleteInMemoryTranslation,
+  getInMemoryTranslation,
+  storeInMemoryTranslation,
+} from "./in-memory-translation-cache"
+import { auditInlineAtomTokens, hasInlineAtomTokens } from "./inline-atom-tokens"
 import { prepareTranslationText } from "./text-preparation"
 import { getPageTranslationSessionId } from "./translation-session"
 
@@ -274,7 +279,17 @@ export async function translateTextCore(options: TranslateTextOptions): Promise<
   if (sessionId !== undefined) {
     // Raw result, sentinel included, so a "no translation needed" verdict is
     // remembered too; the mapping below stays the single mapping point.
-    storeInMemoryTranslation(hash, result)
+    // Match the background's formula audit. A damaged result may be rendered
+    // with appended formulas, but must remain retryable after a DOM remount.
+    if (
+      !hasInlineAtomTokens(preparedText) ||
+      isNoTranslationSentinel(result) ||
+      auditInlineAtomTokens(preparedText, result).ok
+    ) {
+      storeInMemoryTranslation(hash, result)
+    } else {
+      deleteInMemoryTranslation(hash)
+    }
   }
   // The sentinel must be mapped here and only here: every batch-pipeline
   // consumer (page paragraphs and document title) routes through this function and handles

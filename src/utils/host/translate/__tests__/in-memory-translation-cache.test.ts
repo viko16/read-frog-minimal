@@ -48,7 +48,7 @@ async function setup() {
 
 describe("in-memory translation tier in translateTextCore", () => {
   beforeEach(() => {
-    vi.clearAllMocks()
+    vi.resetAllMocks()
   })
 
   it("serves a repeated page request from memory without a second background round trip", async () => {
@@ -131,6 +131,44 @@ describe("in-memory translation tier in translateTextCore", () => {
 
     await expect(translate("Hello")).rejects.toBeInstanceOf(TranslationCancelledError)
     expect(sendMessage).toHaveBeenCalledTimes(1)
+  })
+
+  it.each([
+    ["missing", "结果 {{0}}"],
+    ["duplicated", "结果 {{0}} {{0}} {{1}}"],
+    ["invented", "结果 {{0}} {{1}} {{2}}"],
+  ])("does not memorize %s formula placeholders", async (_case, damaged) => {
+    const { sendMessage, translate } = await setup()
+    sendMessage.mockResolvedValueOnce(damaged).mockResolvedValueOnce("结果 {{1}} {{0}}")
+
+    await expect(translate("Compare {{0}} and {{1}}.")).resolves.toBe(damaged)
+    await expect(translate("Compare {{0}} and {{1}}.")).resolves.toBe("结果 {{1}} {{0}}")
+    await expect(translate("Compare {{0}} and {{1}}.")).resolves.toBe("结果 {{1}} {{0}}")
+    expect(sendMessage).toHaveBeenCalledTimes(2)
+  })
+
+  it("remembers the sentinel for formula-bearing paragraphs", async () => {
+    const { sendMessage, translate } = await setup()
+    const { NO_TRANSLATION_SENTINEL } = await import("@/utils/constants/prompt")
+    sendMessage.mockResolvedValue(NO_TRANSLATION_SENTINEL)
+
+    await expect(translate("设 {{0}} 大于 {{1}}。")).resolves.toBe("")
+    await expect(translate("设 {{0}} 大于 {{1}}。")).resolves.toBe("")
+    expect(sendMessage).toHaveBeenCalledTimes(1)
+  })
+
+  it("invalidates an earlier memory entry when forced translation damages its formulas", async () => {
+    const { sendMessage, translate } = await setup()
+    sendMessage
+      .mockResolvedValueOnce("旧 {{0}} {{1}}")
+      .mockResolvedValueOnce("缺少 {{0}}")
+      .mockResolvedValueOnce("新 {{1}} {{0}}")
+
+    const source = "Compare {{0}} and {{1}}."
+    await expect(translate(source)).resolves.toBe("旧 {{0}} {{1}}")
+    await expect(translate(source, { forceRetranslation: true })).resolves.toBe("缺少 {{0}}")
+    await expect(translate(source)).resolves.toBe("新 {{1}} {{0}}")
+    expect(sendMessage).toHaveBeenCalledTimes(3)
   })
 })
 

@@ -137,6 +137,13 @@ const items: Array<{
     pageKey: "options.translation.title",
   },
   {
+    sectionId: "translate-title",
+    route: "/page-translation",
+    titleKey: "options.translation.preference.translateTitle.title",
+    descriptionKey: "options.translation.preference.translateTitle.description",
+    pageKey: "options.translation.title",
+  },
+  {
     sectionId: "hover-translation",
     route: "/page-translation",
     titleKey: "options.translation.hoverTranslation.title",

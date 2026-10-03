@@ -551,6 +551,7 @@ languageDetection:
 translation:
   sameLanguage: Исходный и целевой языки должны различаться
   autoModeSameLanguage: Обнаруженный язык '$1' совпадает с целевым языком
+  extensionContextInvalidated: Расширение обновлено. Обновите эту страницу и повторите попытку.
 action:
   copy: Копировать
   copied: Скопировано

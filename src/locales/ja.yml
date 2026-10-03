@@ -551,6 +551,7 @@ languageDetection:
 translation:
   sameLanguage: ソース言語とターゲット言語は異なる必要があります
   autoModeSameLanguage: 検出された言語 '$1' はターゲット言語と同じです
+  extensionContextInvalidated: 拡張機能が更新されました。このページを再読み込みしてからもう一度お試しください。
 action:
   copy: コピー
   copied: コピー済み

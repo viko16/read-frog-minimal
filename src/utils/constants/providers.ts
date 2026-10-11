@@ -58,7 +58,7 @@ export const DEFAULT_LLM_PROVIDER_MODELS: LLMProviderModels = {
     customModel: null,
   },
   openai: {
-    model: "gpt-5.6-luna",
+    model: "gpt-6-luna",
     isCustomModel: false,
     customModel: null,
   },
@@ -78,7 +78,7 @@ export const DEFAULT_LLM_PROVIDER_MODELS: LLMProviderModels = {
     customModel: null,
   },
   anthropic: {
-    model: "claude-haiku-4-5",
+    model: "claude-haiku-5-5",
     isCustomModel: false,
     customModel: null,
   },

@@ -26,6 +26,12 @@ export default defineConfig({
     name: "__MSG_extName__",
     description: "__MSG_extDescription__",
     default_locale: "en",
+    ...(mode === "production" &&
+      browser === "chrome" &&
+      process.env.SELF_HOSTED_URL && {
+        update_url: new URL("updates.xml", process.env.SELF_HOSTED_URL).href,
+        key: process.env.SELF_HOSTED_PUBLIC_KEY,
+      }),
     // Fixed extension ID for development
     ...(mode === "development" &&
       (browser === "chrome" || browser === "edge") && {
@@ -62,6 +68,7 @@ export default defineConfig({
     }),
   }),
   zip: {
+    ...(process.env.SELF_HOSTED_URL && { artifactTemplate: "self-hosted.zip" }),
     includeSources: ["**/*"],
     excludeSources: ["docs/**/*", "assets/**/*", "repos/**/*", "readmes/**/*"],
   },

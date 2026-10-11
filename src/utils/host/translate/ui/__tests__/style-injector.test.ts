@@ -130,6 +130,50 @@ describe("style-injector", () => {
     expect(document.head.querySelector("#read-frog-custom-styles")).toBeNull()
   })
 
+  it("isolates iframe custom CSS and keeps its document preset selectors", async () => {
+    const { ensureCustomCSS } = await loadStyleInjector()
+    const frame = document.createElement("iframe")
+    document.body.appendChild(frame)
+    const frameDocument = frame.contentDocument!
+
+    await ensureCustomCSS(document, "body { color: red; }")
+    await ensureCustomCSS(frameDocument, "body { color: red; }")
+
+    expect(frameDocument.head.querySelector("#read-frog-custom-styles")?.textContent).toBe(
+      "body { color: red; }",
+    )
+    expect(frameDocument.head.querySelector("#read-frog-preset-styles")?.textContent).toContain(
+      ":root",
+    )
+    await ensureCustomCSS(frameDocument, "* { display: none; }")
+    expect(document.head.querySelector("#read-frog-custom-styles")?.textContent).toBe(
+      "body { color: red; }",
+    )
+  })
+
+  it("clears custom CSS without creating a sheet on untouched roots", async () => {
+    const { clearCustomCSS, ensureCustomCSS } = await loadStyleInjector()
+    await clearCustomCSS(document)
+    expect(document.head.children).toHaveLength(0)
+
+    await ensureCustomCSS(document, "body { color: red; }")
+    await clearCustomCSS(document)
+    expect(document.head.querySelector("#read-frog-custom-styles")?.textContent).toBe("")
+  })
+
+  it("clears constructed custom CSS sheets", async () => {
+    const { clearCustomCSS, ensureCustomCSS } = await loadStyleInjector()
+    Object.defineProperty(document, "adoptedStyleSheets", {
+      configurable: true,
+      value: [],
+      writable: true,
+    })
+
+    await ensureCustomCSS(document, "body { color: red; }")
+    await clearCustomCSS(document)
+    expect(document.adoptedStyleSheets[1]?.cssRules).toHaveLength(0)
+  })
+
   it("injects and removes site rule CSS via style elements", async () => {
     const { ensureSiteRuleCSS, removeSiteRuleCSS } = await loadStyleInjector()
 

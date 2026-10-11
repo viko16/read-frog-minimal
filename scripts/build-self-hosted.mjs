@@ -127,6 +127,8 @@ async function main() {
     throw new Error("CRX exceeds the Cloudflare Pages 25 MiB per-file limit.")
   const output = ".output/self-hosted"
   await mkdir(output, { recursive: true })
+  const landingPage = await readFile("scripts/self-hosted/index.html", "utf8")
+  await writeFile(`${output}/index.html`, landingPage.replaceAll("{{VERSION}}", version))
   await writeFile(`${output}/read-frog.crx`, crx)
   await writeFile(
     `${output}/updates.xml`,

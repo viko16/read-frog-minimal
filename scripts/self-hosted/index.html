@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="下载 Read Frog Minimal，为 Helium 安装轻巧的网页翻译扩展。" />
+    <meta name="theme-color" content="#f6f5ef" />
+    <title>下载 · Read Frog Minimal</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+        color: #24382d;
+        background: #f6f5ef;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+      }
+      main {
+        min-height: 100svh;
+        display: grid;
+        place-content: center;
+        padding: 64px 24px;
+        text-align: center;
+      }
+      .mark {
+        font-size: 44px;
+        margin: 0 0 24px;
+      }
+      .eyebrow {
+        margin: 0 0 14px;
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        color: #66796a;
+      }
+      h1 {
+        margin: 0;
+        font-family: Georgia, "Songti SC", serif;
+        font-weight: 400;
+        font-size: clamp(36px, 7vw, 58px);
+        letter-spacing: -0.045em;
+        line-height: 1.15;
+      }
+      .intro {
+        margin: 20px 0 32px;
+        color: #59675e;
+        font-size: 15px;
+        line-height: 1.8;
+      }
+      .download {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        min-height: 54px;
+        padding: 14px 30px;
+        border-radius: 999px;
+        background: #2c593d;
+        color: #fff;
+        font-size: 16px;
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .download:hover {
+        background: #214630;
+      }
+      a:focus-visible {
+        outline: 3px solid #819959;
+        outline-offset: 5px;
+      }
+      .version {
+        margin: 14px 0 0;
+        color: #66796a;
+        font-size: 12px;
+      }
+      section {
+        max-width: 420px;
+        margin: 46px auto 0;
+        padding-top: 26px;
+        border-top: 1px solid #d8ddd1;
+        text-align: left;
+      }
+      h2 {
+        margin: 0 0 16px;
+        font-size: 13px;
+        font-weight: 600;
+      }
+      ol {
+        margin: 0;
+        padding-left: 22px;
+        color: #59675e;
+        font-size: 13px;
+        line-height: 1.9;
+      }
+      li {
+        padding-left: 4px;
+        margin: 7px 0;
+      }
+      code {
+        font-size: 12px;
+        color: #24382d;
+        overflow-wrap: anywhere;
+      }
+      .note {
+        margin: 22px 0 0;
+        font-size: 12px;
+        line-height: 1.8;
+        color: #66796a;
+      }
+      footer {
+        margin-top: 36px;
+        font-size: 12px;
+      }
+      footer a {
+        color: #59675e;
+        text-underline-offset: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div>
+        <p class="mark" aria-hidden="true">🐸</p>
+        <p class="eyebrow">轻一点，读得更远</p>
+        <h1>Read Frog Minimal</h1>
+        <p class="intro">让不同语言的网页，都读起来轻松一点。</p>
+        <a class="download" href="/read-frog.crx" download="read-frog.crx">
+          下载扩展 <span aria-hidden="true">↓</span>
+        </a>
+        <p class="version">v{{VERSION}} · 适用于 Helium · CRX 安装包</p>
+        <section aria-labelledby="install-title">
+          <h2 id="install-title">首次安装，只需三步</h2>
+          <ol>
+            <li>点击上方按钮，下载扩展安装包。</li>
+            <li>在 Helium 地址栏输入 <code>chrome://extensions</code>，打开开发者模式。</li>
+            <li>将下载的 <code>read-frog.crx</code> 拖入该页面，确认添加。</li>
+          </ol>
+          <p class="note">
+            安装后，浏览器会自动检查新版本。更新下载完成后，重启浏览器即可使其生效。
+          </p>
+        </section>
+        <footer>
+          <a href="https://github.com/viko16/read-frog-minimal">在 GitHub 查看源码 ↗</a>
+        </footer>
+      </div>
+    </main>
+  </body>
+</html>

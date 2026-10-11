@@ -2,6 +2,7 @@ import { spawnSync } from "node:child_process"
 import { constants, createHash, createPrivateKey, createPublicKey, sign } from "node:crypto"
 import { mkdir, readFile, writeFile } from "node:fs/promises"
 import { fileURLToPath } from "node:url"
+import { createZip } from "@aklinker1/zero-zip"
 
 // CRX3 wire format and signing context:
 // https://chromium.googlesource.com/chromium/src/+/main/components/crx_file/crx3.proto
@@ -130,14 +131,16 @@ async function main() {
   const landingPage = await readFile("scripts/self-hosted/index.html", "utf8")
   await writeFile(`${output}/index.html`, landingPage.replaceAll("{{VERSION}}", version))
   await writeFile(`${output}/read-frog.crx`, crx)
-  await writeFile(`${output}/download.crx`, crx)
+  const download = createZip({ level: 0 })
+  download.addFile("read-frog.crx", crx)
+  await writeFile(`${output}/read-frog.zip`, await download.toBuffer())
   await writeFile(
     `${output}/updates.xml`,
     `<?xml version="1.0" encoding="UTF-8"?>\n<gupdate xmlns="http://www.google.com/update2/response" protocol="2.0"><app appid="${extensionId}"><updatecheck codebase="${escapeXml(new URL("read-frog.crx", base).href)}" version="${version}" /></app></gupdate>\n`,
   )
   await writeFile(
     `${output}/_headers`,
-    '/read-frog.crx\n  Content-Type: application/x-chrome-extension\n  Cache-Control: no-store\n/download.crx\n  Content-Type: application/octet-stream\n  Content-Disposition: attachment; filename="read-frog.crx"\n  X-Content-Type-Options: nosniff\n  Cache-Control: no-store\n/updates.xml\n  Content-Type: application/xml; charset=utf-8\n  Cache-Control: no-store\n',
+    '/read-frog.crx\n  Content-Type: application/x-chrome-extension\n  Cache-Control: no-store\n/read-frog.zip\n  Content-Type: application/zip\n  Content-Disposition: attachment; filename="read-frog.zip"\n  X-Content-Type-Options: nosniff\n  Cache-Control: no-store\n/updates.xml\n  Content-Type: application/xml; charset=utf-8\n  Cache-Control: no-store\n',
   )
   console.log(
     `Self-hosted release: ${version}, ID: ${extensionId}, size: ${crx.length} bytes, output: ${output}`,

@@ -30,6 +30,7 @@ import {
   walkAndLabelElement,
   walkAndLabelElementChunked,
 } from "@/utils/host/dom/traversal"
+import { carryTranslationsAcrossRewrite } from "@/utils/host/translate/core/translation-carry"
 import {
   findEnclosingBilingualLayoutSource,
   findStaleBilingualLayoutSource,
@@ -1092,6 +1093,11 @@ export class PageTranslationManager implements IPageTranslationManager {
     const hostRecords: MutationRecord[] = []
     for (const record of records) {
       if (record.type === "childList") {
+        // Must run before the first await: carrying is only invisible while
+        // layout has not seen the rewrite yet.
+        if (this.isPageTranslating && this.walkId) {
+          carryTranslationsAcrossRewrite(record, this.walkId)
+        }
         this.cleanupDetachedTranslationArtifacts(record.removedNodes)
       }
       if (!this.isSelfInflictedRecord(record)) hostRecords.push(record)

@@ -11,9 +11,18 @@ import { PersonalizedPromptsSection } from "../personalized-prompts"
 import { PreferenceSection } from "../preference"
 import { TranslationStyleSection } from "../translation-style"
 
-const { translateAtom, configAtom, setTranslateMock, testState } = vi.hoisted(() => ({
+const {
+  translateAtom,
+  contextMenuAtom,
+  configAtom,
+  setTranslateMock,
+  setContextMenuMock,
+  testState,
+} = vi.hoisted(() => ({
   translateAtom: {},
+  contextMenuAtom: {},
   configAtom: {},
+  setContextMenuMock: vi.fn<(value: Config["contextMenu"]) => void>(),
   setTranslateMock: vi.fn<(value: Partial<Config["pageTranslation"]>) => Promise<void>>(),
   testState: {
     pageTranslation: null as Config["pageTranslation"] | null,
@@ -23,6 +32,9 @@ const { translateAtom, configAtom, setTranslateMock, testState } = vi.hoisted(()
 
 vi.mock("jotai", () => ({
   useAtom: (atom: object) => {
+    if (atom === contextMenuAtom && testState.config) {
+      return [testState.config.contextMenu, setContextMenuMock]
+    }
     if (atom !== translateAtom || !testState.pageTranslation) {
       throw new Error("Unexpected atom")
     }
@@ -47,6 +59,7 @@ vi.mock("@/utils/atoms/config", () => ({
   configAtom,
   configFieldsAtomMap: {
     pageTranslation: translateAtom,
+    contextMenu: contextMenuAtom,
   },
 }))
 
@@ -78,6 +91,7 @@ describe("translation page sections", () => {
     }
     setTranslateMock.mockReset()
     setTranslateMock.mockResolvedValue()
+    setContextMenuMock.mockReset()
   })
 
   it("sends the mode row to the shortcut that switches it", () => {
@@ -87,6 +101,20 @@ describe("translation page sections", () => {
       "href",
       "/shortcuts?section=translation-mode-shortcut",
     )
+  })
+
+  it("keeps the context menu off by default and saves changes from its switch", () => {
+    const { unmount } = renderInRouter(<PreferenceSection />)
+    const toggle = screen.getByRole("switch", { name: "contextMenu.title" })
+    expect(toggle).not.toBeChecked()
+    fireEvent.click(toggle)
+    expect(setContextMenuMock).toHaveBeenLastCalledWith({ enabled: true })
+
+    unmount()
+    testState.config!.contextMenu.enabled = true
+    renderInRouter(<PreferenceSection />)
+    fireEvent.click(screen.getByRole("switch", { name: "contextMenu.title" }))
+    expect(setContextMenuMock).toHaveBeenLastCalledWith({ enabled: false })
   })
 
   it("sends the hover row to the hotkey that triggers it", () => {

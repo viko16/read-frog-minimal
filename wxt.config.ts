@@ -37,7 +37,7 @@ export default defineConfig({
       (browser === "chrome" || browser === "edge") && {
         key: "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqYEhICz/OMxb9gBhAwl4pToD4SYqlqgRSvf2G3+B1FzdhroYnfF135OKI3cIodwAZWOfbRoZ7dYpq/ItSyyGe4C4w1kmztkCCGmfhpAzAdj/ahKKI7PptCk+Z/mWiIoJyvWC+yJ1Fc8C4/H/EAO0YfBalo/IgX3Wb94WBLDAUZUmLHo60ss9Bj6r/Xk/KtNkR4XasMNhP4p7JzCD+FXJMp+JstIN63j9dNjg0S37uOW7KvdDXFxv/hLZ8kZb3OfowJWuMjAY9wj2MJmiKojE7/PVC3+1nA7mQ6yViW5fvz/dCqgGi1xcDlZA6UiwBaYlyuBUz6d4uw9PxK8qOByWuQIDAQAB",
       }),
-    permissions: ["storage", "tabs", "alarms", "scripting", "webNavigation"],
+    permissions: ["storage", "tabs", "alarms", "scripting", "webNavigation", "contextMenus"],
     host_permissions: [
       "*://*/*", // Required for scripting.executeScript in any frame
     ],

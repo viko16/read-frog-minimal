@@ -29,6 +29,11 @@ popup:
         action: İki dilli moda geçmek için tıklayın
   aiSmartContext: AI Akıllı Bağlam
   aiSmartContextDescription: Çeviri kalitesini artırmak için web sayfası bağlamını kullanır. LLM çeviri sağlayıcısı gerektirir.
+contextMenu:
+  translate: Bu sayfayı çevir
+  showOriginal: Orijinali göster
+  title: Sağ tık menüsünden çeviri
+  description: Sağ tık menüsüne sayfa çevirisi ekler. Varsayılan olarak kapalıdır; değişiklikler hemen uygulanır.
 errorRecovery:
   title: Bir sorun oluştu
   description: Kurtarma modu etkin. Geçerli ayarlarınızı yedek olarak dışa aktarabilir, ardından ayarları sıfırlayıp tekrar deneyebilirsiniz.

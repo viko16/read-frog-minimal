@@ -188,6 +188,20 @@ describe("config utilities", () => {
 })
 
 describe("minimal config invariants", () => {
+  it("adds a disabled context menu to older Minimal configs without changing other settings", () => {
+    const { contextMenu: _contextMenu, ...oldConfig } = structuredClone(DEFAULT_CONFIG)
+    oldConfig.siteControl.blacklistPatterns = ["example.com"]
+    expect(configSchema.parse(oldConfig)).toEqual({
+      ...oldConfig,
+      contextMenu: { enabled: false },
+    })
+  })
+
+  it.each([true, false])("preserves the saved context menu setting: %s", (enabled) => {
+    const input = { ...DEFAULT_CONFIG, contextMenu: { enabled } }
+    expect(configSchema.parse(input).contextMenu.enabled).toBe(enabled)
+  })
+
   it("starts with only Microsoft and Google and no auto-translate website seed", () => {
     expect(DEFAULT_CONFIG.providersConfig.map((provider) => provider.id)).toEqual([
       "microsoft-translate-default",

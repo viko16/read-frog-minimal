@@ -11,9 +11,23 @@ import { TranslationModeSelect } from "./translation-mode-select"
 /** How a page gets translated once translation starts — what is shown, and how much of it. */
 export function PreferenceSection() {
   const [translateConfig, setTranslateConfig] = useAtom(configFieldsAtomMap.pageTranslation)
+  const [contextMenu, setContextMenu] = useAtom(configFieldsAtomMap.contextMenu)
 
   return (
     <ConfigSection title={i18n.t("options.translation.preference.title")}>
+      <ConfigItem
+        id="context-menu-translate"
+        title={i18n.t("contextMenu.title")}
+        description={i18n.t("contextMenu.description")}
+      >
+        <Switch
+          aria-label={i18n.t("contextMenu.title")}
+          checked={contextMenu.enabled}
+          onCheckedChange={(enabled) => {
+            void setContextMenu({ enabled })
+          }}
+        />
+      </ConfigItem>
       <ConfigItem
         id="translation-mode"
         title={i18n.t("options.translation.preference.translationMode.title")}

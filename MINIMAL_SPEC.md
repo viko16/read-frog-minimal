@@ -19,7 +19,7 @@ Read Frog Minimal 是基于开源项目 Read Frog 裁剪的、长期本地自用
 1. 本地构建并安装扩展。
 2. 直接使用 Google Translate 或 Microsoft Translate，或按需添加 DeepLX、DeepL、第三方 AI Provider。
 3. 打开网页。
-4. 通过 Popup 或网页翻译快捷键触发翻译。
+4. 通过 Popup、网页翻译快捷键或启用后的右键菜单触发翻译。
 5. 在当前页面显示译文或双语内容。
 
 用户不需要注册、登录、Read Frog Credits、Hosted AI、Google Drive 或任何 Read Frog Cloud 服务。
@@ -56,6 +56,7 @@ Read Frog Minimal 是基于开源项目 Read Frog 裁剪的、长期本地自用
 - 内置及用户自定义站点解析规则；
 - 请求速率、批处理、预加载和翻译缓存；
 - 网页翻译与翻译模式快捷键；
+- 右键菜单整页翻译及显示原文，开关默认关闭；
 - 必要的 iframe 注入、DOM 发现、语言检测、翻译队列和双语渲染。
 
 “自定义网页翻译 Prompt”属于网页翻译能力，不属于待删除的 Custom AI Actions。
@@ -179,9 +180,10 @@ LLM 控件行为：
 - 配置重置；
 - 裁剪后的设置搜索/命令面板；
 - 网页翻译全部高级设置；
+- 网页翻译页面中的「右键菜单翻译」开关，修改后立即添加或移除菜单项；
 - 网页翻译、翻译模式和段落翻译快捷键。
 
-删除：账户菜单、Google Drive、Beta Experience、Analytics、What’s New、自定义 AI Actions、视频字幕、输入翻译、悬浮按钮、Selection Toolbar、Context Menu、TTS、Translation Hub、Roadmap、Help & Community 及其他产品导航。
+删除：账户菜单、Google Drive、Beta Experience、Analytics、What’s New、自定义 AI Actions、视频字幕、输入翻译、悬浮按钮、Selection Toolbar、独立 Context Menu 设置页、TTS、Translation Hub、Roadmap、Help & Community 及其他产品导航。
 
 ## 8. 必须彻底删除的运行时功能
 
@@ -196,7 +198,7 @@ LLM 控件行为：
 - 输入翻译；
 - Floating Button；
 - Selection Toolbar；
-- Context Menu；
+- 右键菜单中的选中文字翻译、朗读和自定义操作；
 - TTS 与 Offscreen Document；
 - Translation Hub；
 - Chrome Side Panel / Firefox Sidebar；
@@ -210,7 +212,9 @@ LLM 控件行为：
 
 ### 9.1 配置
 
-Provider、API Key、Endpoint、Model、语言、翻译模式、风格、自定义网页 Prompt、AI 智能上下文、网页翻译高级设置、网站规则、主题和界面语言保存在 Extension Local Storage。
+Provider、API Key、Endpoint、Model、语言、翻译模式、风格、自定义网页 Prompt、AI 智能上下文、网页翻译高级设置、右键菜单开关、网站规则、主题和界面语言保存在 Extension Local Storage。
+
+右键菜单开关保存为 `contextMenu.enabled`。新安装和缺少该字段的旧 Minimal 配置均默认为 `false`；已有开关值在加载和导入时保留。旧 upstream 配置仍经过冻结的 v98 → Minimal 迁移，随后补入默认关闭的开关。
 
 API Key 延续当前明文 Local Storage 方式，不引入没有可靠主密钥来源的伪加密。
 
@@ -249,9 +253,9 @@ API Key 延续当前明文 Local Storage 方式，不引入没有可靠主密钥
 
 ## 11. Manifest 与入口
 
-必须删除 `cookies`、`identity`、`contextMenus`、`sidePanel`、`offscreen` 权限。
+必须删除 `cookies`、`identity`、`sidePanel`、`offscreen` 权限。
 
-保留并由实际功能证明用途：`storage`、`tabs`、`alarms`、`scripting`、`webNavigation` 与网页翻译所需全站 host permissions。`alarms` 用于本地备份及网页翻译/摘要缓存清理。
+保留并由实际功能证明用途：`storage`、`tabs`、`alarms`、`scripting`、`webNavigation`、`contextMenus` 与网页翻译所需全站 host permissions。`alarms` 用于本地备份及网页翻译/摘要缓存清理；`contextMenus` 用于可关闭的整页翻译右键入口。
 
 删除对应 WXT entrypoints：字幕、输入注入、Selection、Floating Button、Side Panel、Offscreen、Translation Hub、Guide/Partner Bridge。保留 Host、Popup、Options、Background 及网页翻译需要的注入脚本。
 

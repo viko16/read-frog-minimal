@@ -117,6 +117,7 @@ const minimalConfigSchema = z.object({
   siteControl: siteControlSchema,
   siteRules: siteRulesConfigSchema,
   uiLanguage: uiLanguageSchema,
+  contextMenu: z.object({ enabled: z.boolean() }).default({ enabled: false }),
 })
 
 export const configSchema = z.preprocess(normalizeProviderReferences, minimalConfigSchema)

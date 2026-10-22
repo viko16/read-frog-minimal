@@ -130,6 +130,13 @@ const items: Array<{
     pageKey: "options.translation.title",
   },
   {
+    sectionId: "context-menu-translate",
+    route: "/page-translation",
+    titleKey: "contextMenu.title",
+    descriptionKey: "contextMenu.description",
+    pageKey: "options.translation.title",
+  },
+  {
     sectionId: "translate-range",
     route: "/page-translation",
     titleKey: "options.translation.preference.translateRange.title",

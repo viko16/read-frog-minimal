@@ -29,6 +29,11 @@ popup:
         action: Click to switch to bilingual
   aiSmartContext: AI Smart Context
   aiSmartContextDescription: Uses webpage context to improve translation quality. Requires LLM translation provider.
+contextMenu:
+  translate: Translate this page
+  showOriginal: Show original
+  title: Right-click page translation
+  description: Add page translation to the right-click menu. Off by default; changes take effect immediately.
 errorRecovery:
   title: Something went wrong
   description: Recovery mode is active. You can export your current settings as a backup, then reset settings and try again.

@@ -86,6 +86,7 @@ export const DEFAULT_CONFIG: Config = {
     disabledBuiltInRules: [],
   },
   uiLanguage: "auto",
+  contextMenu: { enabled: false },
 }
 
 /**

@@ -29,6 +29,11 @@ popup:
         action: Nhấp để chuyển sang song ngữ
   aiSmartContext: Ngữ cảnh thông minh AI
   aiSmartContextDescription: Sử dụng ngữ cảnh trang web để cải thiện chất lượng dịch. Yêu cầu nhà cung cấp dịch LLM.
+contextMenu:
+  translate: Dịch trang này
+  showOriginal: Hiện bản gốc
+  title: Dịch từ menu chuột phải
+  description: Thêm tính năng dịch toàn trang vào menu chuột phải. Mặc định tắt; thay đổi có hiệu lực ngay.
 errorRecovery:
   title: Đã xảy ra sự cố
   description: Chế độ khôi phục đang hoạt động. Bạn có thể xuất cài đặt hiện tại để sao lưu, sau đó đặt lại cài đặt và thử lại.

@@ -8,6 +8,7 @@ import { openOptionsPage } from "@/utils/navigation"
 import { initializeActionIcons, registerActionIconListeners } from "./browser-action-icon"
 import { ensureInitializedConfig, isFreshInstalledConfig } from "./config"
 import { setUpConfigBackup } from "./config-backup"
+import { setupContextMenu } from "./context-menu"
 import {
   cleanupAllSummaryCache,
   cleanupAllTranslationCache,
@@ -74,6 +75,8 @@ export default defineBackground({
       const config = await ensureInitializedConfig()
       await initI18n(config?.uiLanguage ?? "auto")
     })()
+
+    setupContextMenu(backgroundReady)
 
     proxyFetch()
     setupLLMGenerateTextMessageHandlers()

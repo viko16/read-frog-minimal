@@ -29,6 +29,11 @@ popup:
         action: Haz clic para cambiar a bilingüe
   aiSmartContext: Contexto inteligente de IA
   aiSmartContextDescription: Usa el contexto de la página web para mejorar la calidad de la traducción. Requiere un proveedor de traducción LLM.
+contextMenu:
+  translate: Traducir esta página
+  showOriginal: Mostrar original
+  title: Traducción desde el menú contextual
+  description: Añade la traducción de páginas al menú contextual. Desactivada por defecto; los cambios se aplican inmediatamente.
 errorRecovery:
   title: Algo salió mal
   description: El modo de recuperación está activo. Puedes exportar tu configuración actual como copia de seguridad y luego restablecer la configuración e intentarlo de nuevo.
